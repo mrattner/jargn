@@ -1,3 +1,3 @@
 /**
- *  Help module
+ *  Help module: displays help topics and FAQ.
  */
