@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "app.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>app.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Module dependencies.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">routes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/user&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/views&#39;</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">favicon</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">(</span><span class="s1">&#39;your secret here&#39;</span><span class="p">));</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">session</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">router</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">)));</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">errorHandler</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">routes</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">list</span><span class="p">);</span>
+
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">),</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Express server listening on port &quot;</span> <span class="o">+</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Login.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">PORT</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">app</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">).</span><span class="nx">createServer</span><span class="p">();</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view options&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">layout</span> <span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span>  <span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>MongoDB setting</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">).</span><span class="nx">Mongoose</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Model for MangoDB</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">properties</span> <span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span> <span class="p">],</span>
+    <span class="nx">methods</span>    <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">save</span>   <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">created_at</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">__super__</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Access to database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:3000/mydb&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Login</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">locals</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">message</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Submit</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">res_error</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">mes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">locals</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">message</span> <span class="o">:</span> <span class="nx">mes</span> <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">res_success</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">mes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">locals</span> <span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;message&quot;</span>  <span class="o">:</span> <span class="nx">mes</span><span class="p">,</span>
+                <span class="s2">&quot;userid&quot;</span>   <span class="o">:</span> <span class="nx">userid</span><span class="p">,</span>
+                <span class="s2">&quot;password&quot;</span> <span class="o">:</span> <span class="nx">password</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">userid</span>     <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">(</span><span class="s1">&#39;userid&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">password</span>   <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">create_new</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>When userid is not valid</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">userid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res_error</span><span class="p">(</span><span class="s1">&#39;not valid &quot;User ID&quot;&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>When password is not valid</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res_error</span><span class="p">(</span><span class="s1">&#39;not valid &quot;password&quot;&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">User</span>  <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">user</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">i</span>     <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;userid&quot;</span> <span class="o">:</span> <span class="nx">userid</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span> <span class="o">:</span> <span class="nx">password</span> <span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Create a new account</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">create_new</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">User</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>No duplicated userid so accesses to database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">user</span><span class="p">.</span><span class="nx">userid</span>   <span class="o">=</span> <span class="nx">userid</span><span class="p">;</span>
+                <span class="nx">user</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">password</span><span class="p">;</span>
+                <span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+                <span class="nx">res_success</span><span class="p">(</span><span class="s1">&#39;Welcome to Twitter&#39;</span><span class="p">);</span>
+
+            <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Duplicated userid</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res_error</span><span class="p">(</span><span class="s1">&#39;choose different username&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+    <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>Login check</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">User</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res_error</span><span class="p">(</span><span class="s2">&quot;UserID or passwrod is not valid.&quot;</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res_success</span><span class="p">(</span><span class="s1">&#39;logged in&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+    <span class="p">}</span>
+
+<span class="p">});</span>
+
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">);</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
