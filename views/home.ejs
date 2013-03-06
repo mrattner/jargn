@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title %></title>
-	<link rel="public/stylesheet" type="text/css" href="style.css">
+  <title><%= title %></title>
+  <link rel="public/stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-	<div id="site-box">
-		<a href="routes/<%= index %>">Home</a>
-		<a href="routes/<%= connect %>">Connect</a>
-		<a href="routes/<%= discover %>">Discover</a>
-		<a href="routes/<%= myprofile %>">Me</a>
-		<form name="search" action="<%= search %>" method="get">
-			<input type="text" name="searchstring">
-			<input type="submit" value="Search"></form>
-			<a href="routes/<%= settings %>">Settings</a>
-			<a href="routes/<%= tweet %>">Tweet</a>
-		</div>
+<div id="site-box">
+<a href="routes/<%= index %>">Home</a>
+<a href="routes/<%= connect %>">Connect</a>
+<a href="routes/<%= discover %>">Discover</a>
+<a href="routes/<%= myprofile %>">Me</a>
+<form name="search" action="<%= search %>" method="get">
+<input type="text" name="searchstring">
+<input type="submit" value="Search"></form>
+<a href="routes/<%= settings %>">Settings</a>
+<a href="routes/<%= tweet %>">Tweet</a>
+</div>
 
-		<div id="a-box"><h1>Here are some people you might enjoy following</h1></div>
+<div id="a-box"><h1>Here are some people you might enjoy following</h1></div>
 
-		<div id="b-box">
-			<h1><%= username %><br>View my profile page</a><br>
-				<%= numtweet %><a href="routes/<%= numtweet %>">TWEETS</a>
-				<%= numfollowing %><a href="routes/<%= numfollowing %>">FOLLOWING</a>
-				<%= numfollower %><a href="routes/<%= numfollower %>">FOLLOWER</a>
-			</div>
+<div id="b-box">
+<h1><%= username %><br>View my profile page</a><br>
+<%= numtweet %><a href="routes/<%= numtweet %>">TWEETS</a>
+<%= numfollowing %><a href="routes/<%= numfollowing %>">FOLLOWING</a>
+<%= numfollower %><a href="routes/<%= numfollower %>">FOLLOWER</a>
+</div>
 
-			<div id="c-box"><h1>Tweets</h1><%= t %></div>
+<div id="c-box"><h1>Tweets</h1><%= t %></div>
 
-			<div id="d-box"></div>
+<div id="d-box"></div>
 
-		</div> 
-	</body>
-	</html>
+</div> 
+</body>
+</html>
