@@ -1,12 +1,25 @@
-<header>
-<a href="routes/<%= index %>">Home</a>
-<a href="routes/<%= connect %>">Connect</a>
-<a href="routes/<%= discover %>">Discover</a>
-<a href="routes/<%= myprofile %>">Me</a>
-<form name="search" action="<%= search %>" method="get">
-<input type="text" name="searchstring">
-<input type="submit" value="Search"></form>
-<a href="routes/<%= settings %>">Settings</a>
-<a href="routes/<%= tweet %>">Tweet</a>
-</header>
-<hr>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+</head>
+<body>
+	<header>
+		<a href="routes/<%= index %>">Home</a>
+		<a href="routes/<%= connect %>">Connect</a>
+		<a href="routes/<%= discover %>">Discover</a>
+		<a href="routes/<%= myprofile %>">Me</a>
+		<form name="search" action="<%= search %>" method="get">
+			<input type="text" name="searchstring">
+			<input type="submit" value="Search"></form>
+			<a href="routes/<%= settings %>">Settings</a>
+			<a href="routes/<%= tweet %>">Tweet</a>
+		</header>
+		<% if (req.session.user) { %>                                                  
+		<a href="/auth/logout">Logout</a>                                        
+		<% } else { %>                                                           
+		<a href="/auth/login">Login</a>                                          
+		<% } %>  
+		<hr>
+	</body>
+	</html>
