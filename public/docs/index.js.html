@@ -36,28 +36,26 @@
   <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
 </div>
 <div class="dox">
-  <div class="summary"><p>Home module: Show login page if user is not logged in. Show the home page once user has logged in.</p>
+  <div class="summary"><p>GET home page.</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
-        <td class="code highlight"><div class="highlight"><pre> 
+        <td class="code highlight"><div class="highlight"><pre> <span class="nx">exports</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Express&#39;</span> <span class="p">});</span>
+ <span class="p">};</span>
+ <span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./server&quot;</span><span class="p">);</span>
+ <span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./router&quot;</span><span class="p">);</span>
+ <span class="kd">var</span> <span class="nx">requestHandlers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./requestHandlers&quot;</span><span class="p">);</span>
 
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
-</div>
-<p>Render the index page</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Jargn&#39;</span> <span class="p">});</span>
-<span class="p">};</span>
+ <span class="kd">var</span> <span class="nx">handle</span> <span class="o">=</span> <span class="p">{}</span>
+ <span class="nx">handle</span><span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">requestHandlers</span><span class="p">.</span><span class="nx">start</span><span class="p">;</span>
+ <span class="nx">handle</span><span class="p">[</span><span class="s2">&quot;/start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">requestHandlers</span><span class="p">.</span><span class="nx">start</span><span class="p">;</span>
+ <span class="nx">handle</span><span class="p">[</span><span class="s2">&quot;/upload&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">requestHandlers</span><span class="p">.</span><span class="nx">upload</span><span class="p">;</span>
+ <span class="nx">handle</span><span class="p">[</span><span class="s2">&quot;/show&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">requestHandlers</span><span class="p">.</span><span class="nx">show</span><span class="p">;</span>
+
+ <span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">,</span> <span class="nx">handle</span><span class="p">);</span>
 </pre></div>
         </td>
       </tr>

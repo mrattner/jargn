@@ -1,8 +1,19 @@
-/**
- * Home module: Show login page if user is not logged in. Show the home page once user has logged in.
+
+/*
+ * GET home page.
  */
- 
-//Render the index page
-exports.index = function(req, res){
-  res.render('index', { title: 'Jargn' });
-};
+
+ exports.index = function(req, res){
+ 	res.render('index', { title: 'Express' });
+ };
+ var server = require("./server");
+ var router = require("./router");
+ var requestHandlers = require("./requestHandlers");
+
+ var handle = {}
+ handle["/"] = requestHandlers.start;
+ handle["/start"] = requestHandlers.start;
+ handle["/upload"] = requestHandlers.upload;
+ handle["/show"] = requestHandlers.show;
+
+ server.start(router.route, handle);
