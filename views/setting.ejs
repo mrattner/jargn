@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="/public/stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div id="b-box">
+		<h1>Account</h1>
+	</div>
+
+	<div id="c-box">
+		<h1>Account</h1>
+		<h2>Change your basic account settings</h2>
+		<span>Username: <%= userid%></span>
+		<span>Email: <%= email%></span>
+		<form name ="chbox">
+			<input type="checkbox" value="yes">Let others find me by my email address
+		</form>
+		<span>Time zone <%= timezone %></span>
+		<form name ="chbox">
+			Tweet privacy <input type="checkbox" value="yes">Protect my Tweets
+		</form>
+		<form name ="chbox">
+			<input type="button" value="save changes" onclick="boxCheck()">
+		</form>
+	</div>
+
+</body>
+</html>

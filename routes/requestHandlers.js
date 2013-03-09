@@ -1,3 +1,8 @@
+
+/*
+ * Handlers for updated pictures and rename to test.png
+ */
+
 var querystring = require("querystring"),
     fs = require("fs"),
     formidable = require("formidable");

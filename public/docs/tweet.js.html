@@ -42,7 +42,48 @@
   </div>
 </div>
         </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">querystring</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;querystring&quot;</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">start</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">postData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Request handler &#39;start&#39; was called.&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>Create a textbox which size is 5 rows by 20 colums</p>
+        </td>
         <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;&lt;html&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;head&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; &#39;</span><span class="o">+</span>
+    <span class="s1">&#39;charset=UTF-8&quot; /&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;/head&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;body&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;form action=&quot;/upload&quot; method=&quot;post&quot;&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;textarea name=&quot;text&quot; rows=&quot;5&quot; cols=&quot;20&quot;&gt;&lt;/textarea&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;input type=&quot;submit&quot; value=&quot;Submit text&quot; /&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;/form&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;/body&gt;&#39;</span><span class="o">+</span>
+    <span class="s1">&#39;&lt;/html&gt;&#39;</span><span class="p">;</span>
+
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s2">&quot;text/html&quot;</span><span class="p">});</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">upload</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">postData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Request handler &#39;upload&#39; was called.&quot;</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">});</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;You&#39;ve sent: &quot;</span> <span class="o">+</span> <span class="nx">postData</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">upload</span> <span class="o">=</span> <span class="nx">upload</span><span class="p">;</span>
 </pre></div>
         </td>
       </tr>

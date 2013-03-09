@@ -1,6 +1,6 @@
 
 /*
- * GET home page.
+ * Upload picture in PNG for a default.
  */
 
  exports.index = function(req, res){
