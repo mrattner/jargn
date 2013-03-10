@@ -1,7 +1,6 @@
 {
   "name": "jargn",
   "version": "0.0.1",
-  "contributors": {"Mayu Kudo", "Kira Revere", "Adam Daehling", "Marcy Rattner"},
   "private": true,
   "scripts": {
     "start": "node app.js"
