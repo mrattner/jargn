@@ -1,0 +1,22 @@
+<% include header.ejs %>
+
+<h1>Account Settings</h1>
+
+<div>
+<h2>Change your basic account settings</h2>
+		<span>Username: </span>
+		<span>Email: </span>
+		<form name ="chbox">
+			<input type="checkbox" value="yes">Let others find me by my email address
+		</form>
+		<span>Time zone </span>
+		<form name ="chbox">
+			Tweet privacy <input type="checkbox" value="yes">Protect my Tweets
+		</form>
+		<form name ="chbox">
+			<input type="button" value="save changes" onclick="boxCheck()">
+		</form>
+	</div>
+
+</body>
+</html>

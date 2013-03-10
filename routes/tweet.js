@@ -1,35 +1,17 @@
 /*
- *  Tweet module: gets a composed tweet and puts it in the user's personal tweet database.
+ *  Tweet module: gets a composed tweet and puts it in the user's personal tweet
+ *	database.
  */
-
-var querystring = require("querystring");
-function start(response, postData) {
-  console.log("Request handler 'start' was called.");
-// Create a textbox which size is 5 rows by 20 colums
-  var body = '<html>'+
-    '<head>'+
-    '<meta http-equiv="Content-Type" content="text/html; '+
-    'charset=UTF-8" />'+
-    '</head>'+
-    '<body>'+
-    '<form action="/upload" method="post">'+
-    '<textarea name="text" rows="5" cols="20"></textarea>'+
-    '<input type="submit" value="Submit text" />'+
-    '</form>'+
-    '</body>'+
-    '</html>';
-
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(body);
-    response.end();
+exports.display = function (req, res) {
+	res.render('tweet', { title: 'Jargn: Compose Tweet' });
 }
 
-function upload(response, postData) {
+/**
+ *	Uploads a composed tweet to the database.
+ */
+exports.upload = function (response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("You've sent: " + postData);
   response.end();
 }
-
-exports.start = start;
-exports.upload = upload;

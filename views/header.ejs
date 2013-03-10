@@ -2,20 +2,19 @@
 <html>
 <head>
 	<title><%= title %></title>
-	<link rel="public/stylesheet" type="text/css" href="style.css">
+	<link rel="public/stylesheets" type="text/css" href="style.css">
 </head>
 <body>
 
-	<header>
-		<a href="routes/<%= index %>">Home</a>
-		<a href="routes/<%= connect %>">Connect</a>
-		<a href="routes/<%= discover %>">Discover</a>
-		<a href="routes/<%= myprofile %>">Me</a>
-		<form name="search" action="<%= search %>" method="get">
+	<nav class="main">
+		<div><a href="/">Home</a></div>
+		<div><a href="/connect/">Connect</a></div>
+		<div><a href="/discover/">Discover</a></div>
+		<div><a href="/myprofile/">My Profile</a></div>
+		<div><form name="search" action="/search/" method="get">
 			<input type="text" name="searchstring">
-			<input type="submit" value="Search"></form>
-			<a href="routes/<%= settings %>">Settings</a>
-			<a href="routes/<%= tweet %>">Tweet</a>
-		</header>
-	</body>
-	</html>
+			<input type="submit" value="Search"></form></div>
+		<div><a href="/settings/">Settings</a></div>
+		<div><a href="/help/">Help</a></div>
+		<div><a href="/tweet/">Tweet</a></div>
+	</nav>

@@ -1,148 +1,72 @@
-
 /**
- * Module dependencies.
+ *	Launching point for the Express app.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
+//Set the port on which to run the app
+var APP_PORT = 3000;
 
+//Module dependencies and routes
+var express = require('express')
+, routes = require('./routes')
+, http = require('http')
+, path = require('path')
+
+, connect = require('./routes/connect')
+, discover = require('./routes/discover')
+, findfriends = require('./routes/findfriends')
+, help = require('./routes/help')
+, login = require('./routes/login')
+, myprofile = require('./routes/myprofile')
+, search = require('./routes/search')
+, settings = require('./routes/settings')
+, signup = require('./routes/signup')
+, tweet = require('./routes/tweet')
+, user = require('./routes/user');
+
+//Set up the Express app
 var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
-
-app.get('/', routes.index);
-app.get('/users', user.list);
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
-});
-
-
-
-/*
- * Login.
+/**
+ *	Configure Express.
  */
-var PORT = 3000;
-var app  = require('express').createServer();
-app.set('view options', { layout : false });
-app.set('view engine',  'ejs');
+app.configure(function(){
+			  //Set the correct port to run on
+			  app.set('port', process.env.PORT || APP_PORT);
+			  
+			  //Set the view directory path
+			  app.set('views', __dirname + '/views');
+			  
+			  //Set the default engine extension to use when omitted
+			  app.set('view engine', 'ejs');
+			  
+			  
+			  
+			  app.use(express.bodyParser());
+			  app.use(express.methodOverride());
+			  app.use(express.cookieParser('your secret here'));
+			  app.use(express.session());
+			  app.use(app.router);
+			  app.use(express.static(path.join(__dirname, 'public')));
+			  });
 
-// MongoDB setting
-var mongoose = require('mongoose').Mongoose;
+/**
+ *	Configure Express in development mode.
+ */
+app.configure('development', function(){
+			  app.use(express.errorHandler());
+			  app.use(express.logger('dev'));
+			  });
 
-// Model for MangoDB
-mongoose.model('User', {
-    properties : [ 'userid', 'password', 'created_at' ],
-    methods    : {
-        save   : function (fn) {
-            this.created_at = new Date();
-            this.__super__(fn);
-        }
-    }
-});
+/**
+ *	Index (home) route
+ */
+app.get('/', routes.index);
+app.get('/connect', connect.display);
+app.get('/discover', discover.display);
+app.get('/help', help.display);
+app.get('/myprofile', myprofile.display);
+app.get('/search', search.display);
+app.get('/settings', settings.display);
+app.get('/tweet', tweet.display);
 
-// Access to database
-var db = mongoose.connect('mongodb://localhost:3000/mydb');
-
-
-// Login
-app.get("/", function (req, res) {
-    res.render('index', {
-        locals : { message : '' }
-    });
-});
-
-// Submit
-app.get("/login", function (req, res) {
-
-    var res_error = function (mes) {
-        res.render('index', {
-            locals : { message : mes }
-        });
-    };
-
-    var res_success = function (mes) {
-        res.render('success', {
-            locals : {
-                "message"  : mes,
-                "userid"   : userid,
-                "password" : password
-            }
-        });
-    };
-
-    var userid     = req.param('userid');
-    var password   = req.param('password');
-    var create_new = req.param('new');
-
-    // When userid is not valid
-    if (! userid) {
-        res_error('not valid "User ID"');
-    }
-    // When password is not valid
-    if (! password) {
-        res_error('not valid "password"');
-    }
-
-    var User  = db.model('User');
-    var user  = new User();
-    var i     = { "userid" : userid, "password" : password };
-
-    // Create a new account
-    if (create_new) {
-
-        User.find(i).one(function (doc) {
-            console.log(doc);
-            // No duplicated userid so accesses to database
-            if (doc == null) {
-                user.userid   = userid;
-                user.password = password;
-                user.save();
-
-                res_success('Welcome to Twitter');
-
-            }
-            // Duplicated userid
-            else {
-                res_error('choose different username');
-            }
-        });
-
-    }
-    // Login check
-    else {
-        User.find(i).one(function (doc) {
-            console.log(doc);
-            if (doc == null) {
-                res_error("UserID or passwrod is not valid.");
-            } else {
-                res_success('logged in');
-            }
-        });
-
-    }
-
-});
-
-
-app.listen(PORT);
-
+app.listen(APP_PORT);

@@ -1,3 +1,8 @@
 /**
- *  Settings module: Allows user to change profile, information, user information, and create widgets for external use.
+ *  Settings module: Allows user to change profile, information, and user info,
+ *	and create widgets for external use.
  */
+exports.display = function (req, res) {
+	res.render('settings', { title: 'Jargn: Settings' });
+}
+
