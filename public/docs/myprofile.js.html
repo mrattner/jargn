@@ -36,14 +36,17 @@
   <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
 </div>
 <div class="dox">
-  <div class="summary"><p>My Profile module: Represents the current user's profile, including tweets and retweets, list of followers,
- list of followed users, favorited tweets, lists, and requests.</p>
+  <div class="summary"><p>My Profile module: Represents the current user's profile, including tweets
+ and retweets, list of followers, list of followed users, favorited tweets,
+ lists, and requests.</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
-        <td class="code highlight"><div class="highlight"><pre>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;myprofile&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Jargn: Your Profile&#39;</span> <span class="p">});</span>
+<span class="p">}</span>
 </pre></div>
         </td>
       </tr>
