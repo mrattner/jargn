@@ -2,6 +2,12 @@
  *  Tweet module: gets a composed tweet and puts it in the user's personal tweet
  *	database.
  */
+
+//The twitter database
+var userlib = require('../lib/tweet');
+
+// ### *function*: display
+// Provides a user tweet view.
 exports.display = function (req, res) {
 	res.render('tweet', {	title	: 'Jargn : Compose Tweet',
 							user	: req.session.user});
