@@ -3,9 +3,6 @@
  *	database.
  */
 
-//The twitter database
-var userlib = require('../lib/tweet');
-
 // ### *function*: display
 // Provides a user tweet view.
 exports.display = function (req, res) {
