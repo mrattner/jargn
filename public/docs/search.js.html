@@ -43,7 +43,8 @@
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Jargn: Search Results&#39;</span> <span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Search Results&#39;</span><span class="p">,</span>
+              <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
         </td>

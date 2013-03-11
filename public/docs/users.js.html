@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>users.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//users.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#user-library">User Library</a>
+      </div>
+      <div class="heading h2">
+        <a href="#user-objects">User Objects</a>
+      </div>
+      <div class="heading h2">
+        <a href="#user-database">User Database</a>
+      </div>
+      <div class="heading h2">
+        <a href="#online-users">Online Users</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--createuser">function: createUser</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--authuser">function: authUser</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--loginuser">function: loginUser</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--logoutuser">function: logoutUser</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--isloggedin">function: isLoggedIn</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--adduser">function: addUser</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="user-library">
+  <h1>
+    <a href="#user-library" class="pilcrow">&#182;</a>
+    User Library
+  </h1>
+</div>
+
+
+<p>Library for accessing the database of Jargn users.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="user-objects">
+  <h2>
+    <a href="#user-objects" class="pilcrow">&#182;</a>
+    User Objects
+  </h2>
+</div>
+
+
+<p>These will be replaced with database entries</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">User</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">username</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">password</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="user-database">
+  <h2>
+    <a href="#user-database" class="pilcrow">&#182;</a>
+    User Database
+  </h2>
+</div>
+
+
+<p>A simple array <code>users</code> to record user data.
+Note: This will be replaced with calls to a database layer.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="online-users">
+  <h2>
+    <a href="#online-users" class="pilcrow">&#182;</a>
+    Online Users
+  </h2>
+</div>
+
+
+<p>An array of usernames who are online</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">online</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--createuser">
+  <h3>
+    <a href="#function--createuser" class="pilcrow">&#182;</a>
+    <em>function</em>: createUser
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Creates a User object and adds it to the "database," if a user with the same
+username or same email address doesn't already exist. Invokes callback <code>cb</code>
+with the signature cb(error, message).</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The username to add</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">password</span>
+      <span class="dox_type">string</span>
+      <span>The password to associate with this account</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">pconfirm</span>
+      <span class="dox_type">string</span>
+      <span>String to match against desired password</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">email</span>
+      <span class="dox_type">string</span>
+      <span>The email address of this account</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">name</span>
+      <span class="dox_type">string</span>
+      <span>The user's full name</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="nx">pconfirm</span> <span class="o">&amp;&amp;</span> <span class="nx">email</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Check for duplicate user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>If the username already exists</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Please choose a different username&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>If the email address already exists</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">email</span> <span class="o">===</span> <span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User &#39;</span> <span class="o">+</span> <span class="nx">u</span><span class="p">.</span><span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; already registered with this &#39;</span> <span class="o">+</span>
+           <span class="s1">&#39;email address&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Check that password and pconfirm match</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">pconfirm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">);</span>
+      <span class="nx">addUser</span><span class="p">(</span><span class="nx">newUser</span><span class="p">);</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="s1">&#39;Successfully created new user &#39;</span> <span class="o">+</span> <span class="nx">username</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Passwords must match&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Please fill in all fields&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--authuser">
+  <h3>
+    <a href="#function--authuser" class="pilcrow">&#182;</a>
+    <em>function</em>: authUser
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Locates a user by <code>username</code> if user exists and password matches. Invokes
+callback <code>cb</code> with the signature cb(error, userobj).</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after looking up user</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">authUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>If the username is found</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Check password</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>Successful login</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">u</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Incorrect password&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Invalid username&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--loginuser">
+  <h3>
+    <a href="#function--loginuser" class="pilcrow">&#182;</a>
+    <em>function</em>: loginUser
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Adds a user to the list of online users.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user</span>
+      <span class="dox_type">object</span>
+      <span>The user to add to list of logged in users</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">loginUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">online</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--logoutuser">
+  <h3>
+    <a href="#function--logoutuser" class="pilcrow">&#182;</a>
+    <em>function</em>: logoutUser
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Deletes a user from the list of online users, if it is in the list.
+ @param {object} user The user to delete from list of logged in users</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logoutUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="nx">online</span><span class="p">[</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)];</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--isloggedin">
+  <h3>
+    <a href="#function--isloggedin" class="pilcrow">&#182;</a>
+    <em>function</em>: isLoggedIn
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Tells whether a user is in the list of logged in users.
+ @param {object} user The user to check</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--adduser">
+  <h3>
+    <a href="#function--adduser" class="pilcrow">&#182;</a>
+    <em>function</em>: addUser
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Adds a user to the database. The <code>userData</code> is an object with
+the following properties:</p>
+  </div>
+  <div class="body"><ul>
+<li><code>username</code> The user's Jargn handle (@somebody)</li>
+<li><code>password</code> The user's password</li>
+<li><code>name</code> The user's full name</li>
+<li><code>email</code> The user's email address</li>
+<li><code>date</code> When the account was created</li>
+</ul>
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">newUser</span>
+      <span class="dox_type">object</span>
+      <span>The user object to add to the database</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">addUser</span> <span class="p">(</span><span class="nx">newUser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newUser</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

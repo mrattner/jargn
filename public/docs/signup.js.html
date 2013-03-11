@@ -18,6 +18,15 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h1">
+        <a href="#signup-module">Signup module</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--display">function: display</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--auth">function: auth</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -26,24 +35,181 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>signup.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="signup-module">
+  <h1>
+    <a href="#signup-module" class="pilcrow">&#182;</a>
+    Signup module
+  </h1>
 </div>
+
+
 <div class="dox">
-  <div class="summary"><p>Signup module: The database will search whether there is a duplicated user
- stored or not. If not, submit button will put a new user in the database.</p>
+  <div class="summary"><p>The database will search whether there is a duplicated user stored or not.
+ If not, submit button will put a new user in the database.</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>The user database</p>
+        </td>
         <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">userlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/users&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Function to decide if redirect is necessary</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">loggedIn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./login&#39;</span><span class="p">).</span><span class="nx">loggedIn</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--display">
+  <h3>
+    <a href="#function--display" class="pilcrow">&#182;</a>
+    <em>function</em>: display
+  </h3>
+</div>
+
+
+<p>Shows the sign up page, with a message from a previous signup attempt.
+If a user is already logged in, redirects to index.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">loggedIn</span><span class="p">(</span><span class="nx">req</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;signup&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn: Sign Up&#39;</span><span class="p">,</span>
+                <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span><span class="p">,</span>
+                <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--auth">
+  <h3>
+    <a href="#function--auth" class="pilcrow">&#182;</a>
+    <em>function</em>: auth
+  </h3>
+</div>
+
+
+<p>Authenticates account creation.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>If the user is already logged in, redirect to index</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">loggedIn</span><span class="p">(</span><span class="nx">req</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Pull the values from the signup form</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">pconfirm</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">pconfirm</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Attempt to create new user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">userlib</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span>
+               <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>If there was an error, flash a message to the redirected
+route <code>signup</code>.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/signup&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Redirect to login</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>
