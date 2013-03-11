@@ -3,6 +3,7 @@
  *	and create widgets for external use.
  */
 exports.display = function (req, res) {
-	res.render('settings', { title: 'Jargn: Settings' });
+	res.render('settings', {	title	: 'Jargn : Settings',
+								user	: req.session.user});
 }
 

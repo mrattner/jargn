@@ -1,1 +1,12 @@
-<!-- Allow user to log in -->
+<% include header.ejs %>
+
+<h1>Welcome to Jargn</h1>
+	<div><a href="/signup/">Sign Up</a></div>
+	<div id="flash_message"><%= message %></div>
+	<form name="login" action="/login/auth" method="post">
+		Username: <input type="text" name="username" /> <br />
+		Password: <input type="password" name="password" /> <br />
+		<input type="submit" value="Login" />
+	</form>
+</body>
+</html>

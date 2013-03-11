@@ -4,5 +4,6 @@
  */
 
 exports.display = function (req, res) {
-	res.render('discover', { title: 'Jargn: Discover' });
+	res.render('discover', {	title	: 'Jargn : Discover',
+								user	: req.session.user});
 }

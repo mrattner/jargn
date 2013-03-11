@@ -4,5 +4,6 @@
  */
 
 exports.display = function (req, res) {
-	res.render('connect', { title: 'Jargn: Connect' });
-}
+	res.render('connect', { title	: 'Jargn : Connect',
+							user	: req.session.user});
+};

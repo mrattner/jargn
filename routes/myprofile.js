@@ -4,5 +4,6 @@
  *	lists, and requests.
  */
 exports.display = function (req, res) {
-	res.render('myprofile', { title: 'Jargn: Your Profile' });
+	res.render('myprofile', {	title	: 'Jargn : My Profile',
+								user	: req.session.user});
 }

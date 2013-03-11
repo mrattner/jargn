@@ -1,8 +1,15 @@
-<html>
-<body>
+<% include header.ejs %>
 
 <h1>Sign Up for a Jargn Account</h1>
-
+	<div id="flash_message"><%= message %></div>
+	<form name="signup" action="/signup/auth" method="post">
+		Desired Username: <input type="text" name="username" /> <br />
+		Password: <input type="password" name="password" /> <br />
+		Confirm Password: <input type="password" name="pconfirm" /> <br />
+		Email Address: <input type="text" name="email" /> <br />
+		Full Name: <input type="text" name="name" /> <br />
+		<input type="submit" value="Submit" />
+	</form>
 
 </body>
 </html>

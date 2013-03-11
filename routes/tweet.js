@@ -3,7 +3,8 @@
  *	database.
  */
 exports.display = function (req, res) {
-	res.render('tweet', { title: 'Jargn: Compose Tweet' });
+	res.render('tweet', {	title	: 'Jargn : Compose Tweet',
+							user	: req.session.user});
 }
 
 /**
