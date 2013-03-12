@@ -54,6 +54,7 @@
       </tr>
       <tr>
         <td class="docs">
+<<<<<<< HEAD
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
@@ -70,6 +71,8 @@
       </tr>
       <tr>
         <td class="docs">
+=======
+>>>>>>> master
 <div class="pilwrap" id="function--display">
   <h3>
     <a href="#function--display" class="pilcrow">&#182;</a>
@@ -78,6 +81,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <p>Provides a view of a user's activity, his tweets,etc.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
@@ -91,6 +95,14 @@
     <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
   <span class="p">}</span>
+=======
+<p>Provides a user his/her profile.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;myprofile&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : My Profile&#39;</span><span class="p">,</span>
+                <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
+>>>>>>> master
 <span class="p">}</span>
 </pre></div>
         </td>

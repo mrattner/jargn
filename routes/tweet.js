@@ -2,6 +2,9 @@
  *  Tweet module: gets a composed tweet and puts it in the user's personal tweet
  *	database.
  */
+
+// ### *function*: display
+// Provides a user tweet view.
 exports.display = function (req, res) {
 	res.render('post', {	title	: 'Jargn : Compose Tweet',
 							user	: req.session.user});
