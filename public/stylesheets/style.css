@@ -17,6 +17,11 @@ width: 500px;
 border-bottom: 1px solid #2d2d2d;
 }
 
+#post {
+width: 300px;
+border: 1px solid;
+}
+
 footer {
 clear : both ; width : 750px ;     
 }
