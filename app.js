@@ -1,4 +1,5 @@
 /**
+ *	# app
  *	Launching point for the Express app.
  */
 
@@ -25,11 +26,57 @@ var express = require('express')
 , user = require('./routes/user')
 ;
 
-//Set up the Express app
+// ## app object
+// The Express app
 var app = express();
 
 /**
- *	Configure Express.
+ *	### *function*: authmw
+ *	Middleware for authentication and redirecting.
+ *
+ *	@param req {object} The HTTP request
+ *	@param res {object} The HTTP response
+ *	@param next {function} The next route, as defined by the router
+ */
+function authmw (req, res, next) {
+	//Pattern defining login or signup URLs
+	var signupOrLoginURL = /^\/(login|signup)/;
+	
+	//Pattern defining stylesheet URLs
+	var stylesheetURL = /^\/stylesheets/;
+	
+	//If the user is not logged in
+	if (req.session.user === undefined){
+		//If a logged out user is trying to log in or sign up
+		if (req.url.match(signupOrLoginURL) || req.url.match(stylesheetURL)) {
+			//Then continue to next route
+			console.log('continue (logged out) because url was ' + req.url);
+			next();
+		}
+		//Otherwise, redirect to login
+		else {
+			console.log('redirect (login) because url was ' + req.url);
+			login.display(req, res, next);
+		}
+	}
+	//Otherwise, the user is logged in
+	else {
+		//If a logged in user is trying to log in or sign up
+		if (req.url.match(signupOrLoginURL)) {
+			//Then redirect to index
+			console.log('redirect (index) because url was ' + req.url);
+			routes.index(req, res, next);
+		}
+		//Otherwise, continue to next route
+		else {
+			console.log('continue (logged in) because url was ' + req.url);
+			next();
+		}
+	}
+}
+
+/**
+ *	Configure Express and use middleware
  */
 app.configure(function(){
 			  //Set the correct port to run on
@@ -56,6 +103,9 @@ app.configure(function(){
 			  //Use flash support for sessions
 			  app.use(flash());
 			  
+			  //Use the custom authentication middleware for redirecting
+			  app.use(authmw);
+			  
 			  //Use router middleware (must be used after express.session)
 			  app.use(app.router);
 			  
@@ -64,7 +114,7 @@ app.configure(function(){
 });
 
 /**
- *	Configure Express in development mode.
+ *	Configure Express in development mode
  */
 app.configure('development', function(){
 			  app.use(express.errorHandler());
@@ -89,5 +139,5 @@ app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 app.get('/tweet', tweet.display);
 
-
+// Listen for HTTP requests
 app.listen(APP_PORT);
