@@ -18,14 +18,14 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h1">
+        <a href="#login-module">Login module</a>
+      </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
       </div>
       <div class="heading h3">
         <a href="#function--auth">function: auth</a>
-      </div>
-      <div class="heading h3">
-        <a href="#function--loggedin">function: loggedIn</a>
       </div>
       <div class="heading h3">
         <a href="#function--logout">function: logout</a>
@@ -38,21 +38,15 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>login.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="login-module">
+  <h1>
+    <a href="#login-module" class="pilcrow">&#182;</a>
+    Login module
+  </h1>
 </div>
-<div class="dox">
-  <div class="summary"><p>Login module: Allow user to log in and start session.</p>
-  </div>
-  <div class="body">
-  </div>
-</div>
+
+
+<p>Allow user to log in and start session.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -81,14 +75,16 @@
 </div>
 
 
-<p>Provides a user login view. If user is already logged in, redirects to index.</p>
+<div class="dox">
+  <div class="summary"><p>Provides a user login view.</p>
+  </div>
+  <div class="body"><p>@param {object} req The HTTP request
+ @param {object} res The HTTP response</p>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">loggedIn</span><span class="p">(</span><span class="nx">req</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">display</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -101,12 +97,12 @@
 <p>Grab any messages being sent to use from redirect</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Login&#39;</span><span class="p">,</span>
-                <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>
-                <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span><span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+  <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Login&#39;</span><span class="p">,</span>
+              <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>
+              <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span><span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">display</span><span class="p">;</span>
 
 
 </pre></div>
@@ -122,14 +118,16 @@
 </div>
 
 
-<p>Performs basic user authentication.</p>
+<div class="dox">
+  <div class="summary"><p>Performs basic user authentication.</p>
+  </div>
+  <div class="body"><p>@param {object} req The HTTP request
+ @param {object} res The HTTP response</p>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">auth</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">loggedIn</span><span class="p">(</span><span class="nx">req</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -142,8 +140,8 @@
 <p>Pull the values from the login form</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
     
 
 </pre></div>
@@ -157,8 +155,8 @@
 <p>Attempt to authenticate the user</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="nx">userlib</span><span class="p">.</span><span class="nx">authUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">userlib</span><span class="p">.</span><span class="nx">authUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -168,14 +166,13 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
-<p>If there was an error, flash a message to the redirected
-route <code>login</code>.</p>
+<p>If there was an error, flash a message to the redirected route <code>login</code></p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -188,7 +185,7 @@ route <code>login</code>.</p>
 <p>Store the user in the request's session</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-        <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+      <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
 
 </pre></div>
         </td>
@@ -201,7 +198,7 @@ route <code>login</code>.</p>
 <p>Store the user in the list of online users</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-        <span class="nx">userlib</span><span class="p">.</span><span class="nx">loginUser</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+      <span class="nx">userlib</span><span class="p">.</span><span class="nx">loginUser</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
 
 </pre></div>
         </td>
@@ -214,66 +211,11 @@ route <code>login</code>.</p>
 <p>Redirect to index</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--loggedin">
-  <h3>
-    <a href="#function--loggedin" class="pilcrow">&#182;</a>
-    <em>function</em>: loggedIn
-  </h3>
-</div>
-
-
-<div class="dox">
-  <div class="summary"><p>Checks to see that the request's user is logged in.
- @param {object} req The HTTP request
- @return true if the request's current user exists and is logged in</p>
-  </div>
-  <div class="body">
-  </div>
-</div>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">loggedIn</span> <span class="p">(</span><span class="nx">req</span><span class="p">)</span> <span class="p">{</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
-</div>
-<p>Get the user from the request's session if it exists</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
-</div>
-<p>Return true if the user is logged in</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">return</span> <span class="nx">userlib</span><span class="p">.</span><span class="nx">isLoggedIn</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">loggedIn</span> <span class="o">=</span> <span class="nx">loggedIn</span><span class="p">;</span>
 
 
 </pre></div>
@@ -290,10 +232,10 @@ route <code>login</code>.</p>
 
 
 <div class="dox">
-  <div class="summary"><p>Deletes user info and session, then redirects to login.
- @param user The user to log out</p>
+  <div class="summary"><p>Deletes user info and session, then redirects to login.</p>
   </div>
-  <div class="body">
+  <div class="body"><p>@param {object} req The HTTP request
+ @param {object} res The HTTP response</p>
   </div>
 </div>
         </td>
@@ -308,24 +250,7 @@ route <code>login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
-</div>
-<p>If already logged out, redirect to login</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">loggedIn</span><span class="p">(</span><span class="nx">req</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;Already logged out&#39;</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
 </div>
 <p>Delete user from list of logged in users</p>
         </td>
@@ -339,7 +264,7 @@ route <code>login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
 </div>
 <p>Delete user from request's session</p>
         </td>
@@ -353,7 +278,7 @@ route <code>login</code>.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
 </div>
 <p>Redirect to login</p>
         </td>
