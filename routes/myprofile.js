@@ -24,5 +24,3 @@ exports.display = function (req, res) {
 		res.redirect('/login');
 	}
 }
-
-
