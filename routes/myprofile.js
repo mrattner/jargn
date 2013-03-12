@@ -16,7 +16,7 @@ var loggedIn = require('./login').loggedIn;
 
 exports.display = function (req, res) {
 	if(loggedIn(req)){
-		res.render('profile', {	title	: 'Jargn : Profile' 
+		res.render('profile', {	title	: 'Jargn : Profile', 
 														user	: req.session.user});
 	}
 	else{
