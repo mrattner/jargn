@@ -6,6 +6,7 @@
  *	otherwise it displays as another users respective profile
  */
 
+<<<<<<< HEAD
 // post/tweet database
 var postlib = require('../lib/posts');
 var userlib = require('../lib/users');
@@ -13,6 +14,10 @@ var userlib = require('../lib/users');
 // ### *function*: display
 // Provides a view of a user's activity, his tweets,etc.
 
+=======
+// ### *function*: display
+// Provides a user his/her profile.
+>>>>>>> 8bbe56b34acdbbf2967fd9d8c28f9fbee433cdaf
 exports.display = function (req, res) {
 	res.render('profile', {	title	: 'Jargn : Profile',
 								user	: req.session.user});

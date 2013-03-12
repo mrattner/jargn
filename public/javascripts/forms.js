@@ -1,8 +1,14 @@
 /**
  *	Retrieves which box(es) are checked in a form.
  */
+
+// ### *function*: boxCheck
+/**
+ *	Retrieves which box(es) are checked in a form.
+ *	@param {object} document
+ */
 function boxCheck (document){
-	// Variable to record the checked box
+// @param str {var} Variable to record the checked box
 	var str="";
 	
 	// Searchs checked boxes

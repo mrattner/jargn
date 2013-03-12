@@ -3,12 +3,12 @@
 <head>
   <title>help.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="doc-style.css" />
-  <script src="doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//help.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "Users/marcy/Documents/Mount Holyoke/2012-2013/CS326/jargn/app/routes/helpjs", defaultSidebar = true;
   </script>
-  <script src="doc-script.js"></script>
+  <script src="../doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -18,6 +18,9 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h3">
+        <a href="#function--display">function: display</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -42,7 +45,23 @@
   </div>
 </div>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--display">
+  <h3>
+    <a href="#function--display" class="pilcrow">&#182;</a>
+    <em>function</em>: display
+  </h3>
+</div>
+
+
+<p>Provides a user help view.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;help&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Help&#39;</span><span class="p">,</span>
               <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
 <span class="p">}</span>
