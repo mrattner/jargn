@@ -16,9 +16,9 @@ var express = require('express')
 , connect = require('./routes/connect')
 , discover = require('./routes/discover')
 , findfriends = require('./routes/findfriends')
+, whotofollow = require('./routes/whotofollow')
 , help = require('./routes/help')
 , login = require('./routes/login')
-, myprofile = require('./routes/myprofile')
 , search = require('./routes/search')
 , settings = require('./routes/settings')
 , signup = require('./routes/signup')
@@ -128,11 +128,12 @@ app.get('/', routes.index);
 app.get('/connect', connect.display);
 app.get('/discover', discover.display);
 app.get('/findfriends', findfriends.display);
+app.post('/findfriends/getUser', findfriends.getUser);
+app.get('/whotofollow', whotofollow.display);
 app.get('/help', help.display);
 app.get('/login', login.display);
 app.post('/login/auth', login.auth);
 app.get('/logout', login.logout);
-app.get('/myprofile', myprofile.display);
 app.get('/search', search.display);
 app.get('/settings', settings.display);
 app.get('/signup', signup.display);
