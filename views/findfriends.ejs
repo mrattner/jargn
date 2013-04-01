@@ -1,22 +1,52 @@
-<% include header.ejs %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
 
-<h1>Find Friends</h1>
+    <nav class="main">
+        <div><a href="/">Home</a></div>
+        <div><a href="/connect/">Connect</a></div>
+        <div><a href="/discover/">Discover</a></div>
+        <nav class="sub">
+            <div>┣ <a href="">Tweets</a></div>
+            <div>┣ <a href="">Activity</a></div>
+            <div>┣ <a href="/whotofollow/">Who to follow</a></div>
+            <div>┣ <a href="/findfriends/"><b>Find friends</b></a></div>
+        </nav>
+        <div><form name="search" action="/search/" method="get">
+            <input type="text" name="searchstring">
+            <input type="submit" value="Search"></form></div>
+        <div><a href="/settings/">Settings</a></div>
+        <div><a href="/help/">Help</a></div>
+        <div><a href="/tweet/">Tweet</a></div>
+        <div>
+            <% if (user === undefined) {%>
+                <a href="/login/">Login</a>
+            <% } else {%>
+                <a href="/logout/">Logout</a>
+            <% } %>
+        </div>
+    </nav>
 
-<div>
-	<p>Search your contacts for friends already on Jargn, or invite them via
-	email.</p>
-	<form name="searchusers" action="/search/" method="get">
-		<input type="text" name="name">
-		<input type="submit" value="Search Jargn">
-	</form>
-</div>
 
-<div>
-	<p><h3>Gmail</h3></p>
-	<p><h3>Yahoo</h3></p>
-	<p><h3>Facebook</h3></p>
-	<p><h3>Twitter</h3></p>
-</div>
- 
+<style type="text/css" media="screen">
+div#output {
+	color: #777777;
+}
+</style>
+
+<h1> Jargn: Find Friends</h1>
+You can search username individually!<br>
+<form name="getUser" action="/findfriends/getUser" method="post">
+		<input type="text" name="username" /> 
+		<input type="submit" value="Search" />
+</form> 
+<br>
+<div id="flash_message"><%= message %></div>
+<br>
+
 </body>
 </html>

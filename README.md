@@ -1,5 +1,3 @@
-# created by Kira Revere, Mayu Kudo, Marcy Rattner & Adam Daehling
-=======
 # Member
 Adam Daehling, Mayu Kudo, Marcy Rattner, Kira Revere
 
@@ -49,10 +47,26 @@ Home page (index page)
 Shows any interactions for a user from tweets will show in this page
 
 ### Discover
-Discovers other users by matching a user's topics of tweets
+Discovers other users by matching a user's topics of tweets. There are
 
-### My Profile
-Shows a user's tweets, his followers, and followings.
+* Tweets
+* Activity
+* Who to follow
+* Find friends
+
+### Who to follow
+Click 'here' next to 'Let's take a look at them!'.
+You will see 4 recommended users so click whom you are interested in, then click 'go to his/her page'.
+This will print whom you are browsing, and how many people you are interested in.
+
+
+### Find friends
+You can find users on Jargn. First, type in 
+```sh
+username
+```
+To search if typed-in username exists on Jargn.
+
 
 ### Search
 * search: type the word
@@ -69,5 +83,3 @@ Shows helps
 
 ### Tweet
 Composes new tweet with a maximum length of 140 letters (32-bits)
-
->>>>>>> 8bbe56b34acdbbf2967fd9d8c28f9fbee433cdaf

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>help.js</title>
+  <title>whotofollow.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" media="all" href="doc-style.css" />
   <script src="doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//help.js", defaultSidebar = true;
+    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//whotofollow.js", defaultSidebar = true;
   </script>
   <script src="doc-script.js"></script>
 </head>
@@ -29,7 +29,7 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>help.js</h1>
+          <h1>whotofollow.js</h1>
         </td>
         <td class="code highlight"></td>
       </tr>
@@ -39,7 +39,7 @@
   <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
 </div>
 <div class="dox">
-  <div class="summary"><p>Help module: displays help topics and FAQ.</p>
+  <div class="summary"><p>Who to follow module: displays 4 recommendations of users on Jargn</p>
   </div>
   <div class="body">
   </div>
@@ -58,11 +58,11 @@
 </div>
 
 
-<p>Provides a user help view.</p>
+<p>Provides a user who to follow view.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;help&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Help&#39;</span><span class="p">,</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;whotofollow&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Who to follow&#39;</span><span class="p">,</span>
               <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
 <span class="p">}</span>
 </pre></div>

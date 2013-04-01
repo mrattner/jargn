@@ -1,36 +1,51 @@
-<% include header.ejs %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body onLoad="init('menu1', 'menu2', 'menu3', 'menu4', 'menu5')">
 
-<nav class="sub">
-	<div><a href="">Tweets</a></div>
-	<div><a href="">Activity</a></div>
-    <div><a href="">Who to follow</a></div>
-    <div><a href="/findfriends/">Find friends</a></div>
-</nav>
+    <nav class="main">
+        <div><a href="/">Home</a></div>
+        <div><a href="/connect/">Connect</a></div>
+        <div><a href="/discover/">Discover</a></div>
+        <nav class="sub">
+            <div>┣ <a href="">Tweets</a></div>
+            <div>┣ <a href="">Activity</a></div>
+            <div>┣ <a href="/whotofollow/">Who to follow</a></div>
+            <div>┣ <a href="/findfriends/">Find friends</a></div>
+        </nav>
+        <div><form name="search" action="/search/" method="get">
+            <input type="text" name="searchstring">
+            <input type="submit" value="Search"></form></div>
+        <div><a href="/settings/">Settings</a></div>
+        <div><a href="/help/">Help</a></div>
+        <div><a href="/tweet/">Tweet</a></div>
+        <div>
+            <% if (user === undefined) {%>
+                <a href="/login/">Login</a>
+            <% } else {%>
+                <a href="/logout/">Logout</a>
+            <% } %>
+        </div>
+    </nav>
 
 <div id="reccomendations">
 	<h2>Who to follow</h2>
-    <p>Small side section showing 3 recommendations for people you may know</p>
-</div>
-
-<div id="trends">
-    <h2>Trends</h2>
-    <p>Small side section showing list of popular tags</p>
+    <p>Small side section showing 4 recommendations for people you may know</p>
 </div>
 
 <div id="tweets">
-    <h1>Tweets</h1>
+    <h2>Tweets</h2>
     <p>List of popular tweets</p>
 </div>
 
 <div id="activity">
-    <h1>Activity</h1>
+    <h2>Activity</h2>
     <p>What people you're following have recently followed</p>
 </div>
 
-<div id="suggestions">
-    <h1>Who to follow</h1>
-    <p>Suggestions for new people to follow based on who you already follow</p>
-</div>
 
 </body>
 </html>
