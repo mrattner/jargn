@@ -6,11 +6,7 @@
   <link rel="stylesheet" media="all" href="doc-style.css" />
   <script src="doc-filelist.js"></script>
   <script>
-<<<<<<< HEAD
-    var relativeDir = "", thisFile = "Users/krevere/Documents/app/appjs", defaultSidebar = true;
-=======
-    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app/appjs", defaultSidebar = true;
->>>>>>> master
+    var relativeDir = "", thisFile = "app.js", defaultSidebar = true;
   </script>
   <script src="doc-script.js"></script>
 </head>
@@ -88,9 +84,9 @@
 <span class="p">,</span> <span class="nx">connect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/connect&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">discover</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/discover&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">findfriends</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/findfriends&#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">whotofollow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/whotofollow&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">help</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/help&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">login</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/login&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">myprofile</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/myprofile&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">search</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/search&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/settings&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">signup</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/signup&#39;</span><span class="p">)</span>
@@ -504,11 +500,12 @@
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/connect&#39;</span><span class="p">,</span> <span class="nx">connect</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/discover&#39;</span><span class="p">,</span> <span class="nx">discover</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/findfriends&#39;</span><span class="p">,</span> <span class="nx">findfriends</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/findfriends/getUser&#39;</span><span class="p">,</span> <span class="nx">findfriends</span><span class="p">.</span><span class="nx">getUser</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/whotofollow&#39;</span><span class="p">,</span> <span class="nx">whotofollow</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/help&#39;</span><span class="p">,</span> <span class="nx">help</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/login/auth&#39;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">auth</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/logout&#39;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">logout</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/myprofile&#39;</span><span class="p">,</span> <span class="nx">myprofile</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/search&#39;</span><span class="p">,</span> <span class="nx">search</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/settings&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/signup&#39;</span><span class="p">,</span> <span class="nx">signup</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>

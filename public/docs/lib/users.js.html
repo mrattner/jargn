@@ -3,12 +3,12 @@
 <head>
   <title>users.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="doc-style.css" />
-  <script src="doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//users.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "lib/users.js", defaultSidebar = true;
   </script>
-  <script src="doc-script.js"></script>
+  <script src="../doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -38,6 +38,15 @@
       </div>
       <div class="heading h3">
         <a href="#function--getuserbyname">function: getUserByName</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--getfollowers">function: getFollowers</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--getfollowing">function: getFollowing</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--follow">function: follow</a>
       </div>
       <div class="heading h3">
         <a href="#function--loginuser">function: loginUser</a>
@@ -91,6 +100,8 @@
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">followers</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">following</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
 <span class="p">}</span>
 
 
@@ -184,7 +195,7 @@ with the signature cb(error, message).</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">createUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">createUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="nx">pconfirm</span> <span class="o">&amp;&amp;</span> <span class="nx">email</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
@@ -258,7 +269,8 @@ with the signature cb(error, message).</p>
   <span class="k">else</span> <span class="p">{</span>
     <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Please fill in all fields&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createUser</span> <span class="o">=</span> <span class="nx">createUser</span><span class="p">;</span>
 
 
 </pre></div>
@@ -277,16 +289,16 @@ with the signature cb(error, message).</p>
 <div class="dox">
   <div class="summary"><p>Locates a user by <code>username</code> if user exists and password matches. Invokes
 callback <code>cb</code> with the signature cb(error, userobj).
- @param {string} username The username to authenticate
- @param {string} password The password for authentication
- @param {function} cb Callback function to invoke after looking up user</p>
+ @param username {string} The username to authenticate
+ @param password {string} The password for authentication
+ @param cb {function} Callback function to invoke after looking up user</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">authUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">authUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
@@ -336,7 +348,8 @@ callback <code>cb</code> with the signature cb(error, userobj).
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Invalid username&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">authUser</span> <span class="o">=</span> <span class="nx">authUser</span><span class="p">;</span>
 
 
 
@@ -353,38 +366,159 @@ callback <code>cb</code> with the signature cb(error, userobj).
 </div>
 
 
-<div class="dox">
-  <div class="summary"><p>Walks through the users "database," and return the user object
-that matches the passed-in name, or undifined if the user is not found</p>
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Params</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">username</span>
-      <span class="dox_type">string</span>
-      <span>The username to search</span>
-    </div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">cb</span>
-      <span class="dox_type">function</span>
-      <span>Callback function to return username</span>
-    </div>
-  </div>
-</div>
+<p>Retrieves the user object from the database that matches the passed username
+or undefined if the user is not found.
+@param username {string} The username to fetch
+@param cb {function} Callback function to invoke after retrieving user</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getUserByName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">getUserByName</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">foundUser</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="s1">&#39;Successfully found the user &#39;</span> <span class="o">+</span> <span class="nx">username</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
+      <span class="nx">foundUser</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>Invoke callback with no error and the user object</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>
   <span class="p">}</span>
-  <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No Data Found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
-<span class="p">};</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foundUser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User &#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; was not found&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getUserByName</span> <span class="o">=</span> <span class="nx">getUserByName</span><span class="p">;</span>
 
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--getfollowers">
+  <h3>
+    <a href="#function--getfollowers" class="pilcrow">&#182;</a>
+    <em>function</em>: getFollowers
+  </h3>
+</div>
+
+
+<p>Retrieves the list of all users following the passed user.
+@param user {object} The user whose followers to fetch
+@param cb {function} Callback function to invoke after retrieving followers</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">getFollowers</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>If the user does not exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User is undefined&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">followers</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowers</span> <span class="o">=</span> <span class="nx">getFollowers</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--getfollowing">
+  <h3>
+    <a href="#function--getfollowing" class="pilcrow">&#182;</a>
+    <em>function</em>: getFollowing
+  </h3>
+</div>
+
+
+<p>Retrieves the list of all users whom the passed user follows.
+@param user {object} The user whose subscriptions to fetch
+@param cb {function} Callback function to invoke after retrieving following</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">getFollowing</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>If the user does not exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User is undefined&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">following</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowing</span> <span class="o">=</span> <span class="nx">getFollowing</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--follow">
+  <h3>
+    <a href="#function--follow" class="pilcrow">&#182;</a>
+    <em>function</em>: follow
+  </h3>
+</div>
+
+
+<p>Allows user1 to follow user2. Adds user1 to user2's followers, and adds
+user2 to user1's following list.
+@param user1 {object} The user who is following user2
+@param user2 {object} The user being followed by user1</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">follow</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>if both users are in the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">users</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">user1</span><span class="p">.</span><span class="nx">following</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user2</span><span class="p">);</span>
+    <span class="nx">user2</span><span class="p">.</span><span class="nx">followers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">follow</span> <span class="o">=</span> <span class="nx">follow</span><span class="p">;</span>
 
 
 
@@ -401,25 +535,14 @@ that matches the passed-in name, or undifined if the user is not found</p>
 </div>
 
 
-<div class="dox">
-  <div class="summary"><p>Adds a user to the list of online users.</p>
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Params</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">user</span>
-      <span class="dox_type">object</span>
-      <span>The user to add to list of logged in users</span>
-    </div>
-  </div>
-</div>
+<p>Adds a user to the list of online users.
+@param user {object} The user to add to list of logged in users</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">loginUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">loginUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">online</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">loginUser</span> <span class="o">=</span> <span class="nx">loginUser</span><span class="p">;</span>
 
 
 </pre></div>
@@ -435,20 +558,16 @@ that matches the passed-in name, or undifined if the user is not found</p>
 </div>
 
 
-<div class="dox">
-  <div class="summary"><p>Deletes a user from the list of online users, if it is in the list.
- @param {object} user The user to delete from list of logged in users</p>
-  </div>
-  <div class="body">
-  </div>
-</div>
+<p>Deletes a user from the list of online users, if it is in the list.
+@param user {object} The user to delete from list of logged in users</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">logoutUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">logoutUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">delete</span> <span class="nx">online</span><span class="p">[</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)];</span>
   <span class="p">}</span>
-<span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logoutUser</span> <span class="o">=</span> <span class="nx">logoutUser</span><span class="p">;</span>
 
 
 </pre></div>
@@ -466,16 +585,17 @@ that matches the passed-in name, or undifined if the user is not found</p>
 
 <div class="dox">
   <div class="summary"><p>Tells whether a user is in the list of logged in users.
- @param {object} user The user to check</p>
+ @param user {object} The user to check</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">isLoggedIn</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="nx">isLoggedIn</span><span class="p">;</span>
 
 
 </pre></div>
@@ -516,7 +636,7 @@ the following properties:</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">addUser</span> <span class="p">(</span><span class="nx">newUser</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newUser</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="p">}</span>
 </pre></div>
         </td>
       </tr>
