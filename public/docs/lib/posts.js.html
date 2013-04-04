@@ -3,12 +3,12 @@
 <head>
   <title>posts.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="doc-style.css" />
-  <script src="doc-filelist.js"></script>
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
   <script>
-    var relativeDir = "", thisFile = "Users/iluv401/Documents/workspace/app//posts.js", defaultSidebar = true;
+    var relativeDir = "../", thisFile = "lib/posts.js", defaultSidebar = true;
   </script>
-  <script src="doc-script.js"></script>
+  <script src="../doc-script.js"></script>
 </head>
 <body>
   <div id="sidebar_wrapper">
@@ -22,13 +22,16 @@
         <a href="#posts-library">Posts Library</a>
       </div>
       <div class="heading h2">
-        <a href="#post-objects">Post Objects</a>
+        <a href="#post-object">Post Object</a>
       </div>
       <div class="heading h2">
         <a href="#-post-database-">"Post Database"</a>
       </div>
       <div class="heading h3">
         <a href="#function--addpost">function: addPost</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--getpostsbyuser">function: getPostsByUser</a>
       </div>
     </div>
   </div>
@@ -53,10 +56,10 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="post-objects">
+<div class="pilwrap" id="post-object">
   <h2>
-    <a href="#post-objects" class="pilcrow">&#182;</a>
-    Post Objects
+    <a href="#post-object" class="pilcrow">&#182;</a>
+    Post Object
   </h2>
 </div>
 
@@ -64,9 +67,10 @@
 <p>fake data to be replaced with database entries</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-
-<span class="kd">function</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">postText</span><span class="p">){</span>
+<span class="kd">function</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">postText</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">){</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">postText</span> <span class="o">=</span> <span class="nx">postText</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">author</span> <span class="o">=</span> <span class="nx">author</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">isPrivate</span> <span class="o">=</span> <span class="nx">isPrivate</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
 <span class="p">}</span>
 
@@ -84,11 +88,10 @@
 </div>
 
 
-<p>array of post data for a given user</p>
+<p>Collection of all posts in jargn.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-
-<span class="kd">var</span> <span class="nx">posts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fake tweet 1&quot;</span><span class="p">,</span> <span class="s2">&quot;fake tweet 2&quot;</span><span class="p">,</span> <span class="s2">&quot;fake tweet 3&quot;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">posts</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
 
 
 </pre></div>
@@ -104,27 +107,119 @@
 </div>
 
 
-<div class="dox">
-  <div class="summary">
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Params</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">text</span>
-      <span class="dox_type">string</span>
-      <span>inside post</span>
-    </div>
-  </div>
-</div>
+<p>Adds a new post to the global collection of posts.</p>
+
+<p>@param text {string} The 140 or fewer text characters that comprise the post
+@param author {object} The user who authored the post
+@param isPrivate {boolean} If true, only users who follow the author should
+    be able to see the post</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">addPost</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">addPost</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">);</span>
   <span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newPost</span><span class="p">);</span>
 <span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addPost</span> <span class="o">=</span> <span class="nx">addPost</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--getpostsbyuser">
+  <h3>
+    <a href="#function--getpostsbyuser" class="pilcrow">&#182;</a>
+    <em>function</em>: getPostsByUser
+  </h3>
+</div>
+
+
+<p>Retrieves a list of all posts authored by a certain user.</p>
+
+<p>@param username    {string} The username of the author for whom to find posts
+@param cb {function} Callback function to invoke after looking up posts</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>List of posts found by this user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">postsList</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">posts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>If the username is found</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">author</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Add this post to the list to return</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">postsList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>If postsList is empty</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">postsList</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No posts by user&#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; were found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Invoke the callback with no error and pass along the list of posts</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">postsList</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getPostsByUser</span> <span class="o">=</span> <span class="nx">getPostsByUser</span><span class="p">;</span>
 </pre></div>
         </td>
       </tr>
