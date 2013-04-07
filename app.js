@@ -16,7 +16,6 @@ var express = require('express')
 , connect = require('./routes/connect')
 , discover = require('./routes/discover')
 , findfriends = require('./routes/findfriends')
-, whotofollow = require('./routes/whotofollow')
 , help = require('./routes/help')
 , login = require('./routes/login')
 , search = require('./routes/search')
@@ -129,7 +128,6 @@ app.get('/connect', connect.display);
 app.get('/discover', discover.display);
 app.get('/findfriends', findfriends.display);
 app.post('/findfriends/getUser', findfriends.getUser);
-app.get('/whotofollow', whotofollow.display);
 app.get('/help', help.display);
 app.get('/login', login.display);
 app.post('/login/auth', login.auth);
@@ -139,6 +137,7 @@ app.get('/settings', settings.display);
 app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 app.get('/tweet', tweet.display);
+app.get('/user/:username', user.display);
 
 // Listen for HTTP requests
 app.listen(APP_PORT);
