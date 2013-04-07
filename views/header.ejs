@@ -6,6 +6,9 @@
 </head>
 <body>
 
+	<% if(user != undefined) { %>
+	<div align="right">Logged in as: <a href="/user/<%= user.username %>"><%= user.username %></a></div>
+	<% } %>
 	<nav class="main">
 		<div><a href="/">Home</a></div>
 		<div><a href="/connect/">Connect</a></div>
