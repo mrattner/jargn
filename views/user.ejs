@@ -1,1 +1,44 @@
 <!-- User profile -->
+
+<% include header.ejs %>
+
+<%= otherUser.username %>'s profile
+
+<div>Followers: <br>
+	<% if(ouFollowers === undefined) { %>
+		This user has no followers.
+	<% } else { %>
+		<ol>
+		<% for(var i = 0; i < ouFollowers.length; i++) { %>
+			<li> <%= ouFollowers[i].username %> 
+		<% } %>
+		</ol>
+	<% } %>
+</div>
+
+<div>Following: <br>
+	<% if(ouFollowing === undefined) { %>
+		This user is not following anyone.
+	<% } else { %>
+		<ol>
+		<% for(var i = 0; i < ouFollowing.length; i++) { %>
+			<li> <%= ouFollowing[i].username %> 
+		<% } %>
+		</ol>
+	<% } %>
+</div>
+
+<div>Posts: <br>
+	<% if(ouPosts === undefined) { %>
+		This user has no posts.
+	<% } else { %>
+		<ol>
+		<% for(var i = 0; i < ouPosts.length; i++) { %>
+			<li> <%= ouPosts[i].username %> 
+		<% } %>
+		</ol>
+	<% } %>
+</div>
+
+</body>
+</html>
