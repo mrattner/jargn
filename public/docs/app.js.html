@@ -84,13 +84,12 @@
 <span class="p">,</span> <span class="nx">connect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/connect&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">discover</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/discover&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">findfriends</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/findfriends&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">whotofollow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/whotofollow&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">help</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/help&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">login</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/login&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">search</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/search&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/settings&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">signup</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/signup&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/tweet&#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/post&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/user&#39;</span><span class="p">)</span>
 <span class="p">;</span>
 
@@ -501,7 +500,6 @@
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/discover&#39;</span><span class="p">,</span> <span class="nx">discover</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/findfriends&#39;</span><span class="p">,</span> <span class="nx">findfriends</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/findfriends/getUser&#39;</span><span class="p">,</span> <span class="nx">findfriends</span><span class="p">.</span><span class="nx">getUser</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/whotofollow&#39;</span><span class="p">,</span> <span class="nx">whotofollow</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/help&#39;</span><span class="p">,</span> <span class="nx">help</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/login/auth&#39;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">auth</span><span class="p">);</span>
@@ -510,7 +508,8 @@
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/settings&#39;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/signup&#39;</span><span class="p">,</span> <span class="nx">signup</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/signup/auth&#39;</span><span class="p">,</span> <span class="nx">signup</span><span class="p">.</span><span class="nx">auth</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/tweet&#39;</span><span class="p">,</span> <span class="nx">tweet</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="nx">post</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/user/:username&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 
 
 </pre></div>
@@ -520,6 +519,25 @@
         <td class="docs">
 <div class="pilwrap">
   <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+</div>
+<p>Web Sockets/Socket.IO</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">io</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;log level&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">APP_PORT</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;/lib/post&#39;</span><span class="p">);</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">post</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">socket</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
 </div>
 <p>Listen for HTTP requests</p>
         </td>

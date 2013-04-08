@@ -21,6 +21,20 @@ $ sudo npm (command lines above)
 ```
 This will change your local setup.
 
+## Project Assignment 03
+list of files and additions made:
+-- app.js started to add websockets functionality
+-- routes/post.js added beginnings of private post functionality
+-- lib/posts.js added more functions related to data access layer and started to add websockets functionality
+-- header.ejs updated to show currently logged in user at top of each page (dynamically)
+-- users.js added ability to signup as new user
+-- login.js added support for sessions
+-- signup.js
+-- user.js added route for basic format user page
+-- user.ejs page now shows information about user
+
+-- NOTE: some of the necessities for this project assignment were not achievable due to the unexpected absence of 1 of the 4 people in the group
+
 ### Index
 Shows 'Welcome to Jargn' with signup, or login form.
 If a user is willing to sign up for the website, fill out all of the showed up columns including
@@ -47,9 +61,9 @@ Home page (index page)
 Shows any interactions for a user from tweets will show in this page
 
 ### Discover
-Discovers other users by matching a user's topics of tweets. There are
+Discovers other users by matching a user's topics of posts. There are
 
-* Tweets
+* Posts
 * Activity
 * Who to follow
 * Find friends
@@ -81,5 +95,5 @@ Changes a user's setting by submitting save changes
 ### Help
 Shows helps
 
-### Tweet
-Composes new tweet with a maximum length of 140 letters (32-bits)
+### Post
+Composes new post with a maximum length of 140 letters (32-bits)

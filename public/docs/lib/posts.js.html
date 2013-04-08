@@ -33,6 +33,9 @@
       <div class="heading h3">
         <a href="#function--getpostsbyuser">function: getPostsByUser</a>
       </div>
+      <div class="heading h2">
+        <a href="#function--init">function: init</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -138,11 +141,11 @@
 
 <p>Retrieves a list of all posts authored by a certain user.</p>
 
-<p>@param username    {string} The username of the author for whom to find posts
+<p>@param user    {object} The user whose posts you want to get
 @param cb {function} Callback function to invoke after looking up posts</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -168,10 +171,10 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
 </div>
-<p>If the username is found</p>
+<p>If the user is found</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">author</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">author</span> <span class="o">===</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -201,7 +204,7 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="k">if</span> <span class="p">(</span><span class="nx">postsList</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No posts by user&#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; were found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No posts by user&#39;</span> <span class="o">+</span> <span class="nx">user</span> <span class="o">+</span> <span class="s1">&#39; were found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
 
@@ -219,7 +222,40 @@
     <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">postsList</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
+
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getPostsByUser</span> <span class="o">=</span> <span class="nx">getPostsByUser</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--init">
+  <h2>
+    <a href="#function--init" class="pilcrow">&#182;</a>
+    <em>function</em>: init
+  </h2>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>server-side support for tweeting:</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;received: &#39;</span><span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span><span class="o">:</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
 </pre></div>
         </td>
       </tr>
