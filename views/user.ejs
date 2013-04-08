@@ -1,39 +1,46 @@
-<!-- User profile -->
-
 <% include header.ejs %>
 
-<%= otherUser.username %>'s profile
+<h1><%= otherUser.username %>'s profile</h1>
 
-<div>Followers: <br>
-	<% if(ouFollowers === undefined) { %>
+<div>
+	<form name="follow" action="/user/<%= otherUser.username %>/follow"
+	method="post">
+		<input type="submit" name ="follow" 
+		value="Follow <%= otherUser.username %>" />
+		<% console.log(otherUser.toString() + '\n' + user.toString()); %>
+	</form>
+</div>
+
+<div>Followers:<br />
+	<% if (ouFollowers === undefined || ouFollowers.length === 0) { %>
 		This user has no followers.
 	<% } else { %>
 		<ol>
-		<% for(var i = 0; i < ouFollowers.length; i++) { %>
+		<% for (var i = 0; i < ouFollowers.length; i++) { %>
 			<li> <%= ouFollowers[i].username %> 
 		<% } %>
 		</ol>
 	<% } %>
 </div>
 
-<div>Following: <br>
-	<% if(ouFollowing === undefined) { %>
+<div>Following:<br />
+	<% if (ouFollowing === undefined || ouFollowers.length === 0) { %>
 		This user is not following anyone.
 	<% } else { %>
 		<ol>
-		<% for(var i = 0; i < ouFollowing.length; i++) { %>
+		<% for (var i = 0; i < ouFollowing.length; i++) { %>
 			<li> <%= ouFollowing[i].username %> 
 		<% } %>
 		</ol>
 	<% } %>
 </div>
 
-<div>Posts: <br>
-	<% if(ouPosts === undefined) { %>
+<div>Posts:<br />
+	<% if (ouPosts === undefined || ouPosts.length === 0) { %>
 		This user has no posts.
 	<% } else { %>
 		<ol>
-		<% for(var i = 0; i < ouPosts.length; i++) { %>
+		<% for (var i = 0; i < ouPosts.length; i++) { %>
 			<li> <%= ouPosts[i].username %> 
 		<% } %>
 		</ol>

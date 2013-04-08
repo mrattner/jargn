@@ -49,12 +49,10 @@ function authmw (req, res, next) {
 		//If a logged out user is trying to log in or sign up
 		if (req.url.match(signupOrLoginURL) || req.url.match(stylesheetURL)) {
 			//Then continue to next route
-			console.log('continue (logged out) because url was ' + req.url);
 			next();
 		}
 		//Otherwise, redirect to login
 		else {
-			console.log('redirect (login) because url was ' + req.url);
 			login.display(req, res, next);
 		}
 	}
@@ -63,12 +61,10 @@ function authmw (req, res, next) {
 		//If a logged in user is trying to log in or sign up
 		if (req.url.match(signupOrLoginURL)) {
 			//Then redirect to index
-			console.log('redirect (index) because url was ' + req.url);
 			routes.index(req, res, next);
 		}
 		//Otherwise, continue to next route
 		else {
-			console.log('continue (logged in) because url was ' + req.url);
 			next();
 		}
 	}
@@ -138,6 +134,7 @@ app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 app.get('/post', post.display);
 app.get('/user/:username', user.display);
+app.post('/user/:username/follow', user.followUser);
 
 // Web Sockets/Socket.IO
 var io	= require('socket.io', {'log level': 0}).listen(8000);
