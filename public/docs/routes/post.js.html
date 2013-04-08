@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>post.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "routes/post.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets">Post module: gets a composed post and adds to user's list of tweets</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--display">function: display</a>
+      </div>
+      <div class="heading h2">
+        <a href="#function--upload">function: upload</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets">
+  <h1>
+    <a href="#post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets" class="pilcrow">&#182;</a>
+    Post module: gets a composed post and adds to user's list of tweets
+  </h1>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--display">
+  <h3>
+    <a href="#function--display" class="pilcrow">&#182;</a>
+    <em>function</em>: display
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>provides a user post view</p>
+  </div>
+  <div class="body"><p>@param {object} req the HTTP request
+ @param {object} res the HTTP response</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span>  <span class="s1">&#39;Jargn : Compose Post&#39;</span><span class="p">,</span>  <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--upload">
+  <h2>
+    <a href="#function--upload" class="pilcrow">&#182;</a>
+    <em>function</em>: upload
+  </h2>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>stores tweet</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>the HTTP response</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">postData</span>
+      <span class="dox_type">object</span>
+      <span>the text from the post</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">upload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">postData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Request handler &#39;upload&#39; was called.&quot;</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">});</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;You&#39;ve sent: &quot;</span> <span class="o">+</span> <span class="nx">postData</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

@@ -89,7 +89,7 @@
 <span class="p">,</span> <span class="nx">search</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/search&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/settings&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">signup</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/signup&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/post&#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/post&#39;</span><span class="p">)</span>
 <span class="p">,</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/user&#39;</span><span class="p">)</span>
 <span class="p">;</span>
 
@@ -203,7 +203,6 @@
 <p>Then continue to next route</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;continue (logged out) because url was &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
       <span class="nx">next</span><span class="p">();</span>
     <span class="p">}</span>
 
@@ -219,7 +218,6 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;redirect (login) because url was &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
       <span class="nx">login</span><span class="p">.</span><span class="nx">display</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -261,7 +259,6 @@
 <p>Then redirect to index</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;redirect (index) because url was &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
       <span class="nx">routes</span><span class="p">.</span><span class="nx">index</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -277,7 +274,6 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;continue (logged in) because url was &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
       <span class="nx">next</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -510,6 +506,7 @@
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/signup/auth&#39;</span><span class="p">,</span> <span class="nx">signup</span><span class="p">.</span><span class="nx">auth</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="nx">post</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/user/:username&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/user/:username/follow&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">followUser</span><span class="p">);</span>
 
 
 </pre></div>
@@ -523,11 +520,11 @@
 <p>Web Sockets/Socket.IO</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">var</span> <span class="nx">io</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;log level&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">APP_PORT</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;/lib/post&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">io</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;log level&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8000</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">posts</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./lib/posts&#39;</span><span class="p">);</span>
 
 <span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">post</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">socket</span><span class="p">);</span>
+  <span class="nx">posts</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">socket</span><span class="p">);</span>
 <span class="p">});</span>
 
 

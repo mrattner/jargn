@@ -7,7 +7,10 @@
 <body>
 
 	<% if(user != undefined) { %>
-	<div align="right">Logged in as: <a href="/user/<%= user.username %>"><%= user.username %></a></div>
+	<div id="currentuser">
+		Logged in as: <a href="/user/<%= user.username %>">
+		<%= user.username %></a>
+	</div>
 	<% } %>
 	<nav class="main">
 		<div><a href="/">Home</a></div>
@@ -18,7 +21,7 @@
 			<input type="submit" value="Search"></form></div>
 		<div><a href="/settings/">Settings</a></div>
 		<div><a href="/help/">Help</a></div>
-		<div><a href="/tweet/">Tweet</a></div>
+		<div><a href="/post/">Post</a></div>
 		<div>
 			<% if (user === undefined) {%>
 				<a href="/login/">Login</a>
