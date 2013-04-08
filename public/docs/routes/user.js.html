@@ -18,11 +18,14 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
-      <div class="heading h3">
-        <a href="#function--list">function: list</a>
+      <div class="heading h1">
+        <a href="#user-profile-module">User Profile Module</a>
       </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--followuser">function: followUser</a>
       </div>
     </div>
   </div>
@@ -32,21 +35,17 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>user.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="user-profile-module">
+  <h1>
+    <a href="#user-profile-module" class="pilcrow">&#182;</a>
+    User Profile Module
+  </h1>
 </div>
-<div class="dox">
-  <div class="summary"><p>GET users listing.</p>
-  </div>
-  <div class="body">
-  </div>
-</div>
+
+
+<p>Represents a user of Jargn. Collects one person's posts, and shows
+information about this person, who is following him/her, and other users
+he/she is following.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -80,20 +79,13 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="function--list">
-  <h3>
-    <a href="#function--list" class="pilcrow">&#182;</a>
-    <em>function</em>: list
-  </h3>
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
-
-
-<p>Gets user's listing.</p>
+<p>The user object whose profile this is</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">exports</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;respond with a resource&quot;</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">profileUser</span><span class="p">;</span>
 
 
 </pre></div>
@@ -112,14 +104,25 @@
 <p>Renders the user's profile.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">other</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">other</span><span class="p">);</span>
-  <span class="nx">userlib</span><span class="p">.</span><span class="nx">getUserByName</span><span class="p">(</span><span class="nx">other</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">theUser</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Get the user whose profile this is</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">userlib</span><span class="p">.</span><span class="nx">getUserByName</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">theUser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;User not found&#39;</span><span class="p">,</span> <span class="mi">404</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="k">else</span><span class="p">{</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">profileUser</span> <span class="o">=</span> <span class="nx">theUser</span><span class="p">;</span>
       <span class="kd">var</span> <span class="nx">followers</span><span class="p">;</span>
       <span class="nx">userlib</span><span class="p">.</span><span class="nx">getFollowers</span><span class="p">(</span><span class="nx">theUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">arr</span><span class="p">){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){}</span>
@@ -135,9 +138,8 @@
         <span class="p">}</span>
       <span class="p">});</span>
       <span class="kd">var</span> <span class="nx">posts</span><span class="p">;</span>
-      <span class="nx">postlib</span><span class="p">.</span><span class="nx">getPostsByUser</span><span class="p">(</span><span class="nx">theUser</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">arr</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){}</span>
-        <span class="k">else</span><span class="p">{</span>
+      <span class="nx">postlib</span><span class="p">.</span><span class="nx">getPostsByUser</span><span class="p">(</span><span class="nx">theUser</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">posts</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">;</span>
         <span class="p">}</span>
       <span class="p">});</span>
@@ -146,7 +148,72 @@
                  <span class="nx">user</span>   <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>
                  <span class="nx">ouFollowers</span><span class="o">:</span> <span class="nx">followers</span><span class="p">,</span>
                  <span class="nx">ouFollowing</span><span class="o">:</span> <span class="nx">following</span><span class="p">,</span>
-                 <span class="nx">ouPosts</span>  <span class="o">:</span> <span class="nx">posts</span><span class="p">});</span>
+                 <span class="nx">ouPosts</span>  <span class="o">:</span> <span class="nx">posts</span><span class="p">,</span>
+                 <span class="nx">isFollowing</span><span class="o">:</span> <span class="nx">userlib</span><span class="p">.</span><span class="nx">isFollowing</span><span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--followuser">
+  <h3>
+    <a href="#function--followuser" class="pilcrow">&#182;</a>
+    <em>function</em>: followUser
+  </h3>
+</div>
+
+
+<p>Adds the currently logged in user as a follower of this user's profile,
+and adds this user to the currently logged in user's follow list.
+@param req {object} The HTTP request
+@param res {object} The HTTP response</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">followUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;started calling function&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>The currently logged in user</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">userlib</span><span class="p">.</span><span class="nx">getUserByName</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">currUser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;404 error&#39;</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;The currently logged in user couldn&#39;t be found&quot;</span><span class="p">,</span> <span class="mi">404</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;check if profileUser is currUser&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Current user cannot follow himself</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">profileUser</span> <span class="o">!==</span> <span class="nx">currUser</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;trying to get currUser to follow profileUser&#39;</span><span class="p">);</span>
+        <span class="nx">userlib</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">currUser</span><span class="p">,</span> <span class="nx">profileUser</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;followed &#39;</span> <span class="o">+</span> <span class="nx">profileUser</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;you can&#39;t follow yourself!&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>
 <span class="p">};</span>
