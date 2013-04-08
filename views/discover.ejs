@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-</head>
-<body onLoad="init('menu1', 'menu2', 'menu3', 'menu4', 'menu5')">
-
-    <nav class="main">
-        <div><a href="/">Home</a></div>
-        <div><a href="/connect/">Connect</a></div>
-        <div><a href="/discover/">Discover</a></div>
-        <nav class="sub">
-            <div>┣ <a href="">Tweets</a></div>
-            <div>┣ <a href="">Activity</a></div>
-            <div>┣ <a href="/whotofollow/">Who to follow</a></div>
-            <div>┣ <a href="/findfriends/">Find friends</a></div>
-        </nav>
-        <div><form name="search" action="/search/" method="get">
-            <input type="text" name="searchstring">
-            <input type="submit" value="Search"></form></div>
-        <div><a href="/settings/">Settings</a></div>
-        <div><a href="/help/">Help</a></div>
-        <div><a href="/tweet/">Tweet</a></div>
-        <div>
-            <% if (user === undefined) {%>
-                <a href="/login/">Login</a>
-            <% } else {%>
-                <a href="/logout/">Logout</a>
-            <% } %>
-        </div>
-    </nav>
-
+<% include header.ejs %>
+<nav class="sub">
+	<li><a href="">New posts</a></li>
+	<li><a href="">Follow activity</a></li>
+	<li><a href="">Who to follow</a></li>
+	<li><a href="/findfriends/">Find friends</a></li>
+</nav>
 <div id="reccomendations">
 	<h2>Who to follow</h2>
     <p>Small side section showing 4 recommendations for people you may know</p>
