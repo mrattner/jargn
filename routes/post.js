@@ -8,7 +8,7 @@
 	*	@param {object} res the HTTP response
 	*/
 exports.display = function (req, res) {
-	res.render('post, {	title	:  'Jargn : Compose Post',	user	: req.session.user});
+	res.render('post', {	title	:  'Jargn : Compose Post',	user	: req.session.user});
 }
 
 // ## *function*: upload
