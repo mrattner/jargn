@@ -21,7 +21,7 @@ var express = require('express')
 , search = require('./routes/search')
 , settings = require('./routes/settings')
 , signup = require('./routes/signup')
-, tweet = require('./routes/post')
+, post = require('./routes/post')
 , user = require('./routes/user')
 ;
 
@@ -140,11 +140,11 @@ app.get('/post', post.display);
 app.get('/user/:username', user.display);
 
 // Web Sockets/Socket.IO
-var io	= require('socket.io', {'log level': 0}).listen(APP_PORT);
-var post = require('/lib/post');
+var io	= require('socket.io', {'log level': 0}).listen(8000);
+var posts = require('./lib/posts');
 
 io.sockets.on('connection', function (socket) {
-	post.init(socket);
+	posts.init(socket);
 });
 
 // Listen for HTTP requests
