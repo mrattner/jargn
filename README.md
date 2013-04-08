@@ -22,15 +22,25 @@ $ sudo npm (command lines above)
 This will change your local setup.
 
 ## Project Assignment 03
+
 list of files and additions made:
+
 -- app.js started to add websockets functionality
+
 -- routes/post.js added beginnings of private post functionality
+
 -- lib/posts.js added more functions related to data access layer and started to add websockets functionality
+
 -- header.ejs updated to show currently logged in user at top of each page (dynamically)
+
 -- users.js added ability to signup as new user
+
 -- login.js added support for sessions
+
 -- signup.js
+
 -- user.js added route for basic format user page
+
 -- user.ejs page now shows information about user
 
 -- NOTE: some of the necessities for this project assignment were not achievable due to the unexpected absence of 1 of the 4 people in the group
