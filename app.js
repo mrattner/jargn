@@ -123,7 +123,6 @@ app.get('/', routes.index);
 app.get('/connect', connect.display);
 app.get('/discover', discover.display);
 app.get('/findfriends', findfriends.display);
-app.post('/findfriends/getUser', findfriends.getUser);
 app.get('/help', help.display);
 app.get('/login', login.display);
 app.post('/login/auth', login.auth);
@@ -133,8 +132,9 @@ app.get('/settings', settings.display);
 app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 app.get('/post', post.display);
+app.post('/post/upload', post.upload);
 app.get('/user/:username', user.display);
-app.post('/user/:username/follow', user.followUser);
+app.post('/user/:username/follow', user.followAction);
 
 // Web Sockets/Socket.IO
 var io	= require('socket.io', {'log level': 0}).listen(8000);

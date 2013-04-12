@@ -7,47 +7,66 @@
 var userlib = require('../lib/users');
 // Access the post database
 var postlib = require('../lib/posts');
+// Access the follows database
+var followlib = require('../lib/follows');
 
-//The user object whose profile this is
-var profileUser;
+//The username whose profile this is
+var profileUsername;
 
 // ### *function*: display
 // Renders the user's profile.
-exports.display = function (req, res){
+exports.display = function (req, res) {
 	//Get the user whose profile this is
-	userlib.getUserByName(req.params.username, function (err, theUser) {
+	userlib.getUser(req.params.username, function (err, theUser) {
 		if (err) {
 			res.send('User not found', 404);
 		}
 		else {
-			profileUser = theUser;
+		  profileUsername = req.params.username;
+		  
+		  //Get this user's followers
 			var followers;
-			userlib.getFollowers(theUser, function(err, arr){
-				if(err){}
-				else{
-					followers = arr;
+			followlib.getFollowers(profileUsername, function (err, array){
+				if (!err){
+					followers = array;
 				}
 			});
+		  
+		  //Get who is following this user
 			var following;
-			userlib.getFollowers(theUser, function(err, arr){
-				if(err){}
-				else{
-					following = arr;
+			followlib.getFollowing(profileUsername, function (err, array){
+				if (!err){
+					following = array;
 				}
 			});
+		  
+		  //Get this user's posts
 			var posts;
-			postlib.getPostsByUser(theUser, function (err, arr) {
+			postlib.getPostsByUser(profileUsername, function (err, array) {
 				if (!err) {
-					posts = arr;
+					posts = array;
 				}
 			});
-			res.render('user', { title		: 'Jargn',
-								 otherUser  : theUser,
-								 user		: req.session.user,
-	 							 ouFollowers: followers,
-	 							 ouFollowing: following,
-	 							 ouPosts	: posts,
-								 isFollowing: userlib.isFollowing});
+			
+		  //Is this the currently logged in user's profile?
+		  var myProfile = (profileUsername === req.session.user.username);
+		
+		  //Is the currently logged in user following this user?
+		  var isAFollower = followlib.isFollowing(req.session.user.username, 
+												profileUsername);
+		 //Page title
+		  var pageTitle = 'Jargn : ' + profileUsername;
+		  
+		  //Render the view
+		  res.render('user', { 
+			 title: pageTitle,
+			 profileUser: profileUsername,
+			 user: req.session.user,
+			 profileFollowers: followers,
+			 profileFollowing: following,
+			 profilePosts: posts,
+			 isMyProfile: myProfile,
+			 isFollowing: isAFollower});
 		}
 	});
 };
@@ -57,24 +76,23 @@ exports.display = function (req, res){
 // and adds this user to the currently logged in user's follow list.
 // @param req {object} The HTTP request
 // @param res {object} The HTTP response
-exports.followUser = function (req, res) {
-	console.log('started calling function');
-	//The currently logged in user
-	userlib.getUserByName(req.session.user.username, function (error, currUser) {
-		if (error) {
-			console.log('404 error');
-			res.send("The currently logged in user couldn't be found", 404);
-		} else {
-			console.log('check if profileUser is currUser');
-			//Current user cannot follow himself
-			if (profileUser !== currUser) {
-				console.log('trying to get currUser to follow profileUser');
-				userlib.follow(currUser, profileUser);
-				res.send('followed ' + profileUser.username, 200);
-			}
-			else{
-				res.send("you can't follow yourself!", 500);
-			}
+exports.followAction = function (req, res) {
+	//The currently logged in user's name
+	var currentUsername = req.session.user.username;
+	
+	if (currentUsername === profileUsername) {
+		res.send("you can't follow yourself!", 500);
+	}
+	else {
+		//If current user is already following profile user, this is an unfollow
+		if (followlib.isFollowing(currentUsername, profileUsername)) {
+			followlib.unfollow(currentUsername, profileUsername);
 		}
-	});
+		else {
+			console.log('About to make ' + currentUsername + ' follow ' + profileUsername);
+			followlib.follow(currentUsername, profileUsername);
+		}
+		//Reload the user page
+		res.redirect('/user/' + profileUsername);
+	}
 };

@@ -1,47 +1,61 @@
 <% include header.ejs %>
 
-<h1><%= otherUser.username %>'s profile</h1>
+<h1><%= profileUser %>'s profile</h1>
 
 <div>
-	<form name="follow" action="/user/<%= otherUser.username %>/follow"
+	<form name="follow" action="/user/<%= profileUser %>/follow"
 	method="post">
-		<input type="submit" name ="follow" 
-		value="Follow <%= otherUser.username %>" />
-		<% console.log(otherUser.toString() + '\n' + user.toString()); %>
+		<input type="submit" name ="followUser" 
+		value=<% if (!isFollowing){ %>
+				"Follow"
+			<% } else { %>
+				"Unfollow"
+			<% } %>
+		/>
 	</form>
 </div>
 
 <div>Followers:<br />
-	<% if (ouFollowers === undefined || ouFollowers.length === 0) { %>
+	<% if (!profileFollowers || profileFollowers.length === 0) { %>
 		This user has no followers.
 	<% } else { %>
 		<ol>
-		<% for (var i = 0; i < ouFollowers.length; i++) { %>
-			<li> <%= ouFollowers[i].username %> 
+		<% for (var i = 0; i < profileFollowers.length; i++) { %>
+			<li><a href="/user/<%= profileFollowers[i] %>">
+				<%= profileFollowers[i] %>
+				</a>
+			</li>
 		<% } %>
 		</ol>
 	<% } %>
 </div>
 
 <div>Following:<br />
-	<% if (ouFollowing === undefined || ouFollowers.length === 0) { %>
+	<% if (!profileFollowing || profileFollowing.length === 0) { %>
 		This user is not following anyone.
 	<% } else { %>
 		<ol>
-		<% for (var i = 0; i < ouFollowing.length; i++) { %>
-			<li> <%= ouFollowing[i].username %> 
+		<% console.log(profileFollowing) %>
+		<% for (var i = 0; i < profileFollowing.length; i++) { %>
+			<li><a href="/user/<%= profileFollowing[i] %>">
+				<%= profileFollowing[i] %>
+				</a>
+			</li>
 		<% } %>
 		</ol>
 	<% } %>
 </div>
 
 <div>Posts:<br />
-	<% if (ouPosts === undefined || ouPosts.length === 0) { %>
+	<% if (!profilePosts || profilePosts.length === 0) { %>
 		This user has no posts.
 	<% } else { %>
 		<ol>
-		<% for (var i = 0; i < ouPosts.length; i++) { %>
-			<li> <%= ouPosts[i].username %> 
+		<% for (var i = profilePosts.length - 1; i >= 0; i--) { %>
+			<li>
+				<%= profilePosts[i].date %><br />
+				<%= profilePosts[i].postText %>
+			</li>
 		<% } %>
 		</ol>
 	<% } %>
