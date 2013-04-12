@@ -37,19 +37,7 @@
         <a href="#function--authuser">function: authUser</a>
       </div>
       <div class="heading h3">
-        <a href="#function--getuserbyname">function: getUserByName</a>
-      </div>
-      <div class="heading h3">
-        <a href="#function--getfollowers">function: getFollowers</a>
-      </div>
-      <div class="heading h3">
-        <a href="#function--getfollowing">function: getFollowing</a>
-      </div>
-      <div class="heading h3">
-        <a href="#function--follow">function: follow</a>
-      </div>
-      <div class="heading h3">
-        <a href="#function--isfollowing">function: isFollowing</a>
+        <a href="#function--getuserinfo">function: getUserInfo</a>
       </div>
       <div class="heading h3">
         <a href="#function--loginuser">function: loginUser</a>
@@ -103,18 +91,6 @@
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">followers</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">following</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
-  
-  <span class="k">this</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s1">&#39;{ username: &#39;</span> <span class="o">+</span> <span class="nx">username</span>
-    <span class="o">+</span> <span class="s1">&#39;; password: &#39;</span> <span class="o">+</span> <span class="nx">password</span>
-    <span class="o">+</span> <span class="s1">&#39;; name: &#39;</span> <span class="o">+</span> <span class="nx">name</span>
-    <span class="o">+</span> <span class="s1">&#39;; email: &#39;</span> <span class="o">+</span> <span class="nx">email</span>
-    <span class="o">+</span> <span class="s1">&#39;; date: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">date</span>
-    <span class="o">+</span> <span class="s1">&#39;; followers: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">followers</span>
-    <span class="o">+</span> <span class="s1">&#39;; following: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">following</span> <span class="o">+</span> <span class="s1">&#39; }&#39;</span><span class="p">;</span>
-  <span class="p">};</span>
 <span class="p">}</span>
 
 
@@ -136,6 +112,21 @@ Note: This will be replaced with calls to a database layer.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>For testing purposes only: populate the database with fake data</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">));</span>
+<span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">));</span>
 
 
 </pre></div>
@@ -217,7 +208,7 @@ with the signature cb(error, message).</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
 </div>
 <p>Check for duplicate user</p>
         </td>
@@ -231,7 +222,7 @@ with the signature cb(error, message).</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
 <p>If the username already exists</p>
         </td>
@@ -247,7 +238,7 @@ with the signature cb(error, message).</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
 </div>
 <p>If the email address already exists</p>
         </td>
@@ -265,7 +256,7 @@ with the signature cb(error, message).</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
 </div>
 <p>Check that password and pconfirm match</p>
         </td>
@@ -321,7 +312,7 @@ callback <code>cb</code> with the signature cb(error, userobj).
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
 </div>
 <p>If the username is found</p>
         </td>
@@ -334,7 +325,7 @@ callback <code>cb</code> with the signature cb(error, userobj).
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
 </div>
 <p>Check password</p>
         </td>
@@ -347,7 +338,7 @@ callback <code>cb</code> with the signature cb(error, userobj).
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
 </div>
 <p>Successful login</p>
         </td>
@@ -371,21 +362,20 @@ callback <code>cb</code> with the signature cb(error, userobj).
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="function--getuserbyname">
+<div class="pilwrap" id="function--getuserinfo">
   <h3>
-    <a href="#function--getuserbyname" class="pilcrow">&#182;</a>
-    <em>function</em>: getUserByName
+    <a href="#function--getuserinfo" class="pilcrow">&#182;</a>
+    <em>function</em>: getUserInfo
   </h3>
 </div>
 
 
 <p>Retrieves the user object from the database that matches the passed username
-or undefined if the user is not found.
 @param username {string} The username to fetch
 @param cb {function} Callback function to invoke after retrieving user</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getUserByName</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">getUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">foundUser</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
@@ -397,7 +387,7 @@ or undefined if the user is not found.
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
 </div>
 <p>Invoke callback with no error and the user object</p>
         </td>
@@ -409,163 +399,7 @@ or undefined if the user is not found.
     <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User &#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; was not found&#39;</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getUserByName</span> <span class="o">=</span> <span class="nx">getUserByName</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--getfollowers">
-  <h3>
-    <a href="#function--getfollowers" class="pilcrow">&#182;</a>
-    <em>function</em>: getFollowers
-  </h3>
-</div>
-
-
-<p>Retrieves the list of all users following the passed user.
-@param user {object} The user whose followers to fetch
-@param cb {function} Callback function to invoke after retrieving followers</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getFollowers</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
-</div>
-<p>If the user does not exist</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User is undefined&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">followers</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowers</span> <span class="o">=</span> <span class="nx">getFollowers</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--getfollowing">
-  <h3>
-    <a href="#function--getfollowing" class="pilcrow">&#182;</a>
-    <em>function</em>: getFollowing
-  </h3>
-</div>
-
-
-<p>Retrieves the list of all users whom the passed user follows.
-@param user {object} The user whose subscriptions to fetch
-@param cb {function} Callback function to invoke after retrieving following</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getFollowing</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
-</div>
-<p>If the user does not exist</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User is undefined&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">following</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowing</span> <span class="o">=</span> <span class="nx">getFollowing</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--follow">
-  <h3>
-    <a href="#function--follow" class="pilcrow">&#182;</a>
-    <em>function</em>: follow
-  </h3>
-</div>
-
-
-<p>Allows user1 to follow user2. Adds user1 to user2's followers, and adds
-user2 to user1's following list.
-@param user1 {object} The user who is following user2
-@param user2 {object} The user being followed by user1</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">follow</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
-</div>
-<p>if both users are in the database</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">users</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">user1</span><span class="p">.</span><span class="nx">following</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user2</span><span class="p">);</span>
-    <span class="nx">user2</span><span class="p">.</span><span class="nx">followers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user1</span><span class="p">);</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;epic fail&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">follow</span> <span class="o">=</span> <span class="nx">follow</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--isfollowing">
-  <h3>
-    <a href="#function--isfollowing" class="pilcrow">&#182;</a>
-    <em>function</em>: isFollowing
-  </h3>
-</div>
-
-
-<p>Tells whether user1 is following user2.
-@param user1 {object} The user who may be following user2
-@param user2 {object} The user who may be followed by user1
-@return true if user1 is following user2</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">isFollowing</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">user1</span><span class="p">.</span><span class="nx">following</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">user1</span><span class="p">.</span><span class="nx">following</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">isFollowing</span> <span class="o">=</span> <span class="nx">isFollowing</span><span class="p">;</span> 
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getUser</span> <span class="o">=</span> <span class="nx">getUser</span><span class="p">;</span> 
 
 
 

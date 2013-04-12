@@ -120,7 +120,7 @@
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">addPost</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">);</span>
-  <span class="nx">users</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newPost</span><span class="p">);</span>
+  <span class="nx">posts</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newPost</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">addPost</span> <span class="o">=</span> <span class="nx">addPost</span><span class="p">;</span>
 
@@ -139,13 +139,12 @@
 </div>
 
 
-<p>Retrieves a list of all posts authored by a certain user.</p>
-
-<p>@param user    {object} The user whose posts you want to get
+<p>Retrieves a list of all posts authored by a certain user. <br />
+@param username    {string} The user whose posts you want to get
 @param cb {function} Callback function to invoke after looking up posts</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -174,7 +173,7 @@
 <p>If the user is found</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">author</span> <span class="o">===</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">author</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -204,7 +203,7 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="k">if</span> <span class="p">(</span><span class="nx">postsList</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No posts by user&#39;</span> <span class="o">+</span> <span class="nx">user</span> <span class="o">+</span> <span class="s1">&#39; were found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;No posts by user&#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; were found&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
 
@@ -222,7 +221,6 @@
     <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">postsList</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getPostsByUser</span> <span class="o">=</span> <span class="nx">getPostsByUser</span><span class="p">;</span>
 
 
