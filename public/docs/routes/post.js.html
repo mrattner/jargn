@@ -19,12 +19,12 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets">Post module: gets a composed post and adds to user's list of tweets</a>
+        <a href="#post-module">Post module</a>
       </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
       </div>
-      <div class="heading h2">
+      <div class="heading h3">
         <a href="#function--upload">function: upload</a>
       </div>
     </div>
@@ -35,15 +35,31 @@
   <tbody>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets">
+<div class="pilwrap" id="post-module">
   <h1>
-    <a href="#post-module--gets-a-composed-post-and-adds-to-user-s-list-of-tweets" class="pilcrow">&#182;</a>
-    Post module: gets a composed post and adds to user's list of tweets
+    <a href="#post-module" class="pilcrow">&#182;</a>
+    Post module
   </h1>
 </div>
 
+
+<p>Allows user to compose and upload a text post.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>The posts library</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">postlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/posts&#39;</span><span class="p">);</span>
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -56,18 +72,16 @@
 </div>
 
 
-<div class="dox">
-  <div class="summary"><p>provides a user post view</p>
-  </div>
-  <div class="body"><p>@param {object} req the HTTP request
- @param {object} res the HTTP response</p>
-  </div>
-</div>
+<p>provides a user post view
+@param req {object} the HTTP request
+@param res {object} the HTTP response</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span>  <span class="s1">&#39;Jargn : Compose Post&#39;</span><span class="p">,</span>  <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
+<span class="kd">function</span> <span class="nx">display</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span>  <span class="s1">&#39;Jargn : Compose Post&#39;</span><span class="p">,</span>
+              <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
 <span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">display</span><span class="p">;</span>
 
 
 </pre></div>
@@ -76,41 +90,88 @@
       <tr>
         <td class="docs">
 <div class="pilwrap" id="function--upload">
-  <h2>
+  <h3>
     <a href="#function--upload" class="pilcrow">&#182;</a>
     <em>function</em>: upload
-  </h2>
+  </h3>
 </div>
 
 
-<div class="dox">
-  <div class="summary"><p>stores tweet</p>
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-    <div class="dox_tag_title">Params</div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">res</span>
-      <span class="dox_type">object</span>
-      <span>the HTTP response</span>
-    </div>
-    <div class="dox_tag_detail">
-      <span class="dox_tag_name">postData</span>
-      <span class="dox_type">object</span>
-      <span>the text from the post</span>
-    </div>
-  </div>
-</div>
+<p>Stores a post by the currently logged in user in the posts database.
+@param req {object} the HTTP request
+@param res {object} the HTTP response</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">upload</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="nx">exports</span><span class="p">.</span><span class="nx">upload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">postData</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Request handler &#39;upload&#39; was called.&quot;</span><span class="p">);</span>
-  <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">});</span>
-  <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;You&#39;ve sent: &quot;</span> <span class="o">+</span> <span class="nx">postData</span><span class="p">);</span>
-  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Pull the author's username from the request</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Pull the text from the post request</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">postText</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">post_text</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Is this post private?</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">isPrivate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="kr">private</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Add the post to the posts database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">postlib</span><span class="p">.</span><span class="nx">addPost</span><span class="p">(</span><span class="nx">postText</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">);</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Redirect to home page</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
 <span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">upload</span> <span class="o">=</span> <span class="nx">upload</span><span class="p">;</span>
 </pre></div>
         </td>
       </tr>

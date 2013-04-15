@@ -2,9 +2,14 @@
 
 <h1> Compose a Post!</h1>
 	<div>
-		<textarea rows="4" cols="60"></textarea>
-		<br>
-		<input type="submit" value="Post">
+		<form name="compose" action="/post/upload" method="POST">
+			<textarea name="post_text" maxlength=140 autofocus></textarea>
+			<br />
+			<input type="checkbox" name="private" value="true">
+			Make this post private
+			<br />
+			<input type="submit" value="Post">
+		</form>
 	</div>
 </body>
 	<script src = "/socket.io/socket.io.js"></script>

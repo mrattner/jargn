@@ -35,7 +35,7 @@ function auth (req, res) {
 	//Attempt to authenticate the user
 	userlib.authUser(username, password, function (error, user) {
 		if (error) {
-			//If there was an error, flash a message to the redirected route `login`
+			//If there was an error, flash a message to the redirected route
 			req.flash('auth', error);
 			res.redirect('/login');
 		}
