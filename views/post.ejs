@@ -4,13 +4,14 @@
 	<div>
 		<form name="compose" action="/post/upload" method="POST">
 			<textarea name="post_text" maxlength=140 autofocus></textarea>
-			<br />
+			<br>
 			<input type="checkbox" name="private" value="true">
 			Make this post private
-			<br />
+			<br>
 			<input type="submit" value="Post">
 		</form>
 	</div>
 </body>
 	<script src = "/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="javascripts/posts.js"></script>
 </html>

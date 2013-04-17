@@ -1,8 +1,8 @@
 # Member
-Adam Daehling, Mayu Kudo, Marcy Rattner, Kira Revere
+Adam Daehling, Marcy Rattner, Kira Revere
 
 ## Before compiling
-1) Download zipfiles of our folder
+1) Download zipfiles of app folder
 2) Decompress it
 3) Go inside the folder, and type in
 ```sh
@@ -20,6 +20,15 @@ $ npm install
 $ sudo npm (command lines above)
 ```
 This will change your local setup.
+
+## Project Assignment 04
+list of changes:
+
+-- post.js functionality changed
+
+-- sockets implemented on posting functionality(posts.js, post.js, post view)
+
+-- 
 
 ## Project Assignment 03
 
