@@ -28,7 +28,6 @@ list of changes:
 
 -- sockets implemented on posting functionality(posts.js, post.js, post view)
 
--- 
 
 ## Project Assignment 03
 
@@ -52,7 +51,11 @@ list of files and additions made:
 
 -- user.ejs page now shows information about user
 
--- NOTE: some of the necessities for this project assignment were not achievable due to the unexpected absence of 1 of the 4 people in the group
+-- fixed ability to follow other users
+
+-- added private posting functionality (works similar to messaging)
+
+-- link to function spec: https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing
 
 ### Index
 Shows 'Welcome to Jargn' with signup, or login form.
