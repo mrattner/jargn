@@ -3,15 +3,17 @@
 <h1> Compose a Post!</h1>
 	<div>
 		<form name="compose" action="/post/upload" method="POST">
-			<textarea name="post_text" maxlength=140 autofocus></textarea>
+			<textarea id='post-text-area' name="post_text" maxlength=140 autofocus></textarea>
 			<br>
 			<input type="checkbox" name="private" value="true">
 			Make this post private
 			<br>
-			<input type="submit" value="Post">
+			<input id='post-post-button' type="submit" value="Post">
 		</form>
+		<ul id ='message-list'></div>
 	</div>
 </body>
+	<script type='text/javascript'  src='/javascripts/jquery-min.js'></script>
 	<script src = "/socket.io/socket.io.js"></script>
-	<script type="text/javascript" src="javascripts/posts.js"></script>
+	<script type="text/javascript" src="javascripts/post.js"></script>
 </html>
