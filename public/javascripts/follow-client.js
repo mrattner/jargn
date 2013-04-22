@@ -17,7 +17,7 @@ FollowClient.prototype = {
 	poll : function () {
 		var that = this;
 		this._stop = setInterval(function () {
-								 /*that.check();*/
+								 that.check();
 								 },
 								 3000);
 	},
@@ -39,27 +39,28 @@ FollowClient.prototype = {
 		   });
 	},
 	
-	// Check for more messages on the server given the last index we have for
-	// thecurrent posts.
+	// Check for more activity on the server given the last index we have for
+	// the current follow activity.
 	check : function () {
+		console.log("check was invoked");
+		var profileUser = $('#followB').attr('profileUser');
 		var that = this;		
 		$.ajax({
 		   type : 'POST',
 		   url  : '/check',
-		   data : { last : that.posts.length },
+		   data : { username : profileUser },
 		   dataType : 'json'
 		   }).done(function (data) {
 			   console.log('Check rcvd: ' + JSON.stringify(data));
 			   
-			   // Append the posts to the current posts:
-			   that.posts = that.posts.concat(data);
+			   // Append the new follow activity:
+			   //that.follows = that.follows.concat(data);
 			   
 			   // Rewrite to the view:
 			   that.view.empty();
-			   for (var i = 0; i < that.posts.length; i++) {
-				var li   = $('<li>');
-				var date = new Date(that.posts[i].date);
-				li.html(date.toDateString() + ': ' + that.posts[i].text);
+			   for (var i = 0; i < data.length; i++) {
+				var li = $('<li>');
+				li.html(data[i]);
 				that.view.append(li);
 			   }
 			});
@@ -73,12 +74,11 @@ $(function () {
   var followc = new FollowClient({ view : $('ol#followers') });
   
   // Start polling:
-  // followc.poll();
+  followc.poll();
   
   // Bind a click event:
   $('#followB').bind('click', function () {
-					 alert("click!");
-		followc.follow(this.attr('profileUser'));
+		followc.follow($('#followB').attr('profileUser'));
 		//Bypass default page reload	
 		return false;
   });
