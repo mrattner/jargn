@@ -3,16 +3,7 @@
 <h1><%= profileUser %>'s profile</h1>
 
 <div>
-	<form name="follow" action="/user/<%= profileUser %>/follow"
-	method="post">
-		<input type="submit" name ="followUser" 
-		value=<% if (!isFollowing){ %>
-				"Follow"
-			<% } else { %>
-				"Unfollow"
-			<% } %>
-		/>
-	</form>
+	<button id="followB" profileUser="<%= profileUser %>">Follow</button>
 </div>
 
 <div>Followers:<br />

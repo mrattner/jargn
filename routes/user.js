@@ -10,9 +10,6 @@ var postlib = require('../lib/posts');
 // Access the follows database
 var followlib = require('../lib/follows');
 
-//The username whose profile this is
-var profileUsername;
-
 // ### *function*: display
 // Renders the user's profile.
 exports.display = function (req, res) {
@@ -22,7 +19,7 @@ exports.display = function (req, res) {
 			res.send('User not found', 404);
 		}
 		else {
-		  profileUsername = req.params.username;
+		  var profileUsername = req.params.username;
 		  
 		  //Get this user's followers
 			var followers;
@@ -71,28 +68,29 @@ exports.display = function (req, res) {
 	});
 };
 
-// ### *function*: followUser
+// ### *function*: followAction
 // Adds the currently logged in user as a follower of this user's profile,
 // and adds this user to the currently logged in user's follow list.
 // @param req {object} The HTTP request
 // @param res {object} The HTTP response
 exports.followAction = function (req, res) {
 	//The currently logged in user's name
-	var currentUsername = req.session.user.username;
+	var follower = req.session.user.username;
+	var followed = req.body.followed;
 	
-	if (currentUsername === profileUsername) {
+	if (follower === followed) {
 		res.send("you can't follow yourself!", 500);
 	}
 	else {
 		//If current user is already following profile user, this is an unfollow
-		if (followlib.isFollowing(currentUsername, profileUsername)) {
-			followlib.unfollow(currentUsername, profileUsername);
+		if (followlib.isFollowing(follower, followed)) {
+			followlib.unfollow(follower, followed);
 		}
 		else {
-			console.log('About to make ' + currentUsername + ' follow ' + profileUsername);
-			followlib.follow(currentUsername, profileUsername);
+			console.log('About to make ' + follower + ' follow ' + followed);
+			followlib.follow(follower, followed);
 		}
-		//Reload the user page
-		res.redirect('/user/' + profileUsername);
+		// Send status
+		res.json({status: 'OK'});
 	}
 };
