@@ -87,10 +87,20 @@ exports.followAction = function (req, res) {
 			followlib.unfollow(follower, followed);
 		}
 		else {
-			console.log('About to make ' + follower + ' follow ' + followed);
 			followlib.follow(follower, followed);
 		}
 		// Send status
 		res.json({status: 'OK'});
 	}
+};
+
+// ### *function*: check
+// Sends the client new follow activity in JSON format.
+exports.check = function (req, res) {
+	var activity = followlib.getFollowers(req.body.username, 
+		function (err, followers) {
+			if (!err){
+				res.json(followers);
+			}
+		});
 };
