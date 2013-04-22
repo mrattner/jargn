@@ -19,7 +19,7 @@
 	<% if (!profileFollowers || profileFollowers.length === 0) { %>
 		This user has no followers.
 	<% } else { %>
-		<ol>
+		<ol id="followers">
 		<% for (var i = 0; i < profileFollowers.length; i++) { %>
 			<li><a href="/user/<%= profileFollowers[i] %>">
 				<%= profileFollowers[i] %>
@@ -34,7 +34,7 @@
 	<% if (!profileFollowing || profileFollowing.length === 0) { %>
 		This user is not following anyone.
 	<% } else { %>
-		<ol>
+		<ol id="following">
 		<% console.log(profileFollowing) %>
 		<% for (var i = 0; i < profileFollowing.length; i++) { %>
 			<li><a href="/user/<%= profileFollowing[i] %>">
@@ -50,7 +50,7 @@
 	<% if (!profilePosts || profilePosts.length === 0) { %>
 		This user has no posts.
 	<% } else { %>
-		<ol>
+		<ol id="posts">
 		<% for (var i = profilePosts.length - 1; i >= 0; i--) { %>
 			<li>
 				<%= profilePosts[i].date %><br />
