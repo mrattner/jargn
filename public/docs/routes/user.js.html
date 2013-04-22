@@ -25,7 +25,10 @@
         <a href="#function--display">function: display</a>
       </div>
       <div class="heading h3">
-        <a href="#function--followuser">function: followUser</a>
+        <a href="#function--followaction">function: followAction</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--check">function: check</a>
       </div>
     </div>
   </div>
@@ -92,20 +95,6 @@ he/she is following.</p>
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
-</div>
-<p>The username whose profile this is</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">var</span> <span class="nx">profileUsername</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
 <div class="pilwrap" id="function--display">
   <h3>
     <a href="#function--display" class="pilcrow">&#182;</a>
@@ -125,7 +114,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
 </div>
 <p>Get the user whose profile this is</p>
         </td>
@@ -135,7 +124,7 @@ he/she is following.</p>
       <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;User not found&#39;</span><span class="p">,</span> <span class="mi">404</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">profileUsername</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">profileUsername</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
       
 
 </pre></div>
@@ -144,7 +133,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
 </div>
 <p>Get this user's followers</p>
         </td>
@@ -163,7 +152,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
 <p>Get who is following this user</p>
         </td>
@@ -182,7 +171,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
 </div>
 <p>Get this user's posts</p>
         </td>
@@ -201,7 +190,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
 </div>
 <p>Is this the currently logged in user's profile?</p>
         </td>
@@ -215,7 +204,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
 </div>
 <p>Is the currently logged in user following this user?</p>
         </td>
@@ -229,7 +218,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
 </div>
 <p>Page title</p>
         </td>
@@ -243,7 +232,7 @@ he/she is following.</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
 </div>
 <p>Render the view</p>
         </td>
@@ -267,10 +256,10 @@ he/she is following.</p>
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="function--followuser">
+<div class="pilwrap" id="function--followaction">
   <h3>
-    <a href="#function--followuser" class="pilcrow">&#182;</a>
-    <em>function</em>: followUser
+    <a href="#function--followaction" class="pilcrow">&#182;</a>
+    <em>function</em>: followAction
   </h3>
 </div>
 
@@ -289,14 +278,15 @@ and adds this user to the currently logged in user's follow list.
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
 </div>
 <p>The currently logged in user's name</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="kd">var</span> <span class="nx">currentUsername</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">follower</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">followed</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">followed</span><span class="p">;</span>
   
-  <span class="k">if</span> <span class="p">(</span><span class="nx">currentUsername</span> <span class="o">===</span> <span class="nx">profileUsername</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">follower</span> <span class="o">===</span> <span class="nx">followed</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;you can&#39;t follow yourself!&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
@@ -307,17 +297,16 @@ and adds this user to the currently logged in user's follow list.
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
 </div>
 <p>If current user is already following profile user, this is an unfollow</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">followlib</span><span class="p">.</span><span class="nx">isFollowing</span><span class="p">(</span><span class="nx">currentUsername</span><span class="p">,</span> <span class="nx">profileUsername</span><span class="p">))</span> <span class="p">{</span>
-      <span class="nx">followlib</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="nx">currentUsername</span><span class="p">,</span> <span class="nx">profileUsername</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">followlib</span><span class="p">.</span><span class="nx">isFollowing</span><span class="p">(</span><span class="nx">follower</span><span class="p">,</span> <span class="nx">followed</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">followlib</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="nx">follower</span><span class="p">,</span> <span class="nx">followed</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;About to make &#39;</span> <span class="o">+</span> <span class="nx">currentUsername</span> <span class="o">+</span> <span class="s1">&#39; follow &#39;</span> <span class="o">+</span> <span class="nx">profileUsername</span><span class="p">);</span>
-      <span class="nx">followlib</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">currentUsername</span><span class="p">,</span> <span class="nx">profileUsername</span><span class="p">);</span>
+      <span class="nx">followlib</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">follower</span><span class="p">,</span> <span class="nx">followed</span><span class="p">);</span>
     <span class="p">}</span>
 
 </pre></div>
@@ -326,13 +315,39 @@ and adds this user to the currently logged in user's follow list.
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
 </div>
-<p>Reload the user page</p>
+<p>Send status</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/user/&#39;</span> <span class="o">+</span> <span class="nx">profileUsername</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;OK&#39;</span><span class="p">});</span>
   <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--check">
+  <h3>
+    <a href="#function--check" class="pilcrow">&#182;</a>
+    <em>function</em>: check
+  </h3>
+</div>
+
+
+<p>Sends the client new follow activity in JSON format.</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">activity</span> <span class="o">=</span> <span class="nx">followlib</span><span class="p">.</span><span class="nx">getFollowers</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> 
+    <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">followers</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">followers</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
 <span class="p">};</span>
 </pre></div>
         </td>

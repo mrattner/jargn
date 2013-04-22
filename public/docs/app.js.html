@@ -160,10 +160,10 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
 </div>
-<p>Pattern defining stylesheet URLs</p>
+<p>Pattern defining stylesheet or static javascript URLs</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="kd">var</span> <span class="nx">stylesheetURL</span> <span class="o">=</span> <span class="sr">/^\/stylesheets/</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">staticURL</span> <span class="o">=</span> <span class="sr">/^\/(stylesheets|javascripts)/</span><span class="p">;</span>
   
 
 </pre></div>
@@ -190,7 +190,7 @@
 <p>If a logged out user is trying to log in or sign up</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">signupOrLoginURL</span><span class="p">)</span> <span class="o">||</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">stylesheetURL</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">signupOrLoginURL</span><span class="p">)</span> <span class="o">||</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">staticURL</span><span class="p">))</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -507,6 +507,7 @@
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/post/upload&#39;</span><span class="p">,</span> <span class="nx">post</span><span class="p">.</span><span class="nx">upload</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/user/:username&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/user/:username/follow&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">followAction</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/check&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">check</span><span class="p">);</span>
 
 
 </pre></div>
