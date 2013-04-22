@@ -7,18 +7,8 @@
 </div>
 
 <div>Followers:<br />
-	<% if (!profileFollowers || profileFollowers.length === 0) { %>
-		This user has no followers.
-	<% } else { %>
-		<ol id="followers">
-		<% for (var i = 0; i < profileFollowers.length; i++) { %>
-			<li><a href="/user/<%= profileFollowers[i] %>">
-				<%= profileFollowers[i] %>
-				</a>
-			</li>
-		<% } %>
-		</ol>
-	<% } %>
+	<ol id="followers">
+	</ol>
 </div>
 
 <div>Following:<br />
