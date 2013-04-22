@@ -17,7 +17,7 @@ FollowClient.prototype = {
 	poll : function () {
 		var that = this;
 		this._stop = setInterval(function () {
-								 //that.check();
+								 /*that.check();*/
 								 },
 								 3000);
 	},
@@ -39,36 +39,35 @@ FollowClient.prototype = {
 		   });
 	},
 	
-//	// Check for more messages on the server given the last index we have for
-//	// thecurrent posts.
-//	check : function () {
-//		var that = this;		
-//		$.ajax({
-//		   type : 'POST',
-//		   url  : '/check',
-//		   data : { last : that.posts.length },
-//		   dataType : 'json'
-//		   }).done(function (data) {
-//			   console.log('Check rcvd: ' + JSON.stringify(data));
-//			   
-//			   // Append the posts to the current posts:
-//			   that.posts = that.posts.concat(data);
-//			   
-//			   // Rewrite to the view:
-//			   that.view.empty();
-//			   for (var i = 0; i < that.posts.length; i++) {
-//				var li   = $('<li>');
-//				var date = new Date(that.posts[i].date);
-//				li.html(date.toDateString() + ': ' + that.posts[i].text);
-//				that.view.append(li);
-//			   }
-//			});
-//	}	
-//};
+	// Check for more messages on the server given the last index we have for
+	// thecurrent posts.
+	check : function () {
+		var that = this;		
+		$.ajax({
+		   type : 'POST',
+		   url  : '/check',
+		   data : { last : that.posts.length },
+		   dataType : 'json'
+		   }).done(function (data) {
+			   console.log('Check rcvd: ' + JSON.stringify(data));
+			   
+			   // Append the posts to the current posts:
+			   that.posts = that.posts.concat(data);
+			   
+			   // Rewrite to the view:
+			   that.view.empty();
+			   for (var i = 0; i < that.posts.length; i++) {
+				var li   = $('<li>');
+				var date = new Date(that.posts[i].date);
+				li.html(date.toDateString() + ': ' + that.posts[i].text);
+				that.view.append(li);
+			   }
+			});
+	}	
+};
 
 // jQuery ready handler:
-$(document).ready(function () {
-				  console.log("The document is ready");
+$(function () {
   // Get the list view that the chat client
   // will populate with incoming messages:	
   var followc = new FollowClient({ view : $('ol#followers') });
@@ -77,8 +76,8 @@ $(document).ready(function () {
   // followc.poll();
   
   // Bind a click event:
-  $('#followB').click(function (event) {
-					  console.log("button clicked");
+  $('#followB').bind('click', function () {
+					 alert("click!");
 		followc.follow(this.attr('profileUser'));
 		//Bypass default page reload	
 		return false;

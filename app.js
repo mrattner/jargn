@@ -41,13 +41,13 @@ function authmw (req, res, next) {
 	//Pattern defining login or signup URLs
 	var signupOrLoginURL = /^\/(login|signup)/;
 	
-	//Pattern defining stylesheet URLs
-	var stylesheetURL = /^\/stylesheets/;
+	//Pattern defining stylesheet or static javascript URLs
+	var staticURL = /^\/(stylesheets|javascripts)/;
 	
 	//If the user is not logged in
 	if (req.session.user === undefined){
 		//If a logged out user is trying to log in or sign up
-		if (req.url.match(signupOrLoginURL) || req.url.match(stylesheetURL)) {
+		if (req.url.match(signupOrLoginURL) || req.url.match(staticURL)) {
 			//Then continue to next route
 			next();
 		}
