@@ -5,7 +5,7 @@
 var postlib = require('../lib/posts');
 
 // ### *function*: display
-// provides a user post view
+// Renders the view for Compose Post.
 // @param req {object} the HTTP request
 // @param res {object} the HTTP response
 function display (req, res) {
@@ -13,6 +13,17 @@ function display (req, res) {
 							user	: req.session.user});
 }
 exports.display = display;
+
+// ### *function*: init
+// Server-side support for Websockets. Broadcasts data to the socket.
+// @param socket {object} The socket.io object
+function init (socket) {
+	socket.on('post', function (data) {
+	  console.log('Received post: ' + JSON.stringify(data));
+	  socket.broadcast.emit('post', data);
+	  });
+}
+exports.init = init;
 
 // ### *function*: upload
 // Stores a post by the currently logged in user in the posts database.
@@ -29,7 +40,7 @@ function upload (req, res) {
 	//Add the post to the posts database
 	postlib.addPost(postText, author, isPrivate);
 	
-	//Redirect to home page
-	res.redirect('/');
+	// Send status
+	res.json({status: 'OK'});
 }
 exports.upload = upload;
