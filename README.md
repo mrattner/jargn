@@ -21,6 +21,11 @@ $ sudo npm (command lines above)
 ```
 This will change your local setup.
 
+## Project Assignment 05
+changes:
+
+-- database.js -- started to implement database with sequelize
+
 ## Project Assignment 04
 list of changes:
 
@@ -28,6 +33,9 @@ list of changes:
 
 -- sockets implemented on posting functionality(posts.js, post.js, post view)
 
+-- edited header for views to include jquery and socket.io
+
+-- implemented ajax on following feature
 
 ## Project Assignment 03
 
@@ -53,7 +61,7 @@ list of files and additions made:
 
 -- fixed ability to follow other users
 
--- added private posting functionality (works similar to messaging)
+-- added private posting functionality (works similar to messaging) in database.js
 
 -- link to function spec: https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing
 
