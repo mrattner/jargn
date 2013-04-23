@@ -1,7 +1,5 @@
-/**
- *	# app
- *	Launching point for the Express app.
- */
+// # app
+// Launching point for the Express app.
 
 //Set the port on which to run the app
 var APP_PORT = 3000;
@@ -9,7 +7,6 @@ var APP_PORT = 3000;
 //Module dependencies and routes
 var express = require('express')
 , routes = require('./routes')
-, http = require('http')
 , path = require('path')
 , flash = require('connect-flash')
 
@@ -29,14 +26,19 @@ var express = require('express')
 // The Express app
 var app = express();
 
-/**
- *	### *function*: authmw
- *	Middleware for authentication and redirecting.
- *
- *	@param req {object} The HTTP request
- *	@param res {object} The HTTP response
- *	@param next {function} The next route, as defined by the router
- */
+// ## server object
+// The HTTP server built on the app
+var server = require('http').createServer(app);
+
+// ## io object
+// socket.io attached to the HTTP server object
+var io = require('socket.io', {'log level': 0}).listen(server);
+
+//	### *function*: authmw
+//	Middleware for authentication and redirecting. 
+//	@param req {object} The HTTP request
+//	@param res {object} The HTTP response
+//	@param next {function} The next route, as defined by the router
 function authmw (req, res, next) {
 	//Pattern defining login or signup URLs
 	var signupOrLoginURL = /^\/(login|signup)/;
@@ -70,80 +72,74 @@ function authmw (req, res, next) {
 	}
 }
 
-/**
- *	Configure Express and use middleware
- */
+//Configure Express and use middleware
 app.configure(function(){
-			  //Set the correct port to run on
-			  app.set('port', process.env.PORT || APP_PORT);
-			  
-			  //Set the view directory path
-			  app.set('views', __dirname + '/views');
-			  
-			  //Set the default engine extension to use when omitted
-			  app.set('view engine', 'ejs');
-			  
-			  //Parser for the body of HTTP requests
-			  app.use(express.bodyParser());
-			  
-			  //Allows use of DELETE and PUT
-			  app.use(express.methodOverride());
-			  
-			  //Populates req.cookies with an object keyed by the cookie names
-			  app.use(express.cookieParser('kittens'));
-			  
-			  //Use session middleware (must be used after express.cookieParser)
-			  app.use(express.session());
-			  
-			  //Use flash support for sessions
-			  app.use(flash());
-			  
-			  //Use the custom authentication middleware for redirecting
-			  app.use(authmw);
-			  
-			  //Use router middleware (must be used after express.session)
-			  app.use(app.router);
-			  
-			  //Serve up static files in the 'public' directory
-			  app.use(express.static(path.join(__dirname, '/public')));
+  //Set the correct port to run on
+  app.set('port', process.env.PORT || APP_PORT);
+  
+  //Set the view directory path
+  app.set('views', __dirname + '/views');
+  
+  //Set the default engine extension to use when omitted
+  app.set('view engine', 'ejs');
+  
+  //Parser for the body of HTTP requests
+  app.use(express.bodyParser());
+  
+  //Allows use of DELETE and PUT
+  app.use(express.methodOverride());
+  
+  //Populates req.cookies with an object keyed by the cookie names
+  app.use(express.cookieParser('kittens'));
+  
+  //Use session middleware (must be used after express.cookieParser)
+  app.use(express.session());
+  
+  //Use flash support for sessions
+  app.use(flash());
+  
+  //Use the custom authentication middleware for redirecting
+  app.use(authmw);
+  
+  //Use router middleware (must be used after express.session)
+  app.use(app.router);
+  
+  //Serve up static files in the 'public' directory
+  app.use(express.static(path.join(__dirname, '/public')));
 });
 
-/**
- *	Configure Express in development mode
- */
+// Configure Express in development mode
 app.configure('development', function(){
-			  app.use(express.errorHandler());
-			  app.use(express.logger('dev'));
+  app.use(express.errorHandler());
+  app.use(express.logger('dev'));
 });
 
-/**
- *	Define the routes
- */
+// Define the routes
 app.get('/', routes.index);
 app.get('/connect', connect.display);
 app.get('/discover', discover.display);
 app.get('/findfriends', findfriends.display);
 app.get('/help', help.display);
+app.get('/search', search.display);
+app.get('/settings', settings.display);
+
 app.get('/login', login.display);
 app.post('/login/auth', login.auth);
 app.get('/logout', login.logout);
-app.get('/search', search.display);
-app.get('/settings', settings.display);
+
 app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
+
 app.get('/post', post.display);
 app.post('/post/upload', post.upload);
+
 app.get('/user/:username', user.display);
 app.post('/user/:username/follow', user.followAction);
 app.post('/check', user.check);
 
-// Web Sockets/Socket.IO
-var io	= require('socket.io', {'log level': 0}).listen(8000);
-var posts = require('./lib/posts');
+// Make the app listen
+server.listen(APP_PORT);
 
 io.sockets.on('connection', function (socket) {
-	posts.init(socket);
+	post.init(socket);
 });
-
-// Listen for HTTP requests
-app.listen(APP_PORT);
