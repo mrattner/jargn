@@ -5,8 +5,9 @@ function publisher(){
 	//subscribe to an event:
 	obj.subscribe = function (type, fn) {
 		if (subscribers[type] == undefined) {
-			subscriber[type].push(fn);
+			subscribers[type] == [];
 		}
+		subscribers[type].push(fn);
 	};
 
 	//unsubscribe:
@@ -25,13 +26,14 @@ function publisher(){
 		return false;
 	};
 
-	//publish to all subscribers on respective event
+	//publish to all subscribers on respective kind of  event
 
 	obj.publish = function (type, arg){
 		if(subscribers[type] === undefined){
 			return false;
 		}
 
+		//invokes subscriber functions
 		var s = subscribers[type];
 		var i;
 		for(i = 0; i < s.length; i++) {
@@ -57,6 +59,7 @@ function postTextArea(){
 	return obj;
 }
 
+//button defined in posts view
 function postPostButton(){
 	var pbj = Object.create(publisher());
 	obj.elm = $('#post-post-button');
@@ -66,7 +69,7 @@ function postPostButton(){
 		console.log('submit button pressed.');
 		//publish this to subscribers:
 		obj.publish('submit');
-		
+		//circumvent page reload
 		return false;
 	});
 	return obj;
