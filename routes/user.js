@@ -39,7 +39,7 @@ exports.display = function (req, res) {
 		  
 		  //Get this user's posts
 			var posts;
-			postlib.getPostsByUser(profileUsername, function (err, array) {
+			postlib.getPostsByUser(req.session.user.username, profileUsername, function (err, array) {
 				if (!err) {
 					posts = array;
 				}
