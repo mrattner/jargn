@@ -26,6 +26,12 @@ changes:
 
 -- database.js -- started to implement database with sequelize
 
+-- files: all files in lib altered
+
+-- new: lib/database.js
+
+-- new folder: 'data'
+
 ## Project Assignment 04
 list of changes:
 
@@ -35,7 +41,7 @@ list of changes:
 
 -- edited header for views to include jquery and socket.io
 
--- implemented ajax on following feature
+-- implemented ajax on follow feature
 
 ## Project Assignment 03
 
