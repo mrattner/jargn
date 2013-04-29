@@ -3,24 +3,32 @@ body {
 }
 
 a {
-	color: #00B7FF;
 	text-decoration: none;
 }
 
-.name{
-	font-size: 24pt;
-	padding-left: 10px;
+#name{
+	font-size: 40pt;
+	margin-left: 20px;
 }
+
+.navbar li a:hover {
+	color: #ffffff;
+}
+
+/*a:visited {
+	color: black;
+}*/
 
 .navbar {
 	font-family: Helvetica;
 	z-index: 1;
 	position: fixed;
-	width: 15%;
+	width: 18%;
 	background-color:#6b9487;
 	top: 0px;
 	float: left;
 	left: 0px;
+	height: 100%;
 /*width: 752px;
 border: 1px solid #2d2d2d;*/
 }
@@ -30,7 +38,9 @@ border: 1px solid #2d2d2d;*/
 	text-decoration: none;
 	font-size: 18;
 	float: left;
+	text-align: left;
 	list-style-type: none;
+	margin-left: 0;
 }
 
 #post {
@@ -46,6 +56,6 @@ border: 1px solid #2d2d2d;*/
 	z-index: -1;
 }
 
-#logonoff{
-	margin: auto;
+.logonoff{
+	margin-left: 100px;
 }

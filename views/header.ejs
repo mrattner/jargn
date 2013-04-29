@@ -18,7 +18,7 @@
 		<% } %>
 		</div>
 		<div class='navbar'>
-			<h1 id='name'>jargn</h1>
+			<h1 id='name'> jargn</h1>
 			<ul class='nav'>
 				<li class ='nav'><a href="/">home</a></li><br>
 				<li class='nav'><a href="/connect/">connect</a></li><br>
@@ -35,11 +35,10 @@
 			<input type="submit" value="Search"></form></div>
 		<div class='delete'><a href="/settings/">Settings</a></div>
 		<div class='delete'><a href="/help/">Help</a></div>
-		<div id='logonoff'>
+		<div class='logonoff'>
 			<% if (user === undefined) {%>
 				<a id='login' href="/login/">Login</a>
 			<% } else {%>
 				<a id='logout' href="/logout/">Logout</a>
 			<% } %>
 		</div>
-	</nav>
