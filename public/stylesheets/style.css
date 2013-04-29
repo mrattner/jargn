@@ -56,6 +56,10 @@ border: 1px solid #2d2d2d;*/
 	z-index: -1;
 }
 
-.logonoff{
-	margin-left: 100px;
+.view{
+	font-size: 40px;
+	margin-left: 200px;
 }
+/*.centercol{
+	margin-left: 30%;
+}*/
