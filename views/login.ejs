@@ -1,8 +1,7 @@
 <% include header.ejs %>
-
+	<div class='view'>
 	<div><a href="/signup/">Sign Up</a></div>
 	<div id="flash_message"><%= message %></div>
-	<div class='view'>
 		<form name="login" action="/login/auth" method="post">
 			Username: <input type="text" name="username" /> <br />
 			Password: <input type="password" name="password" /> <br />
