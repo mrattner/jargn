@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title><%= title %></title>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-	<script type="text/javascript" src="/javascripts/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="/javascripts/follow-client.js"></script>
-	<script type="text/javascript" src="/javascripts/post.js"></script>
-	<script type="text/javascript" src ="/socket.io/socket.io.js"></script>
-</head>
-<body>
 
-	<% if(user != undefined) { %>
-	<div id="currentuser">
+<!DOCTYPE html>
+	<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+		<script type="text/javascript" src="/javascripts/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/javascripts/follow-client.js"></script>
+		<script type="text/javascript" src="/javascripts/post.js"></script>
+		<script type="text/javascript" src ="/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+		<h1 class='logo'>kar</h1>
+		<% if(user != undefined) { %>
+		<div id="currentuser">
 		Logged in as: <a href="/user/<%= user.username %>">
 		<%= user.username %></a>
 	</div>

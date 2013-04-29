@@ -7,6 +7,17 @@ a {
 color: #00B7FF;
 }
 
+.logo{
+border-radius: 60px;
+-moz-border-radius: 60px;
+box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
+-moz-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
+background-color: #6b9487;
+float: left;
+margin-left: 20px;
+margin-top: 20px;
+}
+
 nav.#main {
 width: 752px;
 border: 1px solid #2d2d2d;
