@@ -8,14 +8,21 @@ color: #00B7FF;
 }
 
 .logo{
-border-radius: 60px;
--moz-border-radius: 60px;
-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
--moz-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
-background-color: #6b9487;
-float: left;
-margin-left: 20px;
-margin-top: 20px;
+	font-size: 22pt;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	margin-left: 20px;
+	margin-top: 20px;
+	border-radius: 60px;
+	-moz-border-radius: 60px;
+	box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
+	background-color: #6b9487;
+	float: left;
+	margin-left: 20px;
+	margin-top: 20px;
 }
 
 nav.#main {
