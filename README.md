@@ -1,7 +1,7 @@
-# Member
+# Jargn
 Adam Daehling, Marcy Rattner, Kira Revere
 
-## Before compiling
+## Installation Instructions
 1) Download zipfiles of app folder
 2) Decompress it
 3) Go inside the folder, and type in  
@@ -71,65 +71,43 @@ list of files and additions made:
 
 - link to function spec: https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing
 
-### Index
-Shows 'Welcome to Jargn' with signup, or login form.
-If a user is willing to sign up for the website, fill out all of the showed up columns including
+## Features
+
+### Signup
+A user who is not logged in may only see the Signup and Login pages. The Signup page allows a user to sign up for an
+account by entering the following information:
 
 * Username
 * Password
 * Confirm Password
 * Email Address
-* Fullname
+* Full name
 
-Database will check whether typed info is matched/correct or not and will pop up the message
+The database will check whether another user with the same username or email address already exists, and whether the
+Password and Confirm Password fields match, creating a new account upon success.
 
-If a use is willing to login for the website, fill out
+### Login
+To log in to the app with an existing account, enter
 
 * Username
 * Password
 
-This will direct you to the home page
+Once the user is authenticated, any page of the app is accessible except for Login and Signup. To log out again, click
+the Logout link on any page.
 
 ### Home
-Home page (index page)
-
-### Connect
-Shows any interactions for a user from tweets will show in this page
-
-### Discover
-Discovers other users by matching a user's topics of posts. There are
-
-* Posts
-* Activity
-* Who to follow
-* Find friends
-
-### Who to follow
-Click 'here' next to 'Let's take a look at them!'.
-You will see 4 recommended users so click whom you are interested in, then click 'go to his/her page'.
-This will print whom you are browsing, and how many people you are interested in.
-
-
-### Find friends
-You can find users on Jargn. First, type in 
-```sh
-username
-```
-To search if typed-in username exists on Jargn.
-
-
-### Search
-* search: type the word
-
-This directs a user to the matched results in a database
-
-### Settings
-Changes a user's setting by submitting save changes
-
-* save changes
-
-### Help
-Shows helps
+Shows a feed of posts by yourself and everyone you are following. The posts are limited to those that you have permission
+to see. This is updated live whenever new posts are composed, without requiring a page reload.
 
 ### Post
-Composes new post with a maximum length of 140 letters (32-bits)
+When you are logged in, you can compose a post and have it appear on your profile and homepage feed. You can choose to
+make a post private when you compose it, so that it is only visible to you, and to people with whom you have a mutual
+follow relationship (you follow them and they follow you).
+
+### User Profile
+Every user has his own profile, which shows all of his followers and all the users he is following, all of his posts,
+and other information about the user. If you navigate to your own profile, you can see your followers and the users
+you follow, and all of your posts. If you navigate to other users' profiles, you can click a button to follow them.
+Your name will then appear on the list of their followers, and their names will appear on your profile's "Following"
+list. The lists of followers and following will update in all views without a page reload. You can click the same
+button on someone's profile to un-follow that user.
