@@ -2,74 +2,80 @@
 Adam Daehling, Marcy Rattner, Kira Revere
 
 ## Installation Instructions
-1. Download zipfiles of app folder 
+
+To run the app, you must have [Node](http://www.nodejs.org) installed on your machine, which comes with npm (Node Package 
+Manager).
+
+1. Download .zip file of app folder 
 2. Decompress it 
-3. Go inside the folder, and type in  
-```sh
+3. Navigate inside the folder through your console, and run the command
+
+```
+$ npm install
+```
+4. Wait for all Node modules to finish installing, and when the prompt appears again, run
+
+```
 $ node app.js
 ```  
-Then open up [http://localhost:3000/](localhost:3000).
+5. Navigate to [http://localhost:3000/](http://localhost:3000/) in any Web browser to use the app.
 
-If you get any module errors, try  
-```sh
+If you get any module errors, try running:  
+```
 $ npm cache clean
 $ npm install
 ```  
-(For mac users, if you get permission denied errors, do)  
-```sh
-$ sudo npm (command lines above)
-```
-This will change your local setup.
+If permission is denied when attempting to run Node, you may need to run it as an administrator.
 
 ## Project Assignment 05
-changes:
 
-- database.js -- started to implement database with sequelize
+- new file: lib/database.js Set up table schema and associations with Sequelize
+- files: all files in lib altered to make database calls instead of JavaScript array manipulations
+- new folder: 'data' containing 326.sqlite database
 
-- files: all files in lib altered
+Known issues:
 
-- new: lib/database.js
-
-- new folder: 'data'
+- Functions to add entries to tables have not been written yet
+- Functions to find entries in tables have not been written yet
 
 ## Project Assignment 04
-list of changes:
 
-- post.js functionality changed
+- WebSockets implemented for submitting new posts (route, client-side, Compose Post view)
+- new file: public/javascripts/post.js added client-side support for socket.io
+- app.js, routes/post.js: added server-side support for socket.io
+- new file: public/javascripts/follow-client.js Client-side code for JQuery Ajax feature (following and unfollowing)
+- used JQuery Ajax to update views when users follow or unfollow each other
+- edited header for views to include JQuery and new client-side JavaScript files
 
-- sockets implemented on posting functionality(posts.js, post.js, post view)
+Known issues:
 
-- edited header for views to include jquery and socket.io
-
-- implemented ajax on follow feature
+- the lists of followers and following is not populated when the page initially loads (only after Ajax polls the server)
+- following or unfollowing a user does not always update the view without a page reload
+- possible error on the server when unfollowing a user
+- socket.io does not populate the post database on the server with new posts
+- There is no feed on the homepage that populates itself with posts by you and people you follow
+- Post privacy is not taken into account when displaying posts
 
 ## Project Assignment 03
 
-list of files and additions made:
-
-- app.js started to add websockets functionality
-
-- routes/post.js added beginnings of private post functionality
-
-- lib/posts.js added more functions related to data access layer and started to add websockets functionality
-
-- header.ejs updated to show currently logged in user at top of each page (dynamically)
-
-- users.js added ability to signup as new user
-
+- app.js Added middleware for authentication
+- header.ejs updated to show currently logged in user at top of each page
+- lib/users.js added ability to signup as new user
 - login.js added support for sessions
+- signup.js creates a new account through data access layer
+- routes/user.js added route for basic format user page
+- views/user.ejs page now shows information about user
+- added capability for 'private' posts on an individual basis (New feature not implemented by Twitter)
+- created files in lib/ folder (data access layer) and wrote functions to access fake database
 
-- signup.js
+## Project Assignment 02
 
-- user.js added route for basic format user page
+- created GitHub repository
+- structured app into routes, views, and data access layer
+- wrote app.js to initialize Express app and run it on the server
 
-- user.ejs page now shows information about user
-
-- fixed ability to follow other users
-
-- added private posting functionality (works similar to messaging) in database.js
-
-- link to function spec: https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing
+## Project Assignment 01
+- [Functional specification](https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing)
 
 ## Features
 
