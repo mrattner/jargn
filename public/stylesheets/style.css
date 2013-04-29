@@ -1,45 +1,51 @@
 body {
-padding: 50px;
-font: 14px "Lucida Grande", "Helvetica", "Arial", sans-serif;
+	font-family: Helvetica;
 }
 
 a {
-color: #00B7FF;
+	color: #00B7FF;
+	text-decoration: none;
 }
 
-.logo{
-	font-size: 22pt;
-	width: 100px;
-	height: 100px;
-	text-align: center;
-	line-height: 100px;
-	margin-left: 20px;
-	margin-top: 20px;
-	border-radius: 60px;
-	-moz-border-radius: 60px;
-	box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
-	-moz-box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.2);
-	background-color: #6b9487;
+.name{
+	font-size: 24pt;
+	padding-left: 10px;
+}
+
+.navbar {
+	font-family: Helvetica;
+	z-index: 1;
+	position: fixed;
+	width: 15%;
+	background-color:#6b9487;
+	top: 0px;
 	float: left;
-	margin-left: 20px;
-	margin-top: 20px;
+	left: 0px;
+/*width: 752px;
+border: 1px solid #2d2d2d;*/
 }
 
-nav.#main {
-width: 752px;
-border: 1px solid #2d2d2d;
-}
-
-nav.#sub {
-width: 500px;
-border-bottom: 1px solid #2d2d2d;
+.nav{
+	font-family: Helvetica;
+	text-decoration: none;
+	font-size: 18;
+	float: left;
+	list-style-type: none;
 }
 
 #post {
-width: 300px;
-border: 1px solid;
+	width: 300px;
+	border: 1px solid;
 }
 
-footer {
-clear : both ; width : 750px ;     
+#search{
+	float: right;
+}
+
+.delete{
+	z-index: -1;
+}
+
+#logonoff{
+	margin: auto;
 }

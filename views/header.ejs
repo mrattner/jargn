@@ -11,28 +11,35 @@
 		<script type="text/javascript" src ="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
-		<h1 class='logo'>jargn</h1>
 		<% if(user != undefined) { %>
 		<div id="currentuser">
 		Logged in as: <a href="/user/<%= user.username %>">
 		<%= user.username %></a>
-	</div>
-	<% } %>
-	<nav class="main">
-		<div><a href="/">Home</a></div>
-		<div><a href="/connect/">Connect</a></div>
-		<div><a href="/discover/">Discover</a></div>
-		<div><form name="search" action="/search/" method="get">
+		<% } %>
+		</div>
+		<div class='navbar'>
+			<h1 id='name'>jargn</h1>
+			<ul class='nav'>
+				<li class ='nav'><a href="/">home</a></li><br>
+				<li class='nav'><a href="/connect/">connect</a></li><br>
+				<li class='nav'><a href="/discover/">discover</a></li><br>
+				<li class='nav'><a href="/post/">post</a><li><br>
+			</ul>
+		</div>	
+		<br>
+		<br><br><br>
+
+
+		<div id='search'><form name="search" action="/search/" method="get">
 			<input type="text" name="searchstring">
 			<input type="submit" value="Search"></form></div>
-		<div><a href="/settings/">Settings</a></div>
-		<div><a href="/help/">Help</a></div>
-		<div><a href="/post/">Post</a></div>
-		<div>
+		<div class='delete'><a href="/settings/">Settings</a></div>
+		<div class='delete'><a href="/help/">Help</a></div>
+		<div id='logonoff'>
 			<% if (user === undefined) {%>
-				<a href="/login/">Login</a>
+				<a id='login' href="/login/">Login</a>
 			<% } else {%>
-				<a href="/logout/">Logout</a>
+				<a id='logout' href="/logout/">Logout</a>
 			<% } %>
 		</div>
 	</nav>
