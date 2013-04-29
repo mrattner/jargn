@@ -8,13 +8,11 @@ Manager).
 
 1. Download .zip file of app folder 
 2. Decompress it 
-3. Navigate inside the folder through your console, and run the command
-
+3. Navigate inside the folder through your console, and run the command  
 ```
 $ npm install
-```
-4. Wait for all Node modules to finish installing, and when the prompt appears again, run
-
+```  
+4. Wait for all Node modules to finish installing, and when the prompt appears again, run  
 ```
 $ node app.js
 ```  
