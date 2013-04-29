@@ -2,9 +2,9 @@
 Adam Daehling, Marcy Rattner, Kira Revere
 
 ## Installation Instructions
-1) Download zipfiles of app folder
-2) Decompress it
-3) Go inside the folder, and type in  
+1. Download zipfiles of app folder 
+2. Decompress it 
+3. Go inside the folder, and type in  
 ```sh
 $ node app.js
 ```  
