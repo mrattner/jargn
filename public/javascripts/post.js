@@ -1,23 +1,34 @@
-function publisher(){
+// ### *function:* publisher
+// Sets up a publisher
+// @return obj {object} The object that subscribers subscribe to events on
+function publisher () {
+	// The subscribers object
 	var subscribers = {};
+	// The object that subscribers subscribe to events on
 	var obj = {};
 
-	//subscribe to an event:
+	// ### *function:* subscribe
+	// @param type {string} The type of event to subscribe to
+	// @param fn {function} The function to call when the event occurs
 	obj.subscribe = function (type, fn) {
-		if (subscribers[type] == undefined) {
-			subscribers[type] == [];
+		// If there are no subscribers who subscribe to this event, create an
+		// empty list for them
+		if (subscribers[type] === undefined) {
+			subscribers[type] = [];
 		}
 		subscribers[type].push(fn);
 	};
 
-	//unsubscribe:
-	obj.unsubscribe = function (type, fn){
-		if (subscribers[type] == undefined){
+	// ### *function:* unsubscribe
+	// @param type {string} The type of event to unsubscribe from
+	// @param fn {function} The function to remove
+	// @return true if unsubscribe was successful, false otherwise
+	obj.unsubscribe = function (type, fn) {
+		if (subscribers[type] === undefined){
 			return false;
 		}
 		var s = subscribers[type];
-		var i;
-		for(i = 0; i < s.length; i++) {
+		for(var i = 0; i < s.length; i++) {
 			if(s[i] === fn) {
 				delete s[i];
 				return true;
@@ -26,9 +37,11 @@ function publisher(){
 		return false;
 	};
 
-	//publish to all subscribers on respective kind of  event
-
-	obj.publish = function (type, arg){
+	// ### *function:* publish
+	// Publish to all subscribers on respective kind of event.
+	// @param type {string} The type of event to publish on
+	// @param arg The argument to pass to the subscriber function
+	obj.publish = function (type, arg) {
 		if(subscribers[type] === undefined){
 			return false;
 		}
@@ -42,26 +55,34 @@ function publisher(){
 		}
 		return true;
 	};
+	
 	return obj;
 }
 
-function postTextArea(){
+// ### *function:* postTextArea
+// Gives a manipulable object connected to the post text area in the view.
+// @return obj {object} An object representing the postTextArea, which is the 
+// text area in the view that the user inputs text into.
+function postTextArea () {
+	// An object that will represent the postTextArea
 	var obj = Object.create(publisher());
+	
+	// Select the post text area
 	obj.elm = $('#post-text-area');
 
-	obj.getText = function() {
+	obj.getText = function () {
 		return obj.elm.val();
 	};
 
-	obj.clearText = function() {
+	obj.clearText = function () {
 		obj.elm.val('');
 	};
 	return obj;
 }
 
 //button defined in posts view
-function postPostButton(){
-	var pbj = Object.create(publisher());
+function postPostButton () {
+	var obj = Object.create(publisher());
 	obj.elm = $('#post-post-button');
 
 	//handles click event
@@ -90,6 +111,7 @@ function postList() {
 
   return obj;
 }
+
 function postModule(socket) {
   var obj = Object.create(publisher());
   obj.elm = $('div#post-module');
