@@ -69,17 +69,51 @@ FollowClient.prototype = {
 
 // jQuery ready handler:
 $(function () {
-  // Get the list view that the chat client
-  // will populate with incoming messages:	
-  var followc = new FollowClient({ view : $('ol#followers') });
-  
-  // Start polling:
-  followc.poll();
-  
-  // Bind a click event:
+ //Helper function to determine the appearance of the button
+ function checkFollowing () {
+  //If we are following this person
+  if ($('#followB').hasClass('followed')) {
+   //Fade out the button
+   $('#followB').fadeTo(5, 0.25);
+   //Set the text on the button
+   $('#followB').html("Unfollow");
+  }
+ 
+  //If we are not following this person
+  else {
+   //Make the button have opacity 100%
+   $('#followB').fadeTo(5, 1);
+   //Set the text on the button
+   $('#followB').html("Follow");
+  }
+ }
+ 
+ // Get the list view that the chat client
+ // will populate with incoming messages: 
+ var followc = new FollowClient({ view : $('ol#followers') });
+ 
+ // Start polling:
+ followc.poll();
+ 
+ //Hide the button if this is the user's own profile
+ if ($('#followB').hasClass('ownProfile')) {
+  $('#followB').hide();
+ }
+ //Otherwise, this is another user's profile
+ else {
+  //Determine the initial appearance of the button
+  checkFollowing();
+ 
+  //Add a click event handler to the button
   $('#followB').bind('click', function () {
-		followc.follow($('#followB').attr('profileUser'));
-		//Bypass default page reload	
-		return false;
+   //Toggle following
+   $('#followB').toggleClass('followed');
+   //Update the appearance of the button
+   checkFollowing();
+ 
+   followc.follow($('#followB').attr('profileUser'));
+   //Bypass default page reload 
+   return false;
   });
+ }
 });

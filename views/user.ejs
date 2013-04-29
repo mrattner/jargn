@@ -3,7 +3,13 @@
 <h1><%= profileUser %>'s profile</h1>
 
 <div>
-	<button id="followB" profileUser="<%= profileUser %>">Follow</button>
+	<% if(isFollowing && !isMyProfile) { %>
+		<button class="followed" id="followB" profileUser="<%= profileUser %>">Follow</button>
+	<% } else if(!isFollowing && isMyProfile) { %>
+		<button class="ownProfile" id="followB" profileUser="<%= profileUser %>">Follow</button>
+	<% } else { %>
+		<button id="followB" profileUser="<%= profileUser %>">Follow</button>
+	<% } %>
 </div>
 
 <div>Followers:<br />
