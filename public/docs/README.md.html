@@ -19,10 +19,13 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#member">Member</a>
+        <a href="#jargn">Jargn</a>
       </div>
       <div class="heading h2">
-        <a href="#before-compiling">Before compiling</a>
+        <a href="#installation-instructions">Installation Instructions</a>
+      </div>
+      <div class="heading h2">
+        <a href="#project-assignment-05">Project Assignment 05</a>
       </div>
       <div class="heading h2">
         <a href="#project-assignment-04">Project Assignment 04</a>
@@ -30,44 +33,38 @@
       <div class="heading h2">
         <a href="#project-assignment-03">Project Assignment 03</a>
       </div>
+      <div class="heading h2">
+        <a href="#project-assignment-02">Project Assignment 02</a>
+      </div>
+      <div class="heading h2">
+        <a href="#project-assignment-01">Project Assignment 01</a>
+      </div>
+      <div class="heading h2">
+        <a href="#features">Features</a>
+      </div>
       <div class="heading h3">
-        <a href="#index">Index</a>
+        <a href="#signup">Signup</a>
+      </div>
+      <div class="heading h3">
+        <a href="#login">Login</a>
       </div>
       <div class="heading h3">
         <a href="#home">Home</a>
       </div>
       <div class="heading h3">
-        <a href="#connect">Connect</a>
-      </div>
-      <div class="heading h3">
-        <a href="#discover">Discover</a>
-      </div>
-      <div class="heading h3">
-        <a href="#who-to-follow">Who to follow</a>
-      </div>
-      <div class="heading h3">
-        <a href="#find-friends">Find friends</a>
-      </div>
-      <div class="heading h3">
-        <a href="#search">Search</a>
-      </div>
-      <div class="heading h3">
-        <a href="#settings">Settings</a>
-      </div>
-      <div class="heading h3">
-        <a href="#help">Help</a>
-      </div>
-      <div class="heading h3">
         <a href="#post">Post</a>
+      </div>
+      <div class="heading h3">
+        <a href="#user-profile">User Profile</a>
       </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
   <div id="container"><div class="docs markdown">
-<div class="pilwrap" id="member">
+<div class="pilwrap" id="jargn">
   <h1>
-    <a href="#member" class="pilcrow">&#182;</a>
-    Member
+    <a href="#jargn" class="pilcrow">&#182;</a>
+    Jargn
   </h1>
 </div>
 
@@ -75,44 +72,52 @@
 <p>Adam Daehling, Marcy Rattner, Kira Revere</p>
 
 
-<div class="pilwrap" id="before-compiling">
+<div class="pilwrap" id="installation-instructions">
   <h2>
-    <a href="#before-compiling" class="pilcrow">&#182;</a>
-    Before compiling
+    <a href="#installation-instructions" class="pilcrow">&#182;</a>
+    Installation Instructions
   </h2>
 </div>
 
 
-<p>1) Download zipfiles of app folder
-2) Decompress it
-3) Go inside the folder, and type in</p>
+<p>To run the app, you must have <a href="http://www.nodejs.org">Node</a> installed on your machine, which comes with npm (Node Package 
+Manager).</p>
+
+<ol>
+<li>Download .zip file of app folder</li>
+<li>Decompress it</li>
+<li>Navigate inside the folder through your console, and run the command <br />
+<code>$ npm install</code> </li>
+<li>Wait for all Node modules to finish installing, and when the prompt appears again, run <br />
+<code>$ node app.js</code> </li>
+<li>Navigate to <a href="http://localhost:3000/">http://localhost:3000/</a> in any Web browser to use the app. <br />
+If you get any module errors, try running: <br />
+<code>$ npm cache clean <br />
+$ npm install</code> <br />
+If permission is denied when attempting to run Node, you may need to run it as an administrator.</li>
+</ol>
 
 
-<div class="highlight"><pre><code><span class="nv">$ </span>node app.js
-</code></pre></div>
+<div class="pilwrap" id="project-assignment-05">
+  <h2>
+    <a href="#project-assignment-05" class="pilcrow">&#182;</a>
+    Project Assignment 05
+  </h2>
+</div>
 
 
+<ul>
+<li>new file: lib/database.js Set up table schema and associations with Sequelize</li>
+<li>files: all files in lib altered to make database calls instead of JavaScript array manipulations</li>
+<li>new folder: 'data' containing 326.sqlite database</li>
+</ul>
 
-<p>Then open up <a href="localhost:3000">http://localhost:3000/</a>.</p>
+<p>Known issues:</p>
 
-<p>If you get any module errors, try</p>
-
-
-<div class="highlight"><pre><code><span class="nv">$ </span>npm cache clean
-<span class="nv">$ </span>npm install
-</code></pre></div>
-
-
-
-<p>(For mac users, if you get permission denied errors, do)</p>
-
-
-<div class="highlight"><pre><code><span class="nv">$ </span>sudo npm <span class="o">(</span><span class="nb">command </span>lines above<span class="o">)</span>
-</code></pre></div>
-
-
-
-<p>This will change your local setup.</p>
+<ul>
+<li>Functions to add entries to tables have not been written yet</li>
+<li>Functions to find entries in tables have not been written yet</li>
+</ul>
 
 
 <div class="pilwrap" id="project-assignment-04">
@@ -123,11 +128,24 @@
 </div>
 
 
-<p>list of changes:</p>
+<ul>
+<li>WebSockets implemented for submitting new posts (route, client-side, Compose Post view)</li>
+<li>new file: public/javascripts/post.js added client-side support for socket.io</li>
+<li>app.js, routes/post.js: added server-side support for socket.io</li>
+<li>new file: public/javascripts/follow-client.js Client-side code for JQuery Ajax feature (following and unfollowing)</li>
+<li>used JQuery Ajax to update views when users follow or unfollow each other</li>
+<li>edited header for views to include JQuery and new client-side JavaScript files</li>
+</ul>
 
-<p>-- post.js functionality changed</p>
+<p>Known issues:</p>
 
-<p>-- sockets implemented on posting functionality(posts.js, post.js, post view)</p>
+<ul>
+<li>the lists of followers and following is not populated when the page initially loads (only after Ajax polls the server)</li>
+<li>following or unfollowing a user does not always update the view without a page reload</li>
+<li>possible error on the server when unfollowing a user</li>
+<li>The feed on the homepage is not populated with posts by you and people you follow</li>
+<li>Post privacy is not taken into account when displaying posts</li>
+</ul>
 
 
 <div class="pilwrap" id="project-assignment-03">
@@ -138,62 +156,96 @@
 </div>
 
 
-<p>list of files and additions made:</p>
-
-<p>-- app.js started to add websockets functionality</p>
-
-<p>-- routes/post.js added beginnings of private post functionality</p>
-
-<p>-- lib/posts.js added more functions related to data access layer and started to add websockets functionality</p>
-
-<p>-- header.ejs updated to show currently logged in user at top of each page (dynamically)</p>
-
-<p>-- users.js added ability to signup as new user</p>
-
-<p>-- login.js added support for sessions</p>
-
-<p>-- signup.js</p>
-
-<p>-- user.js added route for basic format user page</p>
-
-<p>-- user.ejs page now shows information about user</p>
-
-<p>-- fixed ability to follow other users</p>
-
-<p>-- added private posting functionality (works similar to messaging)</p>
-
-<p>-- link to function spec: <a href='https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing'>https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing</a></p>
+<ul>
+<li>app.js Added middleware for authentication</li>
+<li>header.ejs updated to show currently logged in user at top of each page</li>
+<li>lib/users.js added ability to signup as new user</li>
+<li>login.js added support for sessions</li>
+<li>signup.js creates a new account through data access layer</li>
+<li>routes/user.js added route for basic format user page</li>
+<li>views/user.ejs page now shows information about user</li>
+<li>added capability for 'private' posts on an individual basis (New feature not implemented by Twitter)</li>
+<li>created files in lib/ folder (data access layer) and wrote functions to access fake database</li>
+</ul>
 
 
-<div class="pilwrap" id="index">
+<div class="pilwrap" id="project-assignment-02">
+  <h2>
+    <a href="#project-assignment-02" class="pilcrow">&#182;</a>
+    Project Assignment 02
+  </h2>
+</div>
+
+
+<ul>
+<li>created GitHub repository</li>
+<li>structured app into routes, views, and data access layer</li>
+<li>wrote app.js to initialize Express app and run it on the server</li>
+</ul>
+
+
+<div class="pilwrap" id="project-assignment-01">
+  <h2>
+    <a href="#project-assignment-01" class="pilcrow">&#182;</a>
+    Project Assignment 01
+  </h2>
+</div>
+
+
+<ul>
+<li><a href="https://docs.google.com/document/d/1OGut-Hkqo6CMNmCKHnUFP9hGTVM5AO__MUfixOFu34Y/edit?usp=sharing">Functional specification</a></li>
+</ul>
+
+
+<div class="pilwrap" id="features">
+  <h2>
+    <a href="#features" class="pilcrow">&#182;</a>
+    Features
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="signup">
   <h3>
-    <a href="#index" class="pilcrow">&#182;</a>
-    Index
+    <a href="#signup" class="pilcrow">&#182;</a>
+    Signup
   </h3>
 </div>
 
 
-<p>Shows 'Welcome to Jargn' with signup, or login form.
-If a user is willing to sign up for the website, fill out all of the showed up columns including</p>
+<p>A user who is not logged in may only see the Signup and Login pages. The Signup page allows a user to sign up for an
+account by entering the following information:</p>
 
 <ul>
 <li>Username</li>
 <li>Password</li>
 <li>Confirm Password</li>
 <li>Email Address</li>
-<li>Fullname</li>
+<li>Full name</li>
 </ul>
 
-<p>Database will check whether typed info is matched/correct or not and will pop up the message</p>
+<p>The database will check whether another user with the same username or email address already exists, and whether the
+Password and Confirm Password fields match, creating a new account upon success.</p>
 
-<p>If a use is willing to login for the website, fill out</p>
+
+<div class="pilwrap" id="login">
+  <h3>
+    <a href="#login" class="pilcrow">&#182;</a>
+    Login
+  </h3>
+</div>
+
+
+<p>To log in to the app with an existing account, enter</p>
 
 <ul>
 <li>Username</li>
 <li>Password</li>
 </ul>
 
-<p>This will direct you to the home page</p>
+<p>Once the user is authenticated, any page of the app is accessible except for Login and Signup. To log out again, click
+the Logout link on any page.</p>
 
 
 <div class="pilwrap" id="home">
@@ -204,109 +256,8 @@ If a user is willing to sign up for the website, fill out all of the showed up c
 </div>
 
 
-<p>Home page (index page)</p>
-
-
-<div class="pilwrap" id="connect">
-  <h3>
-    <a href="#connect" class="pilcrow">&#182;</a>
-    Connect
-  </h3>
-</div>
-
-
-<p>Shows any interactions for a user from tweets will show in this page</p>
-
-
-<div class="pilwrap" id="discover">
-  <h3>
-    <a href="#discover" class="pilcrow">&#182;</a>
-    Discover
-  </h3>
-</div>
-
-
-<p>Discovers other users by matching a user's topics of posts. There are</p>
-
-<ul>
-<li>Posts</li>
-<li>Activity</li>
-<li>Who to follow</li>
-<li>Find friends</li>
-</ul>
-
-
-<div class="pilwrap" id="who-to-follow">
-  <h3>
-    <a href="#who-to-follow" class="pilcrow">&#182;</a>
-    Who to follow
-  </h3>
-</div>
-
-
-<p>Click 'here' next to 'Let's take a look at them!'.
-You will see 4 recommended users so click whom you are interested in, then click 'go to his/her page'.
-This will print whom you are browsing, and how many people you are interested in.</p>
-
-
-<div class="pilwrap" id="find-friends">
-  <h3>
-    <a href="#find-friends" class="pilcrow">&#182;</a>
-    Find friends
-  </h3>
-</div>
-
-
-<p>You can find users on Jargn. First, type in </p>
-
-
-<div class="highlight"><pre><code>username
-</code></pre></div>
-
-
-
-<p>To search if typed-in username exists on Jargn.</p>
-
-
-<div class="pilwrap" id="search">
-  <h3>
-    <a href="#search" class="pilcrow">&#182;</a>
-    Search
-  </h3>
-</div>
-
-
-<ul>
-<li>search: type the word</li>
-</ul>
-
-<p>This directs a user to the matched results in a database</p>
-
-
-<div class="pilwrap" id="settings">
-  <h3>
-    <a href="#settings" class="pilcrow">&#182;</a>
-    Settings
-  </h3>
-</div>
-
-
-<p>Changes a user's setting by submitting save changes</p>
-
-<ul>
-<li>save changes</li>
-</ul>
-
-
-<div class="pilwrap" id="help">
-  <h3>
-    <a href="#help" class="pilcrow">&#182;</a>
-    Help
-  </h3>
-</div>
-
-
-<p>Shows helps</p>
+<p>Shows a feed of posts by yourself and everyone you are following. The posts are limited to those that you have permission
+to see. This is updated live whenever new posts are composed, without requiring a page reload.</p>
 
 
 <div class="pilwrap" id="post">
@@ -317,7 +268,25 @@ This will print whom you are browsing, and how many people you are interested in
 </div>
 
 
-<p>Composes new post with a maximum length of 140 letters (32-bits)</p></div>
+<p>When you are logged in, you can compose a post and have it appear on your profile and homepage feed. You can choose to
+make a post private when you compose it, so that it is only visible to you, and to people with whom you have a mutual
+follow relationship (you follow them and they follow you).</p>
+
+
+<div class="pilwrap" id="user-profile">
+  <h3>
+    <a href="#user-profile" class="pilcrow">&#182;</a>
+    User Profile
+  </h3>
+</div>
+
+
+<p>Every user has his own profile, which shows all of his followers and all the users he is following, all of his posts,
+and other information about the user. If you navigate to your own profile, you can see your followers and the users
+you follow, and all of your posts. If you navigate to other users' profiles, you can click a button to follow them.
+Your name will then appear on the list of their followers, and their names will appear on your profile's "Following"
+list. The lists of followers and following will update in all views without a page reload. You can click the same
+button on someone's profile to un-follow that user.</p></div>
   </div>
 </body>
 </html>

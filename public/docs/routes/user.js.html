@@ -19,7 +19,7 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#user-profile-module">User Profile Module</a>
+        <a href="#user-profile">User Profile</a>
       </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
@@ -38,17 +38,22 @@
   <tbody>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="user-profile-module">
+<div class="pilwrap" id="user-profile">
   <h1>
-    <a href="#user-profile-module" class="pilcrow">&#182;</a>
-    User Profile Module
+    <a href="#user-profile" class="pilcrow">&#182;</a>
+    User Profile
   </h1>
 </div>
 
 
-<p>Represents a user of Jargn. Collects one person's posts, and shows
+<div class="dox">
+  <div class="summary"><p>Represents a user of Jargn. Collects one person's posts, and shows
 information about this person, who is following him/her, and other users
 he/she is following.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -103,7 +108,25 @@ he/she is following.</p>
 </div>
 
 
-<p>Renders the user's profile.</p>
+<div class="dox">
+  <div class="summary"><p>Renders the user profile page.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -177,7 +200,7 @@ he/she is following.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
       <span class="kd">var</span> <span class="nx">posts</span><span class="p">;</span>
-      <span class="nx">postlib</span><span class="p">.</span><span class="nx">getPostsByUser</span><span class="p">(</span><span class="nx">profileUsername</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">postlib</span><span class="p">.</span><span class="nx">getPostsByUser</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span> <span class="nx">profileUsername</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">posts</span> <span class="o">=</span> <span class="nx">array</span><span class="p">;</span>
         <span class="p">}</span>
@@ -264,10 +287,26 @@ he/she is following.</p>
 </div>
 
 
-<p>Adds the currently logged in user as a follower of this user's profile,
-and adds this user to the currently logged in user's follow list.
-@param req {object} The HTTP request
-@param res {object} The HTTP response</p>
+<div class="dox">
+  <div class="summary"><p>Adds the currently logged in user as a follower of this user's profile,
+and adds this user to the currently logged in user's follow list.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">followAction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -338,7 +377,25 @@ and adds this user to the currently logged in user's follow list.
 </div>
 
 
-<p>Sends the client new follow activity in JSON format.</p>
+<div class="dox">
+  <div class="summary"><p>Sends the client new follow activity in JSON format.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>

@@ -18,6 +18,9 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h1">
+        <a href="#search">Search</a>
+      </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
       </div>
@@ -29,17 +32,16 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>search.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="search">
+  <h1>
+    <a href="#search" class="pilcrow">&#182;</a>
+    Search
+  </h1>
 </div>
+
+
 <div class="dox">
-  <div class="summary"><p>Search module: Collect list of search results</p>
+  <div class="summary"><p>Displays a list of search results.</p>
   </div>
   <div class="body">
   </div>
@@ -58,13 +60,31 @@
 </div>
 
 
-<p>Provides a user searched results.</p>
+<div class="dox">
+  <div class="summary"><p>Renders the search results page.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Search Results&#39;</span><span class="p">,</span>
               <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

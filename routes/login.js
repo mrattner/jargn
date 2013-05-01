@@ -1,33 +1,34 @@
 // # Login module
-// Allow user to log in and start session.
+/**
+ * Allow user to log in, authenticating the user and and starting a session.
+ */
 
-//The user database
+// The user database
 var userlib = require('../lib/users');
 
 // ### *function*: display
 /**
- *	Provides a user login view.
+ * Renders the login page.
  *
- *	@param {object} req The HTTP request
- *	@param {object} res The HTTP response
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
  */
-function display (req, res) {
+exports.display = function (req, res) {
 	//Grab any messages being sent to use from redirect
 	var authmessage = req.flash('auth') || '';
 	res.render('login', {	title	: 'Jargn : Login',
 							user	: req.session.user,
 							message	: authmessage});
-}
-exports.display = display;
+};
 
 // ### *function*: auth
 /**
- *	Performs basic user authentication.
+ * Performs basic user authentication.
  *	
- *	@param {object} req The HTTP request
- *	@param {object} res The HTTP response
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
  */
-function auth (req, res) {
+exports.auth = function (req, res) {
 	//Pull the values from the login form
 	var username = req.body.username;
 	var password = req.body.password;
@@ -48,17 +49,16 @@ function auth (req, res) {
 			res.redirect('/');
 		}
 	});
-}
-exports.auth = auth;
+};
 
 // ### *function*: logout
 /**
- *	Deletes user info and session, then redirects to login.
+ * Deletes user info and session, then redirects to login.
  *
- *	@param {object} req The HTTP request
- *	@param {object} res The HTTP response
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
  */
-function logout (req, res) {
+exports.logout = function (req, res) {
 	var user = req.session.user;
 	
 	//Delete user from list of logged in users
@@ -69,5 +69,4 @@ function logout (req, res) {
 	
 	//Redirect to login
 	res.redirect('/login');
-}
-exports.logout = logout;
+};

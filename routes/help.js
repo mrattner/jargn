@@ -1,11 +1,16 @@
+// # Help
 /**
- *  Help module: displays help topics and FAQ.
+ *  Displays help topics, documentation, and FAQ.
  */
 
-
 // ### *function*: display
-// Provides a user help view.
+/**
+ * Renders the Help page.
+ *
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
+ */
 exports.display = function (req, res) {
 	res.render('help', {	title	: 'Jargn : Help',
 							user	: req.session.user});
-}
+};

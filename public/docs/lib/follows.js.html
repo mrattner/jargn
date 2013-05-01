@@ -73,9 +73,15 @@
 </div>
 
 
-<p>These will be replaced with database entries. <br />
-- <code>follower</code> {string} The username who is following the followed username <br />
-- <code>followed</code> {string} The username being followed by the following username</p>
+<div class="dox">
+  <div class="summary"><p>These will be replaced with database entries.  </p>
+  </div>
+  <div class="body"><ul>
+<li><code>follower</code> The username who is following</li>
+<li><code>followed</code> The username being followed</li>
+</ul>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">FollowActivity</span> <span class="p">(</span><span class="nx">follower</span><span class="p">,</span> <span class="nx">followed</span><span class="p">)</span> <span class="p">{</span>
@@ -97,8 +103,13 @@
 </div>
 
 
-<p>A simple array <code>users</code> to record user data. <br />
+<div class="dox">
+  <div class="summary"><p>A simple array <code>users</code> to record user data. <br />
 Note: This will be replaced with calls to a database layer.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">var</span> <span class="nx">follows</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
@@ -117,12 +128,28 @@ Note: This will be replaced with calls to a database layer.</p>
 </div>
 
 
-<p>Retrieves the list of all users following the passed user.
-@param username {string} The username whose followers to fetch
-@param cb {function} Callback function to invoke after retrieving followers</p>
+<div class="dox">
+  <div class="summary"><p>Retrieves the list of all users following the passed user.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The username whose followers to fetch</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after retrieving followers</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getFollowers</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowers</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">followers</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
 
 </pre></div>
@@ -159,8 +186,7 @@ Note: This will be replaced with calls to a database layer.</p>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">followers</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowers</span> <span class="o">=</span> <span class="nx">getFollowers</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -176,13 +202,30 @@ Note: This will be replaced with calls to a database layer.</p>
 </div>
 
 
-<p>Retrieves the list of all users whom the passed user follows.
-@param username {string} The user whose subscriptions to fetch
-@param cb {function} Callback function to invoke after retrieving following</p>
+<div class="dox">
+  <div class="summary"><p>Retrieves the list of all users whom the passed user follows.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The user whose subscriptions to fetch</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after retrieving following</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getFollowing</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowing</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">following</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+  
 
 </pre></div>
         </td>
@@ -200,10 +243,12 @@ Note: This will be replaced with calls to a database layer.</p>
       <span class="nx">following</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">follows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">followed</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
+  
   <span class="k">if</span> <span class="p">(</span><span class="nx">following</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">cb</span><span class="p">(</span><span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; is not following anyone&#39;</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Followed users: &quot;</span> <span class="o">+</span> <span class="nx">following</span><span class="p">);</span>
+    
 
 </pre></div>
         </td>
@@ -218,8 +263,7 @@ Note: This will be replaced with calls to a database layer.</p>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">following</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getFollowing</span> <span class="o">=</span> <span class="nx">getFollowing</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -235,12 +279,28 @@ Note: This will be replaced with calls to a database layer.</p>
 </div>
 
 
-<p>Makes user1 follow user2, if not already following user2.
-@param user1 {string} The username who is following user2
-@param user2 {string} The username being followed by user1</p>
+<div class="dox">
+  <div class="summary"><p>Makes user1 follow user2, if not already following user2.  </p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user1</span>
+      <span class="dox_type">string</span>
+      <span>The username who is following user2  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user2</span>
+      <span class="dox_type">string</span>
+      <span>The username being followed by user1</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">follow</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">follow</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -275,8 +335,7 @@ Note: This will be replaced with calls to a database layer.</p>
   <span class="nx">follows</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">FollowActivity</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">));</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user1</span> <span class="o">+</span> <span class="s1">&#39; is now following &#39;</span> <span class="o">+</span> <span class="nx">user2</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">follows</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">follow</span> <span class="o">=</span> <span class="nx">follow</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -292,12 +351,28 @@ Note: This will be replaced with calls to a database layer.</p>
 </div>
 
 
-<p>Makes user1 no longer follow user2 if user1 was following user2.
-@param user1 {string} The username who is following user2
-@param user2 {string} The username who </p>
+<div class="dox">
+  <div class="summary"><p>Makes user1 no longer follow user2 if user1 was following user2.  </p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user1</span>
+      <span class="dox_type">string</span>
+      <span>The username who is following user2  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user2</span>
+      <span class="dox_type">string</span>
+      <span>The username who was being followed by user1</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">unfollow</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">unfollow</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -329,8 +404,7 @@ Note: This will be replaced with calls to a database layer.</p>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Nonexistent follow activity&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">unfollow</span> <span class="o">=</span> <span class="nx">unfollow</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -346,21 +420,40 @@ Note: This will be replaced with calls to a database layer.</p>
 </div>
 
 
-<p>Tells whether user1 is following user2.
-@param user1 {string} The username who may be following user2
-@param user2 {string} The username who may be followed by user1
-@return true if user1 is following user2</p>
+<div class="dox">
+  <div class="summary"><p>Tells whether user1 is following user2.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user1</span>
+      <span class="dox_type">string</span>
+      <span>The username who may be following user2</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user2</span>
+      <span class="dox_type">string</span>
+      <span>The username who may be followed by user1</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>true  if user1 is following user2</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">isFollowing</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">isFollowing</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">follows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">follows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">follower</span> <span class="o">===</span> <span class="nx">user1</span> <span class="o">&amp;&amp;</span> <span class="nx">follows</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">followed</span> <span class="o">===</span> <span class="nx">user2</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">isFollowing</span> <span class="o">=</span> <span class="nx">isFollowing</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

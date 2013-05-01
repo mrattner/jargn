@@ -25,16 +25,13 @@
         <a href="#post-object">Post Object</a>
       </div>
       <div class="heading h2">
-        <a href="#-post-database-">"Post Database"</a>
+        <a href="#post--database-">Post "Database"</a>
       </div>
       <div class="heading h3">
         <a href="#function--addpost">function: addPost</a>
       </div>
       <div class="heading h3">
         <a href="#function--getpostsbyuser">function: getPostsByUser</a>
-      </div>
-      <div class="heading h2">
-        <a href="#function--init">function: init</a>
       </div>
     </div>
   </div>
@@ -67,7 +64,7 @@
 </div>
 
 
-<p>fake data to be replaced with database entries</p>
+<p>These will be replaced with database entries</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">postText</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">){</span>
@@ -83,10 +80,24 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="-post-database-">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Access to the database tables</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./database.js&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="post--database-">
   <h2>
-    <a href="#-post-database-" class="pilcrow">&#182;</a>
-    "Post Database"
+    <a href="#post--database-" class="pilcrow">&#182;</a>
+    Post "Database"
   </h2>
 </div>
 
@@ -110,19 +121,57 @@
 </div>
 
 
-<p>Adds a new post to the global collection of posts.</p>
-
-<p>@param text {string} The 140 or fewer text characters that comprise the post
-@param author {object} The user who authored the post
-@param isPrivate {boolean} If true, only users who follow the author should
-    be able to see the post</p>
+<div class="dox">
+  <div class="summary"><p>Adds a new post to the global collection of posts.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">text</span>
+      <span class="dox_type">string</span>
+      <span>The text characters that comprise the post</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">author</span>
+      <span class="dox_type">string</span>
+      <span>The user who authored the post</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">isPrivate</span>
+      <span class="dox_type">boolean</span>
+      <span>If true, only users who follow the author should
+be able to see the post</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">addPost</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addPost</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>db.User.create({
+    text : text,
+    isPrivate : isPrivate,
+    author : author
+}).success(function (msg){
+    console.log(msg);
+});</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  
   <span class="kd">var</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Post</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">author</span><span class="p">,</span> <span class="nx">isPrivate</span><span class="p">);</span>
   <span class="nx">posts</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newPost</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">addPost</span> <span class="o">=</span> <span class="nx">addPost</span><span class="p">;</span>
+  
+<span class="p">};</span>
 
 
 
@@ -139,12 +188,33 @@
 </div>
 
 
-<p>Retrieves a list of all posts authored by a certain user. <br />
-@param username    {string} The user whose posts you want to get
-@param cb {function} Callback function to invoke after looking up posts</p>
+<div class="dox">
+  <div class="summary"><p>Retrieves a list of all posts authored by a certain user.  </p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">loggedInUser</span>
+      <span class="dox_type">string</span>
+      <span>The currently logged in user.</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The user whose posts you want to get</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after looking up posts</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getPostsByUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getPostsByUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">loggedInUser</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -152,7 +222,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
 <p>List of posts found by this user</p>
         </td>
@@ -168,7 +238,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
 </div>
 <p>If the user is found</p>
         </td>
@@ -181,7 +251,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
 </div>
 <p>Add this post to the list to return</p>
         </td>
@@ -197,7 +267,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
 </div>
 <p>If postsList is empty</p>
         </td>
@@ -213,47 +283,14 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
 </div>
 <p>Invoke the callback with no error and pass along the list of posts</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">cb</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">postsList</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getPostsByUser</span> <span class="o">=</span> <span class="nx">getPostsByUser</span><span class="p">;</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap" id="function--init">
-  <h2>
-    <a href="#function--init" class="pilcrow">&#182;</a>
-    <em>function</em>: init
-  </h2>
-</div>
-
-
-<div class="dox">
-  <div class="summary"><p>server-side support for tweeting:</p>
-  </div>
-  <div class="body">
-  </div>
-  <div class="details">
-  </div>
-</div>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;received: &#39;</span><span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-    <span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

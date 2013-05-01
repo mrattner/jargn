@@ -6,23 +6,16 @@ Adam Daehling, Marcy Rattner, Kira Revere
 To run the app, you must have [Node](http://www.nodejs.org) installed on your machine, which comes with npm (Node Package 
 Manager).
 
-1. Download .zip file of app folder 
-2. Decompress it 
-3. Navigate inside the folder through your console, and run the command  
-```
-$ npm install
-```  
-4. Wait for all Node modules to finish installing, and when the prompt appears again, run  
-```
-$ node app.js
-```  
-5. Navigate to [http://localhost:3000/](http://localhost:3000/) in any Web browser to use the app.
-
+1.	Download .zip file of app folder
+2.	Decompress it
+3.	Navigate inside the folder through your console, and run the command  
+	`$ npm install` 
+4.	Wait for all Node modules to finish installing, and when the prompt appears again, run  
+	`$ node app.js` 
+5.	Navigate to [http://localhost:3000/](http://localhost:3000/) in any Web browser to use the app.  
 If you get any module errors, try running:  
-```
-$ npm cache clean
-$ npm install
-```  
+	`$ npm cache clean  
+	$ npm install`  
 If permission is denied when attempting to run Node, you may need to run it as an administrator.
 
 ## Project Assignment 05
@@ -50,8 +43,7 @@ Known issues:
 - the lists of followers and following is not populated when the page initially loads (only after Ajax polls the server)
 - following or unfollowing a user does not always update the view without a page reload
 - possible error on the server when unfollowing a user
-- socket.io does not populate the post database on the server with new posts
-- There is no feed on the homepage that populates itself with posts by you and people you follow
+- The feed on the homepage is not populated with posts by you and people you follow
 - Post privacy is not taken into account when displaying posts
 
 ## Project Assignment 03

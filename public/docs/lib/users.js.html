@@ -162,9 +162,9 @@ Note: This will be replaced with calls to a database layer.</p>
 
 
 <div class="dox">
-  <div class="summary"><p>Creates a User object and adds it to the "database," if a user with the same
+  <div class="summary"><p>Creates a User object and adds it to the database, if a user with the same
 username or same email address doesn't already exist. Invokes callback <code>cb</code>
-with the signature cb(error, message).</p>
+with the signature <code>cb (error, message)</code>.</p>
   </div>
   <div class="body">
   </div>
@@ -199,7 +199,7 @@ with the signature cb(error, message).</p>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">createUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">pconfirm</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="nx">pconfirm</span> <span class="o">&amp;&amp;</span> <span class="nx">email</span> <span class="o">&amp;&amp;</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
@@ -273,8 +273,7 @@ with the signature cb(error, message).</p>
   <span class="k">else</span> <span class="p">{</span>
     <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Please fill in all fields&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">createUser</span> <span class="o">=</span> <span class="nx">createUser</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -292,17 +291,32 @@ with the signature cb(error, message).</p>
 
 <div class="dox">
   <div class="summary"><p>Locates a user by <code>username</code> if user exists and password matches. Invokes
-callback <code>cb</code> with the signature cb(error, userobj).
- @param username {string} The username to authenticate
- @param password {string} The password for authentication
- @param cb {function} Callback function to invoke after looking up user</p>
+callback <code>cb</code> with the signature <code>cb (error, userobj)</code>.</p>
   </div>
   <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The username to authenticate</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">password</span>
+      <span class="dox_type">string</span>
+      <span>The password for authentication</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after looking up user</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">authUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">authUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
@@ -352,8 +366,7 @@ callback <code>cb</code> with the signature cb(error, userobj).
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;Invalid username&#39;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">authUser</span> <span class="o">=</span> <span class="nx">authUser</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 
@@ -370,12 +383,28 @@ callback <code>cb</code> with the signature cb(error, userobj).
 </div>
 
 
-<p>Retrieves the user object from the database that matches the passed username
-@param username {string} The username to fetch
-@param cb {function} Callback function to invoke after retrieving user</p>
+<div class="dox">
+  <div class="summary"><p>Retrieves the user object from the database that matches the passed username</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>The username to fetch</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">function</span>
+      <span>Callback function to invoke after retrieving user</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">getUser</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">foundUser</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">users</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">username</span> <span class="o">===</span> <span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
@@ -398,8 +427,7 @@ callback <code>cb</code> with the signature cb(error, userobj).
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foundUser</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">cb</span><span class="p">(</span><span class="s1">&#39;User &#39;</span> <span class="o">+</span> <span class="nx">username</span> <span class="o">+</span> <span class="s1">&#39; was not found&#39;</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">getUser</span> <span class="o">=</span> <span class="nx">getUser</span><span class="p">;</span> 
+<span class="p">};</span> 
 
 
 
@@ -416,14 +444,25 @@ callback <code>cb</code> with the signature cb(error, userobj).
 </div>
 
 
-<p>Adds a user to the list of online users.
-@param user {object} The user to add to list of logged in users</p>
+<div class="dox">
+  <div class="summary"><p>Adds a user to the list of online users.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user</span>
+      <span class="dox_type">object</span>
+      <span>The user to add to list of logged in users</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">loginUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">loginUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">online</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">loginUser</span> <span class="o">=</span> <span class="nx">loginUser</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -439,16 +478,27 @@ callback <code>cb</code> with the signature cb(error, userobj).
 </div>
 
 
-<p>Deletes a user from the list of online users, if it is in the list.
-@param user {object} The user to delete from list of logged in users</p>
+<div class="dox">
+  <div class="summary"><p>Deletes a user from the list of online users, if it is in the list.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user</span>
+      <span class="dox_type">object</span>
+      <span>The user to delete from list of logged in users</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">logoutUser</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logoutUser</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">delete</span> <span class="nx">online</span><span class="p">[</span><span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">)];</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">logoutUser</span> <span class="o">=</span> <span class="nx">logoutUser</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -465,18 +515,24 @@ callback <code>cb</code> with the signature cb(error, userobj).
 
 
 <div class="dox">
-  <div class="summary"><p>Tells whether a user is in the list of logged in users.
- @param user {object} The user to check</p>
+  <div class="summary"><p>Tells whether a user is in the list of logged in users.</p>
   </div>
   <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">user</span>
+      <span class="dox_type">object</span>
+      <span>The user to check</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">isLoggedIn</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">online</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="nx">isLoggedIn</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -493,8 +549,8 @@ callback <code>cb</code> with the signature cb(error, userobj).
 
 
 <div class="dox">
-  <div class="summary"><p>Adds a user to the database. The <code>userData</code> is an object with
-the following properties:</p>
+  <div class="summary"><p>Adds a user to the database. The <code>userData</code> is an object with the following
+properties:</p>
   </div>
   <div class="body"><ul>
 <li><code>username</code> The user's Jargn handle (@somebody)</li>

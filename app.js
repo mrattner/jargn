@@ -1,10 +1,12 @@
 // # app
-// Launching point for the Express app.
+/**
+ * Launching point for the Express app.
+ */
 
-//Set the port on which to run the app
+// Set the port on which to run the app
 var APP_PORT = 3000;
 
-//Module dependencies and routes
+// Module dependencies and routes
 var express = require('express')
 , routes = require('./routes')
 , path = require('path')
@@ -37,11 +39,14 @@ var io = require('socket.io', {'log level': 0}).listen(server);
 // Make the app listen
 server.listen(APP_PORT);
 
-//	### *function*: authmw
-//	Middleware for authentication and redirecting. 
-//	@param req {object} The HTTP request
-//	@param res {object} The HTTP response
-//	@param next {function} The next route, as defined by the router
+// ### *function*: authmw
+/**
+ * Middleware for authentication and redirecting.
+ *
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
+ * @param {function} next The next route, as defined by the router
+ */
 function authmw (req, res, next) {
 	//Pattern defining login or signup URLs
 	var signupOrLoginURL = /^\/(login|signup)/;
@@ -137,7 +142,7 @@ app.get('/user/:username', user.display);
 app.post('/user/:username/follow', user.followAction);
 app.post('/check', user.check);
 
-//Allow posts to be sent back and forth between client and server
+// Allow posts to be sent back and forth between client and server
 io.sockets.on('connection', function (socket) {
 	index.initPost(socket);
 });

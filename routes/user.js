@@ -1,7 +1,9 @@
-// # User Profile Module
-// Represents a user of Jargn. Collects one person's posts, and shows
-// information about this person, who is following him/her, and other users
-// he/she is following.
+// # User Profile
+/**
+ * Represents a user of Jargn. Collects one person's posts, and shows
+ * information about this person, who is following him/her, and other users
+ * he/she is following.
+ */
 
 // Access the user database
 var userlib = require('../lib/users');
@@ -11,7 +13,12 @@ var postlib = require('../lib/posts');
 var followlib = require('../lib/follows');
 
 // ### *function*: display
-// Renders the user's profile.
+/**
+ * Renders the user profile page.
+ *
+ * @param {object} req The HTTP request  
+ * @param {object} res The HTTP response
+ */
 exports.display = function (req, res) {
 	//Get the user whose profile this is
 	userlib.getUser(req.params.username, function (err, theUser) {
@@ -69,10 +76,13 @@ exports.display = function (req, res) {
 };
 
 // ### *function*: followAction
-// Adds the currently logged in user as a follower of this user's profile,
-// and adds this user to the currently logged in user's follow list.
-// @param req {object} The HTTP request
-// @param res {object} The HTTP response
+/**
+ * Adds the currently logged in user as a follower of this user's profile,
+ * and adds this user to the currently logged in user's follow list.
+ *
+ * @param {object} req The HTTP request  
+ * @param {object} res The HTTP response
+ */
 exports.followAction = function (req, res) {
 	//The currently logged in user's name
 	var follower = req.session.user.username;
@@ -95,7 +105,12 @@ exports.followAction = function (req, res) {
 };
 
 // ### *function*: check
-// Sends the client new follow activity in JSON format.
+/**
+ * Sends the client new follow activity in JSON format.
+ *
+ * @param {object} req The HTTP request  
+ * @param {object} res The HTTP response
+ */
 exports.check = function (req, res) {
 	var activity = followlib.getFollowers(req.body.username, 
 		function (err, followers) {

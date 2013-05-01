@@ -1,8 +1,10 @@
 // # follow.client.js
-// Updates the client to show recent follow activity without requiring
-// page reloads.
+/**
+ * Updates the client to show recent follow activity without requiring
+ * page reloads.
+ */
 
-// A FollowClient object for communicating with the server.
+// A FollowClient object for communicating with the server
 function FollowClient(config) {
 	for (var prop in config) {
 		this[prop] = config[prop];
@@ -22,7 +24,7 @@ FollowClient.prototype = {
 								 3000);
 	},
 	
-	// Stop polling this server.
+	// Stop polling this server
 	pollStop : function () {
 		clearInterval(this._stop);
 	},
@@ -53,10 +55,10 @@ FollowClient.prototype = {
 		   }).done(function (data) {
 			   console.log('Check rcvd: ' + JSON.stringify(data));
 			   
-			   // Append the new follow activity:
-			   //that.follows = that.follows.concat(data);
+			   // Append the new follow activity
+			   // that.follows = that.follows.concat(data);
 			   
-			   // Rewrite to the view:
+			   // Rewrite to the view
 			   that.view.empty();
 			   for (var i = 0; i < data.length; i++) {
 				var li = $('<li>');
@@ -67,53 +69,54 @@ FollowClient.prototype = {
 	}	
 };
 
-// jQuery ready handler:
+// jQuery ready handler that is called when the document is ready
 $(function () {
- //Helper function to determine the appearance of the button
- function checkFollowing () {
-  //If we are following this person
-  if ($('#followB').hasClass('followed')) {
-   //Fade out the button
-   $('#followB').fadeTo(5, 0.25);
-   //Set the text on the button
-   $('#followB').html("Unfollow");
-  }
- 
-  //If we are not following this person
-  else {
-   //Make the button have opacity 100%
-   $('#followB').fadeTo(5, 1);
-   //Set the text on the button
-   $('#followB').html("Follow");
-  }
- }
- 
- // Get the list view that the chat client
- // will populate with incoming messages: 
- var followc = new FollowClient({ view : $('ol#followers') });
- 
- // Start polling:
- followc.poll();
- 
- //Hide the button if this is the user's own profile
- if ($('#followB').hasClass('ownProfile')) {
-  $('#followB').hide();
- }
- //Otherwise, this is another user's profile
- else {
-  //Determine the initial appearance of the button
-  checkFollowing();
- 
-  //Add a click event handler to the button
-  $('#followB').bind('click', function () {
-   //Toggle following
-   $('#followB').toggleClass('followed');
-   //Update the appearance of the button
-   checkFollowing();
- 
-   followc.follow($('#followB').attr('profileUser'));
-   //Bypass default page reload 
-   return false;
-  });
- }
+	// Helper function to determine the appearance of the button
+	function checkFollowing () {
+		// If we are following this person
+		if ($('#followB').hasClass('followed')) {
+			// Fade out the button
+			$('#followB').fadeTo(5, 0.25);
+			// Set the text on the button
+			$('#followB').html("Unfollow");
+		}
+
+		// If we are not following this person
+		else {
+			// Make the button have opacity 100%
+			$('#followB').fadeTo(5, 1);
+			
+			// Set the text on the button
+			$('#followB').html("Follow");
+		}
+	}
+
+	// Get the list view that the follow client will populate with incoming
+	// follow activity 
+	var followc = new FollowClient({ view : $('ol#followers') });
+
+	// Start polling the server
+	followc.poll();
+
+	// Hide the button if this is the user's own profile
+	if ($('#followB').hasClass('ownProfile')) {
+		$('#followB').hide();
+	}
+	//Otherwise, this is another user's profile
+	else {
+		//Determine the initial appearance of the button
+		checkFollowing();
+
+		//Add a click event handler to the button
+		$('#followB').bind('click', function () {
+			//Toggle following
+			$('#followB').toggleClass('followed');
+			//Update the appearance of the button
+			checkFollowing();
+
+			followc.follow($('#followB').attr('profileUser'));
+			//Bypass default page reload 
+			return false;
+		});
+	}
 });

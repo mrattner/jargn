@@ -1,6 +1,9 @@
 // ### *function:* publisher
-// Sets up a publisher
-// @return obj {object} The object that subscribers subscribe to events on
+/**
+ * Sets up a publisher.
+ *
+ * @return {object} The object that subscribers subscribe to events on
+ */
 function publisher () {
 	// The subscribers object
 	var subscribers = {};
@@ -8,8 +11,12 @@ function publisher () {
 	var obj = {};
 
 	// ### *function:* subscribe
-	// @param type {string} The type of event to subscribe to
-	// @param fn {function} The function to call when the event occurs
+	/**
+	 * Subscribe to an event.
+	 *
+	 * @param {string} type The type of event to subscribe to
+	 * @param {function} fn The function to call when the event occurs
+	 */
 	obj.subscribe = function (type, fn) {
 		// If there are no subscribers who subscribe to this event, create an
 		// empty list for them
@@ -20,9 +27,13 @@ function publisher () {
 	};
 
 	// ### *function:* unsubscribe
-	// @param type {string} The type of event to unsubscribe from
-	// @param fn {function} The function to remove
-	// @return true if unsubscribe was successful, false otherwise
+	/**
+	 * Unsubscribe from an event.
+	 *
+	 * @param {string} type The type of event to unsubscribe from
+	 * @param {function} fn The function to remove
+	 * @return {boolean} true if unsubscribe was successful, false otherwise
+	 */
 	obj.unsubscribe = function (type, fn) {
 		if (subscribers[type] === undefined){
 			return false;
@@ -38,18 +49,20 @@ function publisher () {
 	};
 
 	// ### *function:* publish
-	// Publish to all subscribers on respective kind of event.
-	// @param type {string} The type of event to publish on
-	// @param arg The argument to pass to the subscriber function
+	/**
+	 * Publish to all subscribers on respective kind of event.
+	 *
+	 * @param {string} type The type of event to publish on
+	 * @param arg The argument to pass to the subscriber function
+	 */
 	obj.publish = function (type, arg) {
 		if(subscribers[type] === undefined){
 			return false;
 		}
 
-		//invokes subscriber functions
+		// Invoke subscriber functions
 		var s = subscribers[type];
-		var i;
-		for(i = 0; i < s.length; i++) {
+		for(var i = 0; i < s.length; i++) {
 			var fn = s[i];
 			fn(arg);
 		}
@@ -60,9 +73,12 @@ function publisher () {
 }
 
 // ### *function:* postTextArea
-// Gives a manipulable object connected to the post text area in the view.
-// @return obj {object} An object representing the postTextArea, which is the 
-// text area in the view that the user inputs text into.
+/**
+ * Gives a manipulable object connected to the post text area in the view.
+ *
+ * @return {object} An object representing the postTextArea, which is the 
+ * text area in the view that the user inputs text into.
+ */
 function postTextArea () {
 	// An object that will represent the postTextArea
 	var obj = Object.create(publisher());
@@ -83,9 +99,12 @@ function postTextArea () {
 }
 
 // ### *function:* postPostButton
-// Gives a manipulable object connected to the post button in the view.
-// @return obj {object} An object representing the postPostButton, which is the 
-// button the user clicks to submit a post.
+/**
+ * Gives a manipulable object connected to the post button in the view.
+ *
+ * @return {object} An object representing the postPostButton, which is the 
+ * button the user clicks to submit a post.
+ */
 function postPostButton () {
 	var obj = Object.create(publisher());
 	obj.elm = $('#post-post-button');
@@ -101,9 +120,12 @@ function postPostButton () {
 }
 
 // ### *function:* postList
-// Gives a manipulable object connected to the post list in the view.
-// @return obj {object} An object representing the postList, which displays
-// recent posts.
+/**
+ * Gives a manipulable object connected to the post list in the view.
+ *
+ * @return {object} An object representing the postList, which displays
+ * recent posts.
+ */
 function postList() {
 	var obj = Object.create(publisher());
 	obj.elm = $('#post-list');
@@ -119,9 +141,12 @@ function postList() {
 }
 
 // ### *function:* postModule
-// Gives a manipulable object connected to the post text area in the view.  
-// @param socket {object} The socket.io object
-// @return obj {object} The publisher object representing the post module
+/**
+ * Gives a manipulable object connected to the post text area in the view.  
+ *
+ * @param {object} socket The socket.io object
+ * @return {object} The publisher object representing the post module
+ */
 function postModule (socket) {
 	var obj = Object.create(publisher());
 	obj.elm = $('div#post-module');
@@ -150,8 +175,7 @@ function postModule (socket) {
 		// Clear the text box and add the message locally
 		obj.text.clearText();
 		var now = new Date();
-		console.log("SOMETHING HAPPENED!!!!!!!!!!!!!!");
-		obj.list.addMessage('You posted at ' + now + ':<br />' + message);
+		obj.list.addMessage(postAuthor + ' (' + now + '):<br />' + message);
 	});
 
   return obj;
@@ -160,6 +184,7 @@ function postModule (socket) {
 // This is the chat module to avoid name conflicts
 var Post = {};
 
+// jQuery ready handler that will be invoked when the document is ready
 $(function () {
 	// Connect with WebSockets
 	var socket = io.connect();

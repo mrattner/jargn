@@ -1,6 +1,7 @@
-// # Signup module
-/** The database will search whether there is a duplicated user stored or not.
- *	If not, submit button will put a new user in the database.
+// # Signup
+/**
+ * The database will search whether there is a duplicated user stored or not.
+ * If not, submit button will put a new user in the database.
  */
 
 //The user database
@@ -8,27 +9,26 @@ var userlib = require('../lib/users');
 
 // ### *function*: display
 /**
- *	Shows the sign up page, with a message from a previous signup attempt.
+ * Shows the sign up page, with a message from a previous signup attempt.
  *
- *	@param {object} req The HTTP request
- *	@param {object} res The HTTP response
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
  */
-function display (req, res) {
+exports.display = function (req, res) {
 	var authmessage = req.flash('auth') || '';
 	res.render('signup', {	title	: 'Jargn: Sign Up',
 							message	: authmessage,
 							user	: req.session.user});
-}
-exports.display = display;
+};
 
 // ### *function*: auth
 /**
- *	Authenticates account creation.
+ * Authenticates account creation.
  *
- *	@param {object} req The HTTP request
- *	@param {object} res The HTTP response
+ * @param {object} req The HTTP request
+ * @param {object} res The HTTP response
  */
-function auth (req, res) {
+exports.auth = function (req, res) {
 	//Pull the values from the signup form
 	var username = req.body.username;
 	var password = req.body.password;
@@ -51,5 +51,4 @@ function auth (req, res) {
 			res.redirect('/login');
 		}
 	});
-}
-exports.auth = auth;
+};

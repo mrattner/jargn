@@ -19,7 +19,7 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#find-friends-module">Find friends module</a>
+        <a href="#find-friends">Find Friends</a>
       </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
@@ -32,17 +32,21 @@
   <tbody>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="find-friends-module">
+<div class="pilwrap" id="find-friends">
   <h1>
-    <a href="#find-friends-module" class="pilcrow">&#182;</a>
-    Find friends module
+    <a href="#find-friends" class="pilcrow">&#182;</a>
+    Find Friends
   </h1>
 </div>
 
 
-<p>Plugs into email and social media APIs to retrieve
-contacts; fetches list of people you may know based on whom you already
-follow.</p>
+<div class="dox">
+  <div class="summary"><p>Plugs into email and social media APIs to retrieve contacts; fetches list of
+people you may know based on whom you already follow.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -57,7 +61,25 @@ follow.</p>
 </div>
 
 
-<p>Provides a user Find Friends view.</p>
+<div class="dox">
+  <div class="summary"><p>Renders the Find Friends page.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -65,7 +87,7 @@ follow.</p>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;findfriends&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Find Friends&#39;</span><span class="p">,</span>
                 <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>
                 <span class="nx">message</span> <span class="o">:</span> <span class="nx">getUserMessage</span><span class="p">});</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

@@ -18,8 +18,14 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h1">
+        <a href="#index">Index</a>
+      </div>
       <div class="heading h3">
-        <a href="#function--index">function: index</a>
+        <a href="#function--display">function: display</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--init">function: init</a>
       </div>
     </div>
   </div>
@@ -29,17 +35,17 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>index.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="index">
+  <h1>
+    <a href="#index" class="pilcrow">&#182;</a>
+    Index
+  </h1>
 </div>
+
+
 <div class="dox">
-  <div class="summary"><p>Home module: displays newest tweets from people you are following.</p>
+  <div class="summary"><p>Displays a feed of posts by yourself and users you are following, and allows
+you to create new posts.</p>
   </div>
   <div class="body">
   </div>
@@ -50,20 +56,115 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="function--index">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>The posts library</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">postlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../lib/posts&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--display">
   <h3>
-    <a href="#function--index" class="pilcrow">&#182;</a>
-    <em>function</em>: index
+    <a href="#function--display" class="pilcrow">&#182;</a>
+    <em>function</em>: display
   </h3>
 </div>
 
 
-<p>Provides a user index view</p>
+<div class="dox">
+  <div class="summary"><p>Renders the index view.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request  </span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn&#39;</span><span class="p">,</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Home&#39;</span><span class="p">,</span>
             <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--init">
+  <h3>
+    <a href="#function--init" class="pilcrow">&#182;</a>
+    <em>function</em>: init
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Server-side support for Websockets. Broadcasts data to the socket.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">socket</span>
+      <span class="dox_type">object</span>
+      <span>The socket.io object</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">initPost</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received post: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Store the post in the database</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">postlib</span><span class="p">.</span><span class="nx">addPost</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">author</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">isPrivate</span><span class="p">);</span>
+    
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Broadcast the post back to the client</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">broadcast</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
 <span class="p">};</span>
 </pre></div>
         </td>

@@ -18,6 +18,30 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h3">
+        <a href="#function--publisher">function: publisher</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--subscribe">function: subscribe</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--unsubscribe">function: unsubscribe</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--publish">function: publish</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--posttextarea">function: postTextArea</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--postpostbutton">function: postPostButton</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--postlist">function: postList</a>
+      </div>
+      <div class="heading h3">
+        <a href="#function--postmodule">function: postModule</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -32,15 +56,30 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="function--publisher">
+  <h3>
+    <a href="#function--publisher" class="pilcrow">&#182;</a>
+    <em>function:</em> publisher
+  </h3>
 </div>
 
-        </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">publisher</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">subscribers</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
 
+<div class="dox">
+  <div class="summary"><p>Sets up a publisher.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>The object that subscribers subscribe to events on</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">publisher</span> <span class="p">()</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -50,15 +89,10 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
-<p>subscribe to an event:</p>
+<p>The subscribers object</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">subscribe</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">subscriber</span><span class="p">[</span><span class="nx">type</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">};</span>
-
+  <span class="kd">var</span> <span class="nx">subscribers</span> <span class="o">=</span> <span class="p">{};</span>
 
 </pre></div>
         </td>
@@ -68,16 +102,113 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
 </div>
-<p>unsubscribe:</p>
+<p>The object that subscribers subscribe to events on</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">unsubscribe</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">){</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--subscribe">
+  <h3>
+    <a href="#function--subscribe" class="pilcrow">&#182;</a>
+    <em>function:</em> subscribe
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Subscribe to an event.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">type</span>
+      <span class="dox_type">string</span>
+      <span>The type of event to subscribe to</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">fn</span>
+      <span class="dox_type">function</span>
+      <span>The function to call when the event occurs</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">subscribe</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>If there are no subscribers who subscribe to this event, create an
+empty list for them</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+  <span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--unsubscribe">
+  <h3>
+    <a href="#function--unsubscribe" class="pilcrow">&#182;</a>
+    <em>function:</em> unsubscribe
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Unsubscribe from an event.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">type</span>
+      <span class="dox_type">string</span>
+      <span>The type of event to unsubscribe from</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">fn</span>
+      <span class="dox_type">function</span>
+      <span>The function to remove</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">boolean</span>
+      <span>true if unsubscribe was successful, false otherwise</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">unsubscribe</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">delete</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
@@ -92,45 +223,189 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+<div class="pilwrap" id="function--publish">
+  <h3>
+    <a href="#function--publish" class="pilcrow">&#182;</a>
+    <em>function:</em> publish
+  </h3>
 </div>
-<p>publish to all subscribers on respective event</p>
+
+
+<div class="dox">
+  <div class="summary"><p>Publish to all subscribers on respective kind of event.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">type</span>
+      <span class="dox_type">string</span>
+      <span>The type of event to publish on</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">arg</span>
+      <span>The argument to pass to the subscriber function</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">publish</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">arg</span><span class="p">){</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">publish</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">){</span>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
 
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Invoke subscriber functions</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
     <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">subscribers</span><span class="p">[</span><span class="nx">type</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
       <span class="nx">fn</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">};</span>
+  
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">postTextArea</span><span class="p">(){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--posttextarea">
+  <h3>
+    <a href="#function--posttextarea" class="pilcrow">&#182;</a>
+    <em>function:</em> postTextArea
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Gives a manipulable object connected to the post text area in the view.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>An object representing the postTextArea, which is the 
+text area in the view that the user inputs text into.</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">postTextArea</span> <span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>An object that will represent the postTextArea</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
   <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">publisher</span><span class="p">());</span>
+  
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>Select the post text area</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#post-text-area&#39;</span><span class="p">);</span>
 
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">getText</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Pull the text from the text area</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">getText</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
   <span class="p">};</span>
 
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">clearText</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>Empty out the text area</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">clearText</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
   <span class="p">};</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">postPostButton</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">pbj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">publisher</span><span class="p">());</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--postpostbutton">
+  <h3>
+    <a href="#function--postpostbutton" class="pilcrow">&#182;</a>
+    <em>function:</em> postPostButton
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Gives a manipulable object connected to the post button in the view.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>An object representing the postPostButton, which is the 
+button the user clicks to submit a post.</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">postPostButton</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">publisher</span><span class="p">());</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#post-post-button&#39;</span><span class="p">);</span>
 
 
@@ -140,13 +415,12 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
 </div>
 <p>handles click event</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;submit button pressed.&#39;</span><span class="p">);</span>
 
 </pre></div>
         </td>
@@ -154,13 +428,24 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
 </div>
 <p>publish this to subscribers:</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">);</span>
-    
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>circumvent page reload</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">});</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
@@ -172,11 +457,29 @@
       </tr>
       <tr>
         <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+<div class="pilwrap" id="function--postlist">
+  <h3>
+    <a href="#function--postlist" class="pilcrow">&#182;</a>
+    <em>function:</em> postList
+  </h3>
 </div>
-<p>The message list that corresponds with the post list defined in
-the view:</p>
+
+
+<div class="dox">
+  <div class="summary"><p>Gives a manipulable object connected to the post list in the view.</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>An object representing the postList, which displays
+recent posts.</span>
+    </div>
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">postList</span><span class="p">()</span> <span class="p">{</span>
@@ -190,20 +493,57 @@ the view:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
 </div>
 <p>A method to add a post to the list:</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">addMessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span><span class="p">);</span>
-    <span class="nx">next</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+    <span class="nx">next</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
   <span class="p">};</span>
 
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">function</span> <span class="nx">postModule</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="function--postmodule">
+  <h3>
+    <a href="#function--postmodule" class="pilcrow">&#182;</a>
+    <em>function:</em> postModule
+  </h3>
+</div>
+
+
+<div class="dox">
+  <div class="summary"><p>Gives a manipulable object connected to the post text area in the view.  </p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">socket</span>
+      <span class="dox_type">object</span>
+      <span>The socket.io object</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>The publisher object representing the post module</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">postModule</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">publisher</span><span class="p">());</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">elm</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div#post-module&#39;</span><span class="p">);</span>
 
@@ -214,9 +554,9 @@ the view:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
 </div>
-<p>Create each of the important UI objects:</p>
+<p>Create each of the important UI objects</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">postTextArea</span><span class="p">();</span>
@@ -230,14 +570,13 @@ the view:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
 </div>
-<p>We let the post button deal with its own click event.  We simply
-subscribe to the submit event on the post button.  It will invoke
-our callback when it is ready to do so:</p>
+<p>Subscribe to the submit event on the post button, which will invoke
+the callback function when the submit event occurs</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">obj</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
 
 </pre></div>
         </td>
@@ -245,13 +584,39 @@ our callback when it is ready to do so:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
 </div>
-<p>Grab the textarea's text and send to server:</p>
+<p>Get whether the post was private</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">privacy</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#privacyCheckbox&#39;</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s1">&#39;:checked&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>Get the author of the post</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">postAuthor</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#currentUser span&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<p>Grab the textarea's text</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">getText</span><span class="p">();</span>
-    <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">post</span> <span class="o">:</span> <span class="nx">message</span> <span class="p">});</span>
+    
 
 </pre></div>
         </td>
@@ -259,29 +624,31 @@ our callback when it is ready to do so:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
 </div>
-<p>Clear the text box and add the message locally:</p>
+<p>Send the post back to the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="p">{</span> 
+      <span class="nx">text</span> <span class="o">:</span> <span class="nx">message</span>
+      <span class="p">,</span> <span class="nx">author</span> <span class="o">:</span> <span class="nx">postAuthor</span>
+      <span class="p">,</span> <span class="nx">isPrivate</span> <span class="o">:</span> <span class="nx">privacy</span> <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+<p>Clear the text box and add the message locally</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">clearText</span><span class="p">();</span>
-    <span class="nx">obj</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">addMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-  <span class="p">});</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
-</div>
-<p>Handle incoming post messages from the server:</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">obj</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">addMessage</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">post</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="nx">obj</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">addMessage</span><span class="p">(</span><span class="nx">postAuthor</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> <span class="o">+</span> <span class="nx">now</span> <span class="o">+</span> <span class="s1">&#39;):&lt;br /&gt;&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
   <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
@@ -294,13 +661,25 @@ our callback when it is ready to do so:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
 </div>
-<p>This is the chat module to avoid name conflicts:</p>
+<p>This is the chat module to avoid name conflicts</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">var</span> <span class="nx">Post</span> <span class="o">=</span> <span class="p">{};</span>
 
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+<p>jQuery ready handler that will be invoked when the document is ready</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
 </pre></div>
@@ -309,9 +688,9 @@ our callback when it is ready to do so:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
 </div>
-<p>Connect with WebSockets:</p>
+<p>Connect with WebSockets</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
@@ -322,9 +701,9 @@ our callback when it is ready to do so:</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
 </div>
-<p>Instantiate a new chat application:</p>
+<p>Instantiate a new chat application</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">Post</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="nx">postModule</span><span class="p">(</span><span class="nx">socket</span><span class="p">);</span>

@@ -46,7 +46,12 @@
 </div>
 
 
-<p>Allow user to log in and start session.</p>
+<div class="dox">
+  <div class="summary"><p>Allow user to log in, authenticating the user and and starting a session.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -76,15 +81,27 @@
 
 
 <div class="dox">
-  <div class="summary"><p>Provides a user login view.</p>
+  <div class="summary"><p>Renders the login page.</p>
   </div>
-  <div class="body"><p>@param {object} req The HTTP request
- @param {object} res The HTTP response</p>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">display</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -101,8 +118,7 @@
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn : Login&#39;</span><span class="p">,</span>
               <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>
               <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span><span class="p">});</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">display</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -121,13 +137,25 @@
 <div class="dox">
   <div class="summary"><p>Performs basic user authentication.</p>
   </div>
-  <div class="body"><p>@param {object} req The HTTP request
- @param {object} res The HTTP response</p>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">auth</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -214,8 +242,7 @@
       <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -234,13 +261,25 @@
 <div class="dox">
   <div class="summary"><p>Deletes user info and session, then redirects to login.</p>
   </div>
-  <div class="body"><p>@param {object} req The HTTP request
- @param {object} res The HTTP response</p>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">logout</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">logout</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
   
 
@@ -284,8 +323,7 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">logout</span> <span class="o">=</span> <span class="nx">logout</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

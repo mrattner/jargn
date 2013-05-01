@@ -37,8 +37,13 @@
 </div>
 
 
-<p>Updates the client to show recent follow activity without requiring
+<div class="dox">
+  <div class="summary"><p>Updates the client to show recent follow activity without requiring
 page reloads.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
         </td>
         <td class="code highlight"><div class="highlight"><pre></pre></div>
         </td>
@@ -48,7 +53,7 @@ page reloads.</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
-<p>A FollowClient object for communicating with the server.</p>
+<p>A FollowClient object for communicating with the server</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="kd">function</span> <span class="nx">FollowClient</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
@@ -101,7 +106,7 @@ page reloads.</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
 </div>
-<p>Stop polling this server.</p>
+<p>Stop polling this server</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
   <span class="nx">pollStop</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -165,7 +170,7 @@ the current follow activity.</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
-<p>Append the new follow activity:
+<p>Append the new follow activity
 that.follows = that.follows.concat(data);</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
@@ -179,7 +184,7 @@ that.follows = that.follows.concat(data);</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
 </div>
-<p>Rewrite to the view:</p>
+<p>Rewrite to the view</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
          <span class="nx">that</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
@@ -201,7 +206,7 @@ that.follows = that.follows.concat(data);</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
 </div>
-<p>jQuery ready handler:</p>
+<p>jQuery ready handler that is called when the document is ready</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -214,12 +219,10 @@ that.follows = that.follows.concat(data);</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
 </div>
-<p>Get the list view that the chat client
-will populate with incoming messages:    </p>
+<p>Helper function to determine the appearance of the button</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="kd">var</span> <span class="nx">followc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FollowClient</span><span class="p">({</span> <span class="nx">view</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ol#followers&#39;</span><span class="p">)</span> <span class="p">});</span>
-  
+  <span class="kd">function</span> <span class="nx">checkFollowing</span> <span class="p">()</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -229,11 +232,10 @@ will populate with incoming messages:    </p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
 </div>
-<p>Start polling:</p>
+<p>If we are following this person</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">followc</span><span class="p">.</span><span class="nx">poll</span><span class="p">();</span>
-  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;followed&#39;</span><span class="p">))</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -243,11 +245,10 @@ will populate with incoming messages:    </p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
 </div>
-<p>Bind a click event:</p>
+<p>Fade out the button</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">followc</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;profileUser&#39;</span><span class="p">));</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">fadeTo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
 
 </pre></div>
         </td>
@@ -257,11 +258,182 @@ will populate with incoming messages:    </p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
 </div>
-<p>Bypass default page reload    </p>
+<p>Set the text on the button</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-  <span class="p">});</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;Unfollow&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>If we are not following this person</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>Make the button have opacity 100%</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">fadeTo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>Set the text on the button</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;Follow&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>Get the list view that the follow client will populate with incoming
+follow activity </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="kd">var</span> <span class="nx">followc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FollowClient</span><span class="p">({</span> <span class="nx">view</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ol#followers&#39;</span><span class="p">)</span> <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>Start polling the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="nx">followc</span><span class="p">.</span><span class="nx">poll</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>Hide the button if this is the user's own profile</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;ownProfile&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+  <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>Otherwise, this is another user's profile</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>Determine the initial appearance of the button</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">checkFollowing</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>Add a click event handler to the button</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>Toggle following</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">&#39;followed&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<p>Update the appearance of the button</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">checkFollowing</span><span class="p">();</span>
+
+      <span class="nx">followc</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#followB&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;profileUser&#39;</span><span class="p">));</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+<p>Bypass default page reload </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
         </td>

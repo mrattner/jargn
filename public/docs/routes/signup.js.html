@@ -19,7 +19,7 @@
     <div id="tree"></div>
     <div id="headings">
       <div class="heading h1">
-        <a href="#signup-module">Signup module</a>
+        <a href="#signup">Signup</a>
       </div>
       <div class="heading h3">
         <a href="#function--display">function: display</a>
@@ -35,17 +35,17 @@
   <tbody>
       <tr>
         <td class="docs">
-<div class="pilwrap" id="signup-module">
+<div class="pilwrap" id="signup">
   <h1>
-    <a href="#signup-module" class="pilcrow">&#182;</a>
-    Signup module
+    <a href="#signup" class="pilcrow">&#182;</a>
+    Signup
   </h1>
 </div>
 
 
 <div class="dox">
   <div class="summary"><p>The database will search whether there is a duplicated user stored or not.
- If not, submit button will put a new user in the database.</p>
+If not, submit button will put a new user in the database.</p>
   </div>
   <div class="body">
   </div>
@@ -81,19 +81,30 @@
 <div class="dox">
   <div class="summary"><p>Shows the sign up page, with a message from a previous signup attempt.</p>
   </div>
-  <div class="body"><p>@param {object} req The HTTP request
- @param {object} res The HTTP response</p>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">display</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">authmessage</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;signup&#39;</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Jargn: Sign Up&#39;</span><span class="p">,</span>
               <span class="nx">message</span> <span class="o">:</span> <span class="nx">authmessage</span><span class="p">,</span>
               <span class="nx">user</span>  <span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">});</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">display</span><span class="p">;</span>
+<span class="p">};</span>
 
 
 </pre></div>
@@ -112,13 +123,25 @@
 <div class="dox">
   <div class="summary"><p>Authenticates account creation.</p>
   </div>
-  <div class="body"><p>@param {object} req The HTTP request
- @param {object} res The HTTP response</p>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">req</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP request</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">res</span>
+      <span class="dox_type">object</span>
+      <span>The HTTP response</span>
+    </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">auth</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
 
 </pre></div>
         </td>
@@ -185,8 +208,7 @@ route <code>signup</code></p>
       <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
-<span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>
