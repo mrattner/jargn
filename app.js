@@ -34,6 +34,9 @@ var server = require('http').createServer(app);
 // socket.io attached to the HTTP server object
 var io = require('socket.io', {'log level': 0}).listen(server);
 
+// Make the app listen
+server.listen(APP_PORT);
+
 //	### *function*: authmw
 //	Middleware for authentication and redirecting. 
 //	@param req {object} The HTTP request
@@ -74,44 +77,44 @@ function authmw (req, res, next) {
 
 //Configure Express and use middleware
 app.configure(function(){
-  //Set the correct port to run on
-  app.set('port', process.env.PORT || APP_PORT);
-  
-  //Set the view directory path
-  app.set('views', __dirname + '/views');
-  
-  //Set the default engine extension to use when omitted
-  app.set('view engine', 'ejs');
-  
-  //Parser for the body of HTTP requests
-  app.use(express.bodyParser());
-  
-  //Allows use of DELETE and PUT
-  app.use(express.methodOverride());
-  
-  //Populates req.cookies with an object keyed by the cookie names
-  app.use(express.cookieParser('kittens'));
-  
-  //Use session middleware (must be used after express.cookieParser)
-  app.use(express.session());
-  
-  //Use flash support for sessions
-  app.use(flash());
-  
-  //Use the custom authentication middleware for redirecting
-  app.use(authmw);
-  
-  //Use router middleware (must be used after express.session)
-  app.use(app.router);
-  
-  //Serve up static files in the 'public' directory
-  app.use(express.static(path.join(__dirname, '/public')));
+	//Set the correct port to run on
+	app.set('port', process.env.PORT || APP_PORT);
+
+	//Set the view directory path
+	app.set('views', __dirname + '/views');
+
+	//Set the default engine extension to use when omitted
+	app.set('view engine', 'ejs');
+
+	//Parser for the body of HTTP requests
+	app.use(express.bodyParser());
+
+	//Allows use of DELETE and PUT
+	app.use(express.methodOverride());
+
+	//Populates req.cookies with an object keyed by the cookie names
+	app.use(express.cookieParser('kittens'));
+
+	//Use session middleware (must be used after express.cookieParser)
+	app.use(express.session());
+
+	//Use flash support for sessions
+	app.use(flash());
+
+	//Use the custom authentication middleware for redirecting
+	app.use(authmw);
+
+	//Use router middleware (must be used after express.session)
+	app.use(app.router);
+
+	//Serve up static files in the 'public' directory
+	app.use(express.static(path.join(__dirname, '/public')));
 });
 
 // Configure Express in development mode
 app.configure('development', function(){
-  app.use(express.errorHandler());
-  app.use(express.logger('dev'));
+	app.use(express.errorHandler());
+	app.use(express.logger('dev'));
 });
 
 // Define the routes
@@ -134,9 +137,7 @@ app.get('/user/:username', user.display);
 app.post('/user/:username/follow', user.followAction);
 app.post('/check', user.check);
 
-// Make the app listen
-server.listen(APP_PORT);
-
+//Allow posts to be sent back and forth between client and server
 io.sockets.on('connection', function (socket) {
 	index.initPost(socket);
 });

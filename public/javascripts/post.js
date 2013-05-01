@@ -105,17 +105,17 @@ function postPostButton () {
 // @return obj {object} An object representing the postList, which displays
 // recent posts.
 function postList() {
-  var obj = Object.create(publisher());
-  obj.elm = $('#post-list');
+	var obj = Object.create(publisher());
+	obj.elm = $('#post-list');
 
-  // A method to add a post to the list:
-  obj.addMessage = function (msg) {
-    var next = $('li');
-    next.text(msg);
-    obj.elm.prepend(next);
-  };
+	// A method to add a post to the list:
+	obj.addMessage = function (msg) {
+		var next = $('<li>');
+		next.html(msg);
+		obj.elm.prepend(next);
+	};
 
-  return obj;
+	return obj;
 }
 
 // ### *function:* postModule
@@ -149,13 +149,9 @@ function postModule (socket) {
 
 		// Clear the text box and add the message locally
 		obj.text.clearText();
-		obj.list.addMessage(message);
-	});
-
-	// Handle incoming post messages from the server
-	socket.on('post', function (data) {
-		var now = new Date()
-		obj.list.addMessage('You posted at ' + now + ':\n' + data.text);
+		var now = new Date();
+		console.log("SOMETHING HAPPENED!!!!!!!!!!!!!!");
+		obj.list.addMessage('You posted at ' + now + ':<br />' + message);
 	});
 
   return obj;
@@ -165,10 +161,8 @@ function postModule (socket) {
 var Post = {};
 
 $(function () {
-  // Connect with WebSockets
-  var socket = io.connect();
-  // Instantiate a new chat application
-  Post.app = postModule(socket);
+	// Connect with WebSockets
+	var socket = io.connect();
+	// Instantiate a new chat application
+	Post.app = postModule(socket);
 });
-
-
