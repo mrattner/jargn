@@ -70,24 +70,28 @@ function postTextArea () {
 	// Select the post text area
 	obj.elm = $('#post-text-area');
 
+	// Pull the text from the text area
 	obj.getText = function () {
 		return obj.elm.val();
 	};
 
+	// Empty out the text area
 	obj.clearText = function () {
 		obj.elm.val('');
 	};
 	return obj;
 }
 
-//button defined in posts view
+// ### *function:* postPostButton
+// Gives a manipulable object connected to the post button in the view.
+// @return obj {object} An object representing the postPostButton, which is the 
+// button the user clicks to submit a post.
 function postPostButton () {
 	var obj = Object.create(publisher());
 	obj.elm = $('#post-post-button');
 
 	//handles click event
 	obj.elm.click(function(event){
-		console.log('submit button pressed.');
 		//publish this to subscribers:
 		obj.publish('submit');
 		//circumvent page reload
@@ -96,8 +100,10 @@ function postPostButton () {
 	return obj;
 }
 
-// The message list that corresponds with the post list defined in
-// the view:
+// ### *function:* postList
+// Gives a manipulable object connected to the post list in the view.
+// @return obj {object} An object representing the postList, which displays
+// recent posts.
 function postList() {
   var obj = Object.create(publisher());
   obj.elm = $('#post-list');
@@ -112,42 +118,55 @@ function postList() {
   return obj;
 }
 
-function postModule(socket) {
-  var obj = Object.create(publisher());
-  obj.elm = $('div#post-module');
+// ### *function:* postModule
+// Gives a manipulable object connected to the post text area in the view.  
+// @param socket {object} The socket.io object
+// @return obj {object} The publisher object representing the post module
+function postModule (socket) {
+	var obj = Object.create(publisher());
+	obj.elm = $('div#post-module');
 
-  // Create each of the important UI objects:
-  obj.text = postTextArea();
-  obj.post = postPostButton();
-  obj.list = postList();
+	// Create each of the important UI objects
+	obj.text = postTextArea();
+	obj.post = postPostButton();
+	obj.list = postList();
 
-  // We let the post button deal with its own click event.  We simply
-  // subscribe to the submit event on the post button.  It will invoke
-  // our callback when it is ready to do so:
-  obj.post.subscribe('submit', function () {
-    // Grab the textarea's text and send to server:
-    var message = obj.text.getText();
-    socket.emit('post', { post : message });
-    // Clear the text box and add the message locally:
-    obj.text.clearText();
-    obj.list.addMessage(message);
-  });
+	// Subscribe to the submit event on the post button, which will invoke
+	// the callback function when the submit event occurs
+	obj.post.subscribe('submit', function () { 
+		// Get whether the post was private
+		var privacy = $('#privacyCheckbox').is(':checked') ? true : false;
+		// Get the author of the post
+		var postAuthor = $('#currentUser span').text();
+		// Grab the textarea's text
+		var message = obj.text.getText();
+		
+		// Send the post back to the server
+		socket.emit('post', { 
+			text : message
+			, author : postAuthor
+			, isPrivate : privacy });
 
-  // Handle incoming post messages from the server:
-  socket.on('post', function (data) {
-    obj.list.addMessage(data.post);
-  });
+		// Clear the text box and add the message locally
+		obj.text.clearText();
+		obj.list.addMessage(message);
+	});
+
+	// Handle incoming post messages from the server
+	socket.on('post', function (data) {
+		obj.list.addMessage(data.post);
+	});
 
   return obj;
 }
 
-// This is the chat module to avoid name conflicts:
+// This is the chat module to avoid name conflicts
 var Post = {};
 
 $(function () {
-  // Connect with WebSockets:
+  // Connect with WebSockets
   var socket = io.connect();
-  // Instantiate a new chat application:
+  // Instantiate a new chat application
   Post.app = postModule(socket);
 });
 

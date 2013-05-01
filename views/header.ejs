@@ -11,12 +11,12 @@
 		<script type="text/javascript" src ="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
-		<% if(user != undefined) { %>
-		<div id="currentuser">
-		Logged in as: <a href="/user/<%= user.username %>">
-		<%= user.username %></a>
+		<% if(user !== undefined) { %>
+		<div id="currentUser">
+			Logged in as: <a href="/user/<%= user.username %>">
+			<%= user.username %></a>
+			<span><%= user.username %></span>
 		<% } %>
-		</div>
 		<div class='navbar'>
 			<h1 id='name'> jargn</h1>
 			<ul class='nav'>
