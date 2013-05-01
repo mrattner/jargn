@@ -10,6 +10,7 @@ var express = require('express')
 , path = require('path')
 , flash = require('connect-flash')
 
+, index = require('./routes/index')
 , connect = require('./routes/connect')
 , discover = require('./routes/discover')
 , findfriends = require('./routes/findfriends')
@@ -18,7 +19,6 @@ var express = require('express')
 , search = require('./routes/search')
 , settings = require('./routes/settings')
 , signup = require('./routes/signup')
-, post = require('./routes/post')
 , user = require('./routes/user')
 ;
 
@@ -115,7 +115,7 @@ app.configure('development', function(){
 });
 
 // Define the routes
-app.get('/', routes.index);
+app.get('/', index.display);
 app.get('/connect', connect.display);
 app.get('/discover', discover.display);
 app.get('/findfriends', findfriends.display);
@@ -130,8 +130,6 @@ app.get('/logout', login.logout);
 app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 
-app.get('/post', post.display);
-
 app.get('/user/:username', user.display);
 app.post('/user/:username/follow', user.followAction);
 app.post('/check', user.check);
@@ -140,5 +138,5 @@ app.post('/check', user.check);
 server.listen(APP_PORT);
 
 io.sockets.on('connection', function (socket) {
-	post.init(socket);
+	index.initPost(socket);
 });

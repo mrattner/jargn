@@ -110,7 +110,7 @@ function postList() {
 
   // A method to add a post to the list:
   obj.addMessage = function (msg) {
-    var next = $('<li>');
+    var next = $('li');
     next.text(msg);
     obj.elm.prepend(next);
   };
@@ -154,7 +154,8 @@ function postModule (socket) {
 
 	// Handle incoming post messages from the server
 	socket.on('post', function (data) {
-		obj.list.addMessage(data.post);
+		var now = new Date()
+		obj.list.addMessage('You posted at ' + now + ':\n' + data.text);
 	});
 
   return obj;
