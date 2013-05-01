@@ -19,28 +19,12 @@ exports.display = display;
 // @param socket {object} The socket.io object
 function init (socket) {
 	socket.on('post', function (data) {
-	  console.log('Received post: ' + JSON.stringify(data));
-	  socket.broadcast.emit('post', data);
-	  });
+		console.log('Received post: ' + JSON.stringify(data));
+		//Store the post in the database
+		postlib.addPost(data.text, data.author, data.isPrivate);
+		
+		//Broadcast the post back to the client
+		socket.broadcast.emit('post', data);
+	});
 }
 exports.init = init;
-
-// ### *function*: upload
-// Stores a post by the currently logged in user in the posts database.
-// @param req {object} the HTTP request
-// @param res {object} the HTTP response
-function upload (req, res) {
-	//Pull the author's username from the request
-	var author = req.session.user.username;
-	//Pull the text from the post request
-	var postText = req.body.post_text;
-	//Is this post private?
-	var isPrivate = (req.body.private) ? true : false;
-	
-	//Add the post to the posts database
-	postlib.addPost(postText, author, isPrivate);
-	
-	// Send status
-	res.json({status: 'OK'});
-}
-exports.upload = upload;

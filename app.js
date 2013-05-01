@@ -131,7 +131,6 @@ app.get('/signup', signup.display);
 app.post('/signup/auth', signup.auth);
 
 app.get('/post', post.display);
-app.post('/post/upload', post.upload);
 
 app.get('/user/:username', user.display);
 app.post('/user/:username/follow', user.followAction);
