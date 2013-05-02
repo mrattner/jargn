@@ -12,6 +12,9 @@ var postlib = require('../lib/posts');
 // Access the follows database
 var followlib = require('../lib/follows');
 
+// Use async.js for asynchronous database calls
+var async = require('async');
+
 // ### *function*: display
 /**
  * Renders the user profile page.
@@ -20,57 +23,92 @@ var followlib = require('../lib/follows');
  * @param {object} res The HTTP response
  */
 exports.display = function (req, res) {
-	//Get the user whose profile this is
-	userlib.getUser(req.params.username, function (err, theUser) {
-		if (err) {
-			res.send('User not found', 404);
-		}
-		else {
-		  var profileUsername = req.params.username;
-		  
-		  //Get this user's followers
-			var followers;
-			followlib.getFollowers(profileUsername, function (err, array){
-				if (!err){
-					followers = array;
-				}
-			});
-		  
-		  //Get who is following this user
-			var following;
-			followlib.getFollowing(profileUsername, function (err, array){
-				if (!err){
-					following = array;
-				}
-			});
-		  
-		  //Get this user's posts
-			var posts;
-			postlib.getPostsByUser(req.session.user.username, profileUsername, function (err, array) {
-				if (!err) {
-					posts = array;
-				}
-			});
-			
-		  //Is this the currently logged in user's profile?
-		  var myProfile = (profileUsername === req.session.user.username);
+	var profileU = req.params.username;
+	var currentU = req.session.user.username;
+	var followers, following, posts;
+	
+	//Get the values of all the above variables
+	async.series([
+		//Get the user whose profile this is
+    	function (callback) {
+    		userlib.getUser(profileU, function (err, theUser) {
+    			if (err) {
+    				res.send('User not found', 404);
+    			}
+    			else {
+    				callback(null);
+    			}
+    		});
+    	},
+    	//Get this user's followers
+    	function (callback) {
+        	followlib.getFollowers(profileU, function (err, array) {
+        		if (!err) {
+        			followers = array;
+        			console.log('Followers null?: '+(followers == null));
+        			callback(null);
+        		}
+        		else {
+        			callback('Problem getting followers');
+        		}
+        	});
+    	},
+    	//Get who is following this user
+    	function (callback) {
+    		followlib.getFollowing(profileU, function (err, array) {
+    			if (!err) {
+    				following = array;
+    				console.log('Following null?: '+(following == null));
+    				callback(null);
+    			}
+    			else {
+    				callback('Problem getting following');
+    			}
+    		});
+    	},
+    	//Get this user's posts
+    	function (callback) {
+    		postlib.getPostsByUser(currentU, profileU, function (err, array) {
+    			if (!err) {
+    				posts = array;
+    				console.log('Posts null?: '+(posts == null));
+    				callback(null);
+    			}
+    			else {
+    				callback('Problem getting posts');
+    			}
+    		});
+    	}
+	],
+	// Finally, render the page
+	function (err, results) {
+		if (!err) {
+			console.log('After all the asynchronous functions:');
+			console.log((followers) +', '+ (following) +', '+ (posts));
+			console.log(typeof(followers) + ', ' + typeof(following) + ', '+ typeof(posts));
+			for (var thing in followers) {
+				console.log('thing in followers: '+thing);
+			}
+			//Is this the currently logged in user's profile?
+			var myProfile = (profileU === currentU);
+
+			//Is the currently logged in user following this user?
+			var isAFollower = followlib.isFollowing(currentU, profileU);
 		
-		  //Is the currently logged in user following this user?
-		  var isAFollower = followlib.isFollowing(req.session.user.username, 
-												profileUsername);
-		 //Page title
-		  var pageTitle = 'Jargn : ' + profileUsername;
-		  
-		  //Render the view
-		  res.render('user', { 
-			 title: pageTitle,
-			 profileUser: profileUsername,
-			 user: req.session.user,
-			 profileFollowers: followers,
-			 profileFollowing: following,
-			 profilePosts: posts,
-			 isMyProfile: myProfile,
-			 isFollowing: isAFollower});
+			//Page title
+			var pageTitle = 'Jargn : ' + profileU;
+
+			//Render the view
+			res.render('user', { 
+				title: pageTitle,
+				profileUser: profileU,
+				user: req.session.user,
+				profileFollowers: followers,
+				profileFollowing: following,
+				profilePosts: posts,
+				isMyProfile: myProfile,
+				isFollowing: isAFollower
+			});
 		}
 	});
 };
